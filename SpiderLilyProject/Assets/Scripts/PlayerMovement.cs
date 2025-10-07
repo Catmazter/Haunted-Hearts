@@ -82,4 +82,11 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = false;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumpCount = 0;
+        }
+    }
 }
