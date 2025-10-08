@@ -82,4 +82,12 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = false;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Entered" + other.name);
+        if(other.TryGetComponent<iPickup>(out var pickup))
+        {
+            pickup.OnPickup(other.gameObject);
+        }
+    }
 }
