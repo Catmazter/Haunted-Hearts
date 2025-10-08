@@ -4,7 +4,8 @@ public class buttonFunctions : MonoBehaviour
 {
     public void resume()
     {
-        gameManager.instance.stateUnpause();
+        if (gameManager.instance.CurrentMenu == gameManager.instance.Menus["Pause"])
+            gameManager.instance.CloseCurrentMenu();
     }
     public void restart()
     {
@@ -22,10 +23,19 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
-
-/*    public void respawn()
+    public void OpenSettings()
     {
-        gameManager.instance.playerScript.spawnPlayer(); ///check player movement 
-        gameManager.instance.stateUnpause();
-    }*/
+        // This will pause the game if not already paused,
+        gameManager.instance.OpenMenu("Settings");
+    }
+    public void CloseMenu()
+    {
+        gameManager.instance.CloseCurrentMenu();
+    }
+
+    /*    public void respawn()
+        {
+            gameManager.instance.playerScript.spawnPlayer(); ///check player movement 
+            gameManager.instance.stateUnpause();
+        }*/
 }
