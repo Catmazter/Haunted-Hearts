@@ -22,10 +22,15 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
-
-/*    public void respawn()
+    public void OpenSettings()
     {
-        gameManager.instance.playerScript.spawnPlayer(); ///check player movement 
-        gameManager.instance.stateUnpause();
-    }*/
+        // This will pause the game if not already paused,
+        gameManager.instance.OpenMenu("Settings");
+    }
+
+    /*    public void respawn()
+        {
+            gameManager.instance.playerScript.spawnPlayer(); ///check player movement 
+            gameManager.instance.stateUnpause();
+        }*/
 }
