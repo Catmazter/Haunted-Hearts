@@ -51,6 +51,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void chasePlayer()
     {
+        agent.stoppingDistance = stoppingDistOrig;
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
     }
 

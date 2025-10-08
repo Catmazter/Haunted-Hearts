@@ -12,7 +12,8 @@ public class EnemyDemon : EnemyBase
     protected override void Update()
     {
         base.Update();
-        roam();
+        //roam();
+        chasePlayer();
     }
 
 }
