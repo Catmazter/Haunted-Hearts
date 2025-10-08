@@ -5,8 +5,12 @@ public class EnemyDemon : EnemyBase
 {
     
     [SerializeField] int runDistance;
+    [SerializeField] float stunDuration;
     bool isRunningAway = false;
+    bool isStunned;
     [SerializeField] Animator anim;
+    float stunTimer;
+    bool hasChosenRunDest = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -22,12 +26,13 @@ public class EnemyDemon : EnemyBase
         //chasePlayer();
         if (isRunningAway)
         {
-            runAway();
+            HandleRunningAway();
         }
         else
         {
             chasePlayer();
         }
+        UpdateAnimation();
     }
     protected override void chasePlayer()
     {
@@ -66,9 +71,58 @@ public class EnemyDemon : EnemyBase
             }
         }
     }
-
-    private void stopMoving()
+    protected virtual void HandleRunningAway()
     {
+        if (isStunned)
+        {
+            stunTimer += Time.deltaTime;
+            if (stunTimer >= stunDuration)
+            {
+                isStunned = false;
+                isRunningAway = false; 
+                agent.isStopped = false;
+                hasChosenRunDest = false;
+            }
+            return;
+        }
+        if (!hasChosenRunDest)
+        {
+            int choice = Random.Range(0, 2);
+            if (choice == 0)
+            {
+                stunt();
+            }
+            else
+            {
+                runAway();
+            }
+            hasChosenRunDest = true;
+        }
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            isRunningAway = false;
+            hasChosenRunDest = false;
+        }
+    }
 
+    private void stunt()
+    {
+        isStunned = true;
+        stunTimer = 0f;
+        agent.isStopped = true;
+        Debug.Log("Enemy stunned!");
+    }
+
+    void UpdateAnimation()
+    {
+        
+        if (agent.velocity.magnitude > 0.1f)
+        {
+            anim.speed = 1f; 
+        }
+        else
+        {
+            anim.speed = 0f; 
+        }
     }
 }
