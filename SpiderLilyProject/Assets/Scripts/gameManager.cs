@@ -20,11 +20,11 @@ public class gameManager : MonoBehaviour
     private GameObject currentMenu;
 
     [Header("GameGoal")]
-    int gameGoalCount;
+    int gameGoalCount ;
     [SerializeField] TextMeshProUGUI gameGoalCountText;
 
 
-    // --- Public read-only accessors ---
+            // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
     [Header("Player")]
@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
         menus.Add("Pause", menuPause);
         menus.Add("Lose", menuLose);
         menus.Add("Settings", menuSettings);
+        updateGameGoal(0);
     }
 
 
