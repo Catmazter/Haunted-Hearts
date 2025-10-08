@@ -11,10 +11,18 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSettings;
     // [SerializeField] GameObject menuWin;
-    private Coroutine titleFadeRoutine;
+
+    [Header("Menu Title")]
     [SerializeField] TextMeshProUGUI menuTitle;
+    [SerializeField] float titleFadeDuration = 0.3f;
+    private Coroutine titleFadeRoutine;
     private Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
     private GameObject currentMenu;
+
+        // --- Public read-only accessors ---
+    public GameObject CurrentMenu => currentMenu;
+    public Dictionary<string, GameObject> Menus => menus;
+    [Header("Player")]
     public GameObject player;
     public PlayerMovement playerScript;
 
@@ -65,18 +73,27 @@ public class gameManager : MonoBehaviour
 
         currentMenu = menus[menuName];
         currentMenu.SetActive(true);
+        UpdateMenuTitle(menuName);
     }
     public void CloseCurrentMenu()
     {
-        if (currentMenu != null)
+        if (currentMenu == null) return;
+
+        // If we're closing Settings, go back to Pause instead of hiding all menus
+        if (currentMenu == menus["Settings"])
         {
-            currentMenu.SetActive(false);
-            currentMenu = null;
+            OpenMenu("Pause");
+            return; // Don't unpause
         }
 
-        // Only unpause when closing top-level menus like Pause or Lose
+        // Otherwise, hide the current menu
+        currentMenu.SetActive(false);
+        currentMenu = null;
+
+        // Only unpause if no other menus are active
         if (isPaused && !AnyMenuActive())
             stateUnpause();
+        UpdateMenuTitle("");
     }
     private bool AnyMenuActive()
     {
@@ -112,9 +129,41 @@ public class gameManager : MonoBehaviour
             titleFadeRoutine = StartCoroutine(FadeTitle(displayName, true));
         }
     }
+
+    public void pauseTime()
+    {         
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+    public void statePause()
+    {
+        pauseTime();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void unpauseTime()
+    {
+        Time.timeScale = timeScaleOrig;
+        isPaused = false;
+    }
+    public void stateUnpause()
+    {
+        unpauseTime();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        if (currentMenu != null)
+        {
+            currentMenu.SetActive(false);
+            currentMenu = null;
+        }
+    }
+    public void stateLose()
+    {
+        OpenMenu("Lose");
+    }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
     {
-        float duration = 0.3f;
+       
         float timer = 0f;
 
         // Get current color and alpha
@@ -129,10 +178,10 @@ public class gameManager : MonoBehaviour
             menuTitle.gameObject.SetActive(true);
 
             // Fade from 0 → 1
-            while (timer < duration)
+            while (timer < titleFadeDuration)
             {
                 timer += Time.unscaledDeltaTime; // Unscaled so it works when paused
-                color.a = Mathf.Lerp(0f, 1f, timer / duration);
+                color.a = Mathf.Lerp(0f, 1f, timer / titleFadeDuration);
                 menuTitle.color = color;
                 yield return null;
             }
@@ -140,10 +189,10 @@ public class gameManager : MonoBehaviour
         else
         {
             // Fade from 1 → 0
-            while (timer < duration)
+            while (timer < titleFadeDuration)
             {
                 timer += Time.unscaledDeltaTime;
-                color.a = Mathf.Lerp(1f, 0f, timer / duration);
+                color.a = Mathf.Lerp(1f, 0f, timer / titleFadeDuration);
                 menuTitle.color = color;
                 yield return null;
             }
@@ -157,23 +206,5 @@ public class gameManager : MonoBehaviour
         color.a = fadeIn ? 1f : 0f;
         menuTitle.color = color;
         titleFadeRoutine = null;
-    }
-    public void statePause()
-    {
-        isPaused = true;
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-    public void stateUnpause()
-    {
-        isPaused = false;
-        Time.timeScale = timeScaleOrig;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-    public void stateLose()
-    {
-        OpenMenu("Lose");
     }
 }

@@ -4,7 +4,8 @@ public class buttonFunctions : MonoBehaviour
 {
     public void resume()
     {
-        gameManager.instance.stateUnpause();
+        if (gameManager.instance.CurrentMenu == gameManager.instance.Menus["Pause"])
+            gameManager.instance.CloseCurrentMenu();
     }
     public void restart()
     {
@@ -26,6 +27,10 @@ public class buttonFunctions : MonoBehaviour
     {
         // This will pause the game if not already paused,
         gameManager.instance.OpenMenu("Settings");
+    }
+    public void CloseMenu()
+    {
+        gameManager.instance.CloseCurrentMenu();
     }
 
     /*    public void respawn()
