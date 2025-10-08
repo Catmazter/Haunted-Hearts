@@ -89,4 +89,12 @@ public class PlayerMovement : MonoBehaviour
             jumpCount = 0;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Entered" + other.name);
+        if (other.TryGetComponent<iPickup>(out var pickup))
+        {
+            pickup.OnPickup(other.gameObject);
+        }
+    }
 }
