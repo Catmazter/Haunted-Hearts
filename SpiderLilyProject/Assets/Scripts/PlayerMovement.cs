@@ -21,15 +21,17 @@ public class PlayerMovement : MonoBehaviour
     int HPOrig;
 
     bool isSprinting;
-    bool isMatchLit;
 
     [Header("Match")]
 
     [SerializeField] GameObject matchModel;
+    [SerializeField] List<Match> matchList = new List<Match>();
     [SerializeField] int matchMax;
     [SerializeField] float matchRadius;
     [SerializeField] float matchTimer;
+    float matchTimerOrig;
     int matchListPos;
+    bool isMatchLit;
 
     [Header("Audio")]
 
@@ -43,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        matchTimerOrig = matchTimer;
+        
     }
 
     void Update()
@@ -59,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newVel = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
         rb.linearVelocity = newVel;
         jump();
+        lightMatch();
     }
     void jump()
     {
@@ -81,6 +86,38 @@ public class PlayerMovement : MonoBehaviour
             speed /= sprintMod;
             isSprinting = false;
         }
+    }
+    void throwMatch()
+    {
+        if (Input.GetButtonDown("Throw Match") && isMatchLit)
+        {
+            if (matchList.Count > 0)
+            {
+                matchList.RemoveAt(matchListPos);
+            }
+        }
+    }
+    void matchInventory()
+    {
+        for (int matchListCount = 0; matchListCount < matchMax; matchListCount++)
+        {
+            Match matches = new Match();
+            matchList.Add(matches);
+        }
+    }
+    void lightMatch()
+    {
+        if (Input.GetButtonDown("Light Match") && !isMatchLit)
+        {
+            matchTimer -= Time.deltaTime;
+            isMatchLit = true;
+        }
+        else if (isMatchLit && matchTimer <= 0)
+        {
+            matchTimer = matchTimerOrig;
+            isMatchLit = false;
+        }
+        throwMatch();
     }
     private void OnCollisionEnter(Collision collision)
     {
