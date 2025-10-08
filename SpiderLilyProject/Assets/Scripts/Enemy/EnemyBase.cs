@@ -5,6 +5,7 @@ public abstract class EnemyBase : MonoBehaviour
 {
     //agent
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected int chaseSpeed;
     float stoppingDistOrig;
     [Space(2)]
     [Header("Roam")]
