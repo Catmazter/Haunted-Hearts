@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight;
     [SerializeField] int jumpMax;
     [SerializeField] float airStamina;
+    [SerializeField] float airDecreaseRate;
+    [SerializeField] float airRegainRate;
     [SerializeField] float runStamina;
 
     Vector3 moveDir;
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     float airStaminaOrig;
     float runStaminaOrig;
     bool isSprinting;
-    bool isHoldingBreath;
+    bool isOutOfBreath;
 
     [Header("Match")]
 
@@ -112,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
             if (matchList.Count > 0)
             {
                 matchList.RemoveAt(matchListPos);
+                matchTimer = matchTimerOrig;
+                isMatchLit = false;
                 matchListPos--;
             }
         }
@@ -126,13 +130,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void lightMatch()
     {
-        if ((Input.GetButtonDown("Light Match") || Input.GetButtonUp("Light Match")) && matchTimer > 0)
+        if (Input.GetButtonDown("Light Match"))
         {
             //matchTimer = matchList[matchListPos].matchTimer;
-            matchTimer -= Time.deltaTime;
             isMatchLit = true;
         }
-        else if (isMatchLit && matchTimer <= 0)
+        else if (matchTimer > 0 && isMatchLit)
+        {
+            matchTimer -= Time.deltaTime;
+        }
+        else if (isMatchLit && matchTimer <= 0.0f)
         {
             //matchTimer = matchList[matchListPos].matchTimer;
             matchList.RemoveAt(matchListPos);
@@ -144,18 +151,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void holdBreath()
     {
-        if (Input.GetButtonDown("Hold Breath") && !isHoldingBreath)
+        if (Input.GetButton("Hold Breath") && !isOutOfBreath)
         {
-            airStamina -= Time.deltaTime;
-            isHoldingBreath = true;
+            airStamina -= Time.deltaTime * airDecreaseRate;
+            if (airStamina <= 0)
+                isOutOfBreath = true;
         }
-        else if (Input.GetButtonUp("Hold Breath") && isHoldingBreath)
+        else if (isOutOfBreath)
         {
-            if (airStamina < airStaminaOrig)
-            {
-                airStamina += Time.deltaTime;
-            }
-            isHoldingBreath = false;
+            
         }
     }
     private void OnCollisionEnter(Collision collision)
