@@ -19,7 +19,12 @@ public class gameManager : MonoBehaviour
     private Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
     private GameObject currentMenu;
 
-        // --- Public read-only accessors ---
+    [Header("GameGoal")]
+    int gameGoalCount;
+    [SerializeField] TextMeshProUGUI gameGoalCountText;
+
+
+    // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
     [Header("Player")]
@@ -94,6 +99,16 @@ public class gameManager : MonoBehaviour
         if (isPaused && !AnyMenuActive())
             stateUnpause();
         UpdateMenuTitle("");
+    }
+    public void updateGameGoal(int amount)
+    {
+        gameGoalCount += amount;
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
+        if (gameGoalCount <= 0)
+        {
+            // you win!!
+
+        }
     }
     private bool AnyMenuActive()
     {
