@@ -17,15 +17,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int jumpMax;
     [SerializeField] float airStamina;
     [SerializeField] float airDecreaseRate;
-    [SerializeField] float airRegainRate;
     [SerializeField] float runStamina;
+    [SerializeField] float runRegainRate;
+    [SerializeField] float runDecreaseRate;
 
     Vector3 moveDir;
     int jumpCount;
     int HPOrig;
+    float speedOrig;
     float airStaminaOrig;
     float runStaminaOrig;
     bool isSprinting;
+    bool isOutOfStamina;
     bool isOutOfBreath;
 
     [Header("Match")]
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         runStaminaOrig = runStamina;
         airStaminaOrig = airStamina;
         matchTimerOrig = matchTimer;
@@ -91,19 +95,33 @@ public class PlayerMovement : MonoBehaviour
     }
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButton("Sprint") && !isOutOfStamina)
         { 
-            speed *= sprintMod;
-            runStamina -= Time.deltaTime;
+            if (Input.GetButtonDown("Sprint"))
+            {
+                speed *= sprintMod;
+            }
+            if (runStamina <= 0.0f)
+            {
+                isOutOfStamina = true;
+            }
+            else
+            {
+                runStamina -= Time.deltaTime * runDecreaseRate;
+            }
             isSprinting = true;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (isOutOfStamina || runStamina < runStaminaOrig)
         {
-            speed /= sprintMod;
-            if (runStamina < runStaminaOrig)
+            if (speed > speedOrig)
             {
-                runStamina += Time.deltaTime;
+                speed /= sprintMod;
             }
+            else if (runStamina >= runStaminaOrig)
+            {
+                isOutOfStamina = false;
+            }
+            runStamina += Time.deltaTime * runRegainRate;
             isSprinting = false;
         }
     }
@@ -124,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     {
         for (int matchListCount = 0; matchListCount < matchMax; matchListCount++)
         {
-            Match matches = new Match();
+            Match matches = Match.CreateInstance<Match>();
             matchList.Add(matches);
         }
     }
@@ -159,7 +177,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isOutOfBreath)
         {
-            
+            isOutOfBreath = false;
+            gameManager.instance.stateLose();
+        }
+    }
+    public void takeDamage(int damage)
+    {
+        HP -= damage;
+        //aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
+        if (HP <= 0)
+        {
+            gameManager.instance.stateLose();
         }
     }
     private void OnCollisionEnter(Collision collision)
