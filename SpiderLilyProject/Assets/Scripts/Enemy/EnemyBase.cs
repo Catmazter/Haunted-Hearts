@@ -26,7 +26,8 @@ public abstract class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        roamTimer += Time.deltaTime;
+        if (agent.remainingDistance < 0.01f)
+            roamTimer += Time.deltaTime;
         // roam();
 
     }
@@ -46,6 +47,11 @@ public abstract class EnemyBase : MonoBehaviour
 
             agent.SetDestination(hit.position);
         }
+    }
+
+    protected virtual void chasePlayer()
+    {
+
     }
 
 
