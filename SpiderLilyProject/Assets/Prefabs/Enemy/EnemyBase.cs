@@ -4,33 +4,34 @@ using UnityEngine.AI;
 public abstract class EnemyBase : MonoBehaviour
 {
     //agent
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
     float stoppingDistOrig;
     [Space(2)]
     [Header("Roam")]
-    float roamTimer;
+    protected float roamTimer;
     Vector3 startingPos;
-    [SerializeField] float roamDist;
-    [SerializeField] float roamPauseTimer;
+    [SerializeField] protected float roamDist;
+    [SerializeField] protected float roamPauseTimer;
     
 
 
 
 
-    void Start()
+    protected virtual void Start()
     {
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        roam();
-        
+        roamTimer += Time.deltaTime;
+        // roam();
+
     }
 
-    void roam()
+    protected virtual void roam()
     {
         if (roamTimer >= roamPauseTimer && agent.remainingDistance < 0.01f)
         {
