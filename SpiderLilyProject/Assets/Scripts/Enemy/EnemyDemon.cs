@@ -1,7 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyDemon : EnemyBase
 {
+    
+    [SerializeField] int runDistance;
+    bool isRunningAway = false;
+    [SerializeField] Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -13,7 +19,56 @@ public class EnemyDemon : EnemyBase
     {
         base.Update();
         //roam();
-        chasePlayer();
+        //chasePlayer();
+        if (isRunningAway)
+        {
+            runAway();
+        }
+        else
+        {
+            chasePlayer();
+        }
+    }
+    protected override void chasePlayer()
+    {
+        agent.speed = chaseSpeed;
+        base.chasePlayer();
+
     }
 
+    private void runAway()
+    {
+        Vector3 oppositeDir = -transform.forward;
+        Vector3 targetPos = transform.position + oppositeDir * runDistance;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, runDistance, NavMesh.AllAreas))
+        {
+            agent.isStopped = false;
+            agent.stoppingDistance = 0;
+            agent.SetDestination(hit.position);
+            transform.rotation = Quaternion.LookRotation(oppositeDir);
+
+            Debug.Log(" Enemy is running away to: " + hit.position);
+        }
+        else
+        {
+            Vector3 randomDir = Random.insideUnitSphere * runDistance + transform.position;
+            if (NavMesh.SamplePosition(randomDir, out hit, runDistance, NavMesh.AllAreas))
+            {
+                agent.SetDestination(hit.position);
+                transform.rotation = Quaternion.LookRotation(hit.position - transform.position);
+                Debug.Log("Enemy ran away using random direction (fallback).");
+            }
+            else
+            {
+                Debug.LogWarning("No valid NavMesh position found for run away.");
+            }
+        }
+    }
+
+    private void stopMoving()
+    {
+
+    }
 }
