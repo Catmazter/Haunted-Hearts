@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class lilyPickup : MonoBehaviour
+public class PickupItem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private lilyScriptableObject pickupData;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if(gameManager.instance != null)
+        {
+            gameManager.instance.updateGameGoal(1);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pickupData != null)
+        {
+            pickupData.OnPickup(other.gameObject);
+            // play animation with coroutine and move destroy logic inside new couroutine
+            Destroy(gameObject);
+        }
     }
 }
