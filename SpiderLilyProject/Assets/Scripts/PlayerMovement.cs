@@ -15,12 +15,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprintMod;
     [SerializeField] float jumpHeight;
     [SerializeField] int jumpMax;
+    [SerializeField] float airStamina;
+    [SerializeField] float runStamina;
 
     Vector3 moveDir;
     int jumpCount;
     int HPOrig;
-
+    float airStaminaOrig;
+    float runStaminaOrig;
     bool isSprinting;
+    bool isHoldingBreath;
 
     [Header("Match")]
 
@@ -42,21 +46,29 @@ public class PlayerMovement : MonoBehaviour
     [UnityEngine.Range(0, 1)][SerializeField] float audHurtVol;
     [SerializeField] AudioClip[] audJump;
     [UnityEngine.Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audBreath;
+    [UnityEngine.Range(0, 1)][SerializeField] float audBreathVol;
+
+    bool isPlayingSteps;
     void Start()
     {
         HPOrig = HP;
+        runStaminaOrig = runStamina;
+        airStaminaOrig = airStamina;
         matchTimerOrig = matchTimer;
-        
+        matchInventory();
+        matchListPos = matchList.Count - 1;
     }
 
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
         movement();
         sprint();
+        holdBreath();
     }
     void movement()
     {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         moveDir = (transform.right * h + transform.forward * v).normalized;
@@ -64,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = newVel;
         jump();
         lightMatch();
+        //holdBreath();
     }
     void jump()
     {
@@ -79,11 +92,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Sprint"))
         { 
             speed *= sprintMod;
+            runStamina -= Time.deltaTime;
             isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
+            if (runStamina < runStaminaOrig)
+            {
+                runStamina += Time.deltaTime;
+            }
             isSprinting = false;
         }
     }
@@ -94,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
             if (matchList.Count > 0)
             {
                 matchList.RemoveAt(matchListPos);
+                matchListPos--;
             }
         }
     }
@@ -107,17 +126,37 @@ public class PlayerMovement : MonoBehaviour
     }
     void lightMatch()
     {
-        if (Input.GetButtonDown("Light Match") && !isMatchLit)
+        if ((Input.GetButtonDown("Light Match") || Input.GetButtonUp("Light Match")) && matchTimer > 0)
         {
+            //matchTimer = matchList[matchListPos].matchTimer;
             matchTimer -= Time.deltaTime;
             isMatchLit = true;
         }
         else if (isMatchLit && matchTimer <= 0)
         {
+            //matchTimer = matchList[matchListPos].matchTimer;
+            matchList.RemoveAt(matchListPos);
+            matchListPos--;
             matchTimer = matchTimerOrig;
             isMatchLit = false;
         }
         throwMatch();
+    }
+    void holdBreath()
+    {
+        if (Input.GetButtonDown("Hold Breath") && !isHoldingBreath)
+        {
+            airStamina -= Time.deltaTime;
+            isHoldingBreath = true;
+        }
+        else if (Input.GetButtonUp("Hold Breath") && isHoldingBreath)
+        {
+            if (airStamina < airStaminaOrig)
+            {
+                airStamina += Time.deltaTime;
+            }
+            isHoldingBreath = false;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -133,5 +172,19 @@ public class PlayerMovement : MonoBehaviour
         {
             pickup.OnPickup(other.gameObject);
         }
+    }
+    IEnumerator playSteps()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(audSteps[UnityEngine.Random.Range(0, audSteps.Length)], audStepsVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isPlayingSteps = false;
     }
 }

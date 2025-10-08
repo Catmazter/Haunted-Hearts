@@ -687,6 +687,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5350039280031232516, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
+      propertyPath: matchMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350039280031232516, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
+      propertyPath: airStamina
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350039280031232516, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
+      propertyPath: matchTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350039280031232516, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
+      propertyPath: runStamina
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350039280031232516, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
+      propertyPath: matchRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5667793141916864599, guid: 2f58a0d22c5806f41a5715f1dba31274, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
