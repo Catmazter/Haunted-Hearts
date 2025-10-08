@@ -1,10 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyDemon : EnemyBase
 {
     [SerializeField] int runDistance;
-    
+    bool isRunningAway;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -16,8 +17,17 @@ public class EnemyDemon : EnemyBase
     {
         base.Update();
         //roam();
-        //chasePlayer();
-        runAway();
+        chasePlayer();
+        if (!isRunningAway)
+        {
+            isRunningAway = true;
+            runAway();
+        }
+
+        if (!agent.pathPending && agent.remainingDistance <= 0.01f)
+        {
+            isRunningAway = false;
+        }
     }
 
     private void runAway()
