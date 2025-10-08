@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
     [SerializeField] float jumpHeight;
