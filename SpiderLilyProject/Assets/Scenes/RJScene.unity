@@ -838,6 +838,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: audHurtVol
+      value: 0.564
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audJumpVol
       value: 0.369
       objectReference: {fileID: 0}
@@ -848,6 +852,14 @@ PrefabInstance:
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audStepsVol
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: audBreathVol
+      value: 0.691
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: airRegainRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audPlayerJumpVol
@@ -868,6 +880,10 @@ PrefabInstance:
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audSteps.Array.size
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: audBreath.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: 'audHurt.Array.data[0]'
@@ -1073,6 +1089,26 @@ PrefabInstance:
       propertyPath: 'audSteps.Array.data[9]'
       value: 
       objectReference: {fileID: 8300000, guid: 5799109e817d3704889f0499d06a23be, type: 3}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: 'audBreath.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4be9f25858e33b04da0638106aeb97aa, type: 3}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: 'audBreath.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 21e68833d64d4c34e85ff61add8364ff, type: 3}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: 'audBreath.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 36320c2f5f4ebaf4dba89b26b61d9b52, type: 3}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: 'audBreath.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fafd9236e5dc4148a207978214a3900, type: 3}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: 'audBreath.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b8237eb0746eb4e45b36bcac52548532, type: 3}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: 'audSteps.Array.data[10]'
       value: 
