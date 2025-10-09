@@ -6,6 +6,7 @@ public abstract class EnemyBase : MonoBehaviour
     //agent
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected int chaseSpeed;
+    [SerializeField] int faceTargetSpeed;
     float stoppingDistOrig;
     [Space(2)]
     [Header("Roam")]
@@ -52,9 +53,18 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void chasePlayer()
     {
-        agent.stoppingDistance = stoppingDistOrig;
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            faceTarget();
+        }
+            agent.stoppingDistance = stoppingDistOrig;
+            agent.SetDestination(gameManager.instance.player.transform.position);
 
+    }
+    void faceTarget( )
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(gameManager.instance.player.transform.position.x, transform.position.y, gameManager.instance.player.transform.position.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
 
