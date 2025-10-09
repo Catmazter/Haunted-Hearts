@@ -22,7 +22,6 @@ public class AudioBackground : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        // Khi hết thời gian chờ -> phát transition
         if (timer >= nextPlayTime && !transitionSource.isPlaying)
         {
             PlayRandomTransition();
