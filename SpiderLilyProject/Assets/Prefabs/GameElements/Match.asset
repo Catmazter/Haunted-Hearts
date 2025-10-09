@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a533c4420cffad4496dc1378739de8c, type: 3}
   m_Name: Match
   m_EditorClassIdentifier: Assembly-CSharp::Match
-  matchModel: {fileID: 0}
+  matchModel: {fileID: 919132149155446097, guid: 999b69d88d66deb42b0b06e5fa665924, type: 3}
   matchTimer: 0
   matchRadius: 0
   matchSound: []
