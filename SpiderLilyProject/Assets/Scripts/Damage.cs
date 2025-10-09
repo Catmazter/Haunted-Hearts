@@ -42,11 +42,11 @@ public class Damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        IDamage dmg = other.GetComponent<IDamage>();
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
 
-        if (dmg != null && (type == damageType.moving || type == damageType.stationary || type == damageType.homing))
+        if (player != null && (type == damageType.moving || type == damageType.stationary || type == damageType.homing))
         {
-            dmg.takeDamage(damageAmount);
+            player.takeDamage(damageAmount);
         }
 
         if (type == damageType.homing || type == damageType.moving)
@@ -60,22 +60,22 @@ public class Damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        IDamage dmg = other.GetComponent<IDamage>();
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
 
-        if (dmg != null && type == damageType.DOT)
+        if (player != null && type == damageType.DOT)
         {
             if (!isDamaging)
             {
-                StartCoroutine(damageother(dmg));
+                StartCoroutine(damageother(player));
             }
         }
 
     }
 
-    IEnumerator damageother(IDamage d)
+    IEnumerator damageother(PlayerMovement player)
     {
         isDamaging = true;
-        d.takeDamage(damageAmount);
+        player.takeDamage(damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
