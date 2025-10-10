@@ -29,6 +29,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Toggle toggleMuteAll;
     [SerializeField] private Toggle toggleMuteVoice;
 
+    [Header("UI Sounds")]
+    [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioClip menuClickClip;
+    [Range(0f, 1f)] public float uiVolume = 0.7f;
+
     private float timer = 0f;
     private float nextPlayTime;
 
@@ -129,13 +134,23 @@ public class AudioManager : MonoBehaviour
 
     private void MuteAllChanged(bool isMuted)
     {
+        PlayMenuClick();
         if (isMuted) mixer.SetFloat(masterVolumeParam, -80f);
         else ApplyVolume(masterVolumeParam, masterSaved);
     }
 
     private void MuteVoiceChanged(bool isMuted)
     {
+        PlayMenuClick();
         if (isMuted) mixer.SetFloat(voiceVolumeParam, -80f);
         else ApplyVolume(voiceVolumeParam, voiceSaved);
+    }
+
+    public void PlayMenuClick()
+    {
+        if (uiSource != null && menuClickClip != null)
+        {
+            uiSource.PlayOneShot(menuClickClip, uiVolume);
+        }
     }
 }
