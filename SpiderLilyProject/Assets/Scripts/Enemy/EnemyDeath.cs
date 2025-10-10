@@ -20,6 +20,7 @@ public class EnemyDeath : EnemyBase
     {
         base.Start();
         detector = gameManager.instance.player.GetComponent<DetectSafeZone>();
+        // dtector = gameManager.instance.PlayerInSafeZone
 
         if (!detector)
             Debug.LogWarning("EnemyDeath: No encontré SafeZoneDetector en el Player.");
@@ -44,6 +45,15 @@ public class EnemyDeath : EnemyBase
                 killEnemy = null;
             }
         }
+
+        //if (detector)
+        //{
+        //    if (killEnemy == null) killEnemy = StartCoroutine(IfEnemySafe());
+        //}
+        //else
+        //{
+        //    if (killEnemy != null) { StopCoroutine(killEnemy); killEnemy = null; }
+        //}
 
 
         startChasing();
