@@ -118,7 +118,7 @@ public class EnemyDemon : EnemyBase
         
         if (agent.velocity.magnitude > 0.1f)
         {
-            anim.speed = 1f; 
+            anim.speed = 1.5f; 
         }
         else
         {
