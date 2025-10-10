@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     bool isSprinting;
     bool isOutOfStamina;
     bool isOutOfBreath;
+    public Vector3 throwPoint;
+    public float throwPower;
 
     [Header("Match")]
 
@@ -136,6 +138,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (matchList.Count > 0)
             {
+                matchList[matchListPos] = Instantiate(matchList[matchListPos], matchList[matchListPos].matchModel.transform.position, Quaternion.identity);
+                Rigidbody rb = matchList[matchListPos].matchModel.GetComponent<Rigidbody>();
+                Vector3 throwDir = transform.forward;
+                rb.AddForce(throwDir * 10f, ForceMode.Impulse);
                 matchList.RemoveAt(matchListPos);
                 matchTimer = matchTimerOrig;
                 isMatchLit = false;
@@ -165,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
         else if (isMatchLit && matchTimer <= 0.0f)
         {
             //matchTimer = matchList[matchListPos].matchTimer;
+            Destroy(matchList[matchListPos]);
             matchList.RemoveAt(matchListPos);
             matchListPos--;
             matchTimer = matchTimerOrig;
@@ -211,7 +218,12 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
         }
-
+        if (collision.gameObject.CompareTag("Moveable"))
+        {
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 pushDir = collision.contacts[0].normal * -1;
+            rb.AddForce(pushDir * 10f, ForceMode.Impulse);
+        }
 
     }
     private void OnCollisionStay(Collision collision)
