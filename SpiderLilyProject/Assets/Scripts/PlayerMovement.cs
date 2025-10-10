@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int jumpMax;
     [SerializeField] float airStamina;
     [SerializeField] float airDecreaseRate;
+    [SerializeField] float airRegainRate;
     [SerializeField] float runStamina;
     [SerializeField] float runRegainRate;
     [SerializeField] float runDecreaseRate;
@@ -53,8 +54,13 @@ public class PlayerMovement : MonoBehaviour
     [UnityEngine.Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audBreath;
     [UnityEngine.Range(0, 1)][SerializeField] float audBreathVol;
+    [SerializeField] AudioClip[] audPlayerJump;
+    [UnityEngine.Range(0, 1)][SerializeField] float audPlayerJumpVol;
+    [SerializeField] AudioClip[] audPlayerLand;
+    [UnityEngine.Range(0, 1)][SerializeField] float audPlayerLandVol;
 
     bool isPlayingSteps;
+    bool isPlayingBreath;
     void Start()
     {
         HPOrig = HP;
@@ -88,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            //aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audPlayerJump[UnityEngine.Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
             jumpCount++;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
@@ -171,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButton("Hold Breath") && !isOutOfBreath)
         {
+            aud.Pause();
             airStamina -= Time.deltaTime * airDecreaseRate;
             if (airStamina <= 0)
                 isOutOfBreath = true;
@@ -180,11 +187,18 @@ public class PlayerMovement : MonoBehaviour
             isOutOfBreath = false;
             gameManager.instance.stateLose();
         }
+        else
+        {
+            if (airStamina < airStaminaOrig)
+            {
+                airStamina += Time.deltaTime * airRegainRate;
+            }
+        }
     }
     public void takeDamage(int damage)
     {
         HP -= damage;
-        //aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
+        aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
         if (HP <= 0)
         {
             gameManager.instance.stateLose();
@@ -194,7 +208,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (!isPlayingBreath)
+            {
+                StartCoroutine(playBreath());
+            }
+            if (moveDir.magnitude > 0.3f && !isPlayingSteps)
+            {
+                StartCoroutine(playSteps());
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -218,5 +248,19 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         isPlayingSteps = false;
+    }
+    IEnumerator playBreath()
+    {
+        isPlayingBreath = true;
+        aud.PlayOneShot(audBreath[UnityEngine.Random.Range(0, audBreath.Length)], audBreathVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        isPlayingBreath = false;
     }
 }
