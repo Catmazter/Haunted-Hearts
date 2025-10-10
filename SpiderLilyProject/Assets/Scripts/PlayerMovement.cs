@@ -212,6 +212,8 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
         }
+
+
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -230,11 +232,26 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Entered" + other.name);
+
+        //if(other.CompareTag("Safe Zone"))
+        //{
+        //    gameManager.instance.PlayerInSafeZone = true;
+        //}
+
         if (other.TryGetComponent<iPickup>(out var pickup))
         {
             pickup.OnPickup(other.gameObject);
         }
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Safe Zone"))
+    //    {
+    //        gameManager.instance.PlayerInSafeZone = false;
+    //    }
+    //}
+
     IEnumerator playSteps()
     {
         isPlayingSteps = true;
@@ -263,4 +280,6 @@ public class PlayerMovement : MonoBehaviour
         }
         isPlayingBreath = false;
     }
+
+    
 }
