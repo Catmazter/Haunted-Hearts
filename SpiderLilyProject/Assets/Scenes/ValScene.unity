@@ -5820,6 +5820,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 298466475869923593, guid: e76235963b6adcf48a69589c924faffd, type: 3}
   m_PrefabInstance: {fileID: 1322336999}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &925162754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925162746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02862d63a317c47967502a196c1ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectSafeZone
 --- !u!1001 &932239560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8676,7 +8688,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 298466475869923593, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 925162754}
   m_SourcePrefab: {fileID: 100100000, guid: e76235963b6adcf48a69589c924faffd, type: 3}
 --- !u!1 &1323993064 stripped
 GameObject:
@@ -14085,7 +14100,6 @@ MonoBehaviour:
   roamDist: 0
   roamPauseTimer: 0
   anim: {fileID: 0}
-  playerNavmeshRadius: 1
   selfDestruct: 5
 --- !u!135 &2071703321
 SphereCollider:
@@ -14144,7 +14158,7 @@ GameObject:
   - component: {fileID: 2072914648}
   - component: {fileID: 2072914652}
   m_Layer: 7
-  m_Name: SafeZone
+  m_Name: safeZone
   m_TagString: safeZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

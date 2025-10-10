@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        gameManager.instance.updateGameGoal(numToSpawn);
+       // gameManager.instance.updateGameGoal(numToSpawn);
     }
 
     // Update is called once per frame
@@ -44,6 +44,11 @@ public class Spawner : MonoBehaviour
         Instantiate(objectToSpawn, spawnPos[arrayPos].position, spawnPos[arrayPos].rotation);
         spawnCount++;
         spawnTimer = 0;
+    }
+    
+    void randSpaw()
+    {
+
     }
 
 }
