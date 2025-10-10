@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 3 maze
       objectReference: {fileID: 0}
+    - target: {fileID: 955335033699324602, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8272158037542649036, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
       propertyPath: m_Name
       value: WallsMaze3
@@ -521,6 +525,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1603061340330778406, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -126.39931
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603061340330778406, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603061340330778406, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 155.18845
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683416494066300810, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.63921
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683416494066300810, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683416494066300810, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -136.5729
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826428823677405222, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 103.139206
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826428823677405222, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826428823677405222, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -159.0729
+      objectReference: {fileID: 0}
     - target: {fileID: 3055381982901224057, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_Name
       value: Level 1 maze
@@ -528,6 +568,18 @@ PrefabInstance:
     - target: {fileID: 3055381982901224057, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117424885167752358, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -152.27716
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117424885167752358, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0000305
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117424885167752358, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -144.2656
       objectReference: {fileID: 0}
     - target: {fileID: 8413871802387275568, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -568,6 +620,18 @@ PrefabInstance:
     - target: {fileID: 8413871802387275568, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421384225811999170, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 86.139206
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421384225811999170, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421384225811999170, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 138.9271
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
