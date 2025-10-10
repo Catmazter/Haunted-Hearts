@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = newVel;
         jump();
         lightMatch();
+        //holdBreath();
     }
     void jump()
     {
@@ -136,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (matchList.Count > 0)
             {
-                matchList[matchListPos].matchModel.SetActive(false);
                 matchList.RemoveAt(matchListPos);
                 matchTimer = matchTimerOrig;
                 isMatchLit = false;
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Light Match"))
         {
-            matchList[matchListPos].matchModel.SetActive(true);
+            //matchTimer = matchList[matchListPos].matchTimer;
             isMatchLit = true;
         }
         else if (matchTimer > 0 && isMatchLit)
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isMatchLit && matchTimer <= 0.0f)
         {
-            matchList[matchListPos].matchModel.SetActive(false);
+            //matchTimer = matchList[matchListPos].matchTimer;
             matchList.RemoveAt(matchListPos);
             matchListPos--;
             matchTimer = matchTimerOrig;
@@ -212,11 +212,8 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
         }
-        if (collision.gameObject.CompareTag("Moveable"))
-        {
-            Rigidbody rigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            rigidbody.AddForce(collision.contacts[0].normal * 10f, ForceMode.Impulse);
-        }
+
+
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -235,11 +232,26 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Entered" + other.name);
+
+        //if(other.CompareTag("Safe Zone"))
+        //{
+        //    gameManager.instance.PlayerInSafeZone = true;
+        //}
+
         if (other.TryGetComponent<iPickup>(out var pickup))
         {
             pickup.OnPickup(other.gameObject);
         }
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Safe Zone"))
+    //    {
+    //        gameManager.instance.PlayerInSafeZone = false;
+    //    }
+    //}
+
     IEnumerator playSteps()
     {
         isPlayingSteps = true;
@@ -268,4 +280,6 @@ public class PlayerMovement : MonoBehaviour
         }
         isPlayingBreath = false;
     }
+
+    
 }
