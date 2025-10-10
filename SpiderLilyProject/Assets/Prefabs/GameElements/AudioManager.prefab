@@ -53,6 +53,10 @@ MonoBehaviour:
   minInterval: 0
   maxInterval: 15
   transitionVolume: 0.274
+  mixer: {fileID: 24100000, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
+  _volumeParameter: MasterVolume
+  sliderMaster: {fileID: 0}
+  _multiplier: 30
 --- !u!82 &503341643969957535
 AudioSource:
   m_ObjectHideFlags: 0
@@ -62,7 +66,7 @@ AudioSource:
   m_GameObject: {fileID: 1057797206343103468}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
