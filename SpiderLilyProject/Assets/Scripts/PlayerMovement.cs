@@ -88,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = newVel;
         jump();
         lightMatch();
-        //holdBreath();
     }
     void jump()
     {
@@ -137,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (matchList.Count > 0)
             {
+                matchList[matchListPos].matchModel.SetActive(false);
                 matchList.RemoveAt(matchListPos);
                 matchTimer = matchTimerOrig;
                 isMatchLit = false;
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Light Match"))
         {
-            //matchTimer = matchList[matchListPos].matchTimer;
+            matchList[matchListPos].matchModel.SetActive(true);
             isMatchLit = true;
         }
         else if (matchTimer > 0 && isMatchLit)
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isMatchLit && matchTimer <= 0.0f)
         {
-            //matchTimer = matchList[matchListPos].matchTimer;
+            matchList[matchListPos].matchModel.SetActive(false);
             matchList.RemoveAt(matchListPos);
             matchListPos--;
             matchTimer = matchTimerOrig;
@@ -211,6 +211,11 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
+        }
+        if (collision.gameObject.CompareTag("Moveable"))
+        {
+            Rigidbody rigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            rigidbody.AddForce(collision.contacts[0].normal * 10f, ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collision)
