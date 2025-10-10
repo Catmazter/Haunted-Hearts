@@ -88,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = newVel;
         jump();
         lightMatch();
-        //holdBreath();
     }
     void jump()
     {
