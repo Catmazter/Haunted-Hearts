@@ -19,7 +19,9 @@ public class AudioManager : MonoBehaviour
     [Header("Music")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip[] transitionClips;
+    [SerializeField] private AudioClip womenCry;
     [Range(0f, 1f)] public float transitionVolume = 0.5f;
+    [Range(0f, 1f)] public float womenCryVolume = 0.5f;
     [SerializeField] private float minInterval = 15f;
     [SerializeField] private float maxInterval = 40f;
 
@@ -80,13 +82,16 @@ public class AudioManager : MonoBehaviour
         toggleMuteAll.onValueChanged.AddListener(MuteAllChanged);
         toggleMuteVoice.onValueChanged.AddListener(MuteVoiceChanged);
 
-        // Lấy giá trị voice từ mixer
+       
         mixer.GetFloat(voiceVolumeParam, out float voiceDb);
         voiceSaved = Mathf.Pow(10, voiceDb / 30f);
     }
 
     private void Start()
     {
+        musicSource.PlayOneShot(
+            womenCry,
+            womenCryVolume);
         SetNextPlayTime();
     }
 

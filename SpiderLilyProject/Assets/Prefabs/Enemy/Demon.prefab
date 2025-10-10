@@ -350,6 +350,8 @@ MonoBehaviour:
   runDistance: 6
   stunDuration: 0
   anim: {fileID: 5765001472295431618}
+  audioSource: {fileID: 0}
+  screamClip: {fileID: 0}
 --- !u!195 &1398203872419859647
 NavMeshAgent:
   m_ObjectHideFlags: 0
