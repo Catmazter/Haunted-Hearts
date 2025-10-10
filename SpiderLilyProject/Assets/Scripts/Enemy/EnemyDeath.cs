@@ -7,7 +7,7 @@ public class EnemyDeath : EnemyBase
 {
     [SerializeField] Animator anim;
 
-    float timerChase = 3.0f;
+   float timerChase = 3.0f;
 
     [SerializeField] float selfDestruct = 5f; //time player has to be inside safezone before enemy destroys
     Coroutine killEnemy;
@@ -79,10 +79,15 @@ public class EnemyDeath : EnemyBase
         chasePlayer();
     }
 
+    public void ChaseNow()
+    {
+        timerChase = 0;
+    }
+
     //bool PlayerOnNavMesh()
     //{
     //    return NavMesh.SamplePosition(gameManager.instance.player.transform.position, out _, playerNavmeshRadius, NavMesh.AllAreas); 
     //    //checks around player if theres navmesh
-            //didn't worked: too many spots without navmesh (not reliable)
+    //didn't worked: too many spots without navmesh (not reliable)
     //}
 }
