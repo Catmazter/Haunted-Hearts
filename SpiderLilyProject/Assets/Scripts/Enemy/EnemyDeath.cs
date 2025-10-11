@@ -7,12 +7,21 @@ public class EnemyDeath : EnemyBase
 {
     [SerializeField] Animator anim;
 
-   float timerChase = 3.0f;
-
+    // ====timer==== //
     [SerializeField] float selfDestruct = 5f; //time player has to be inside safezone before enemy destroys
+
+    float timerChase = 3.0f;
+
     Coroutine killEnemy;
 
     DetectSafeZone detector; //player in safezone trigger
+
+    // ====audio==== //
+
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audChase;
+    [UnityEngine.Range(0, 1)][SerializeField] float audChaseVol;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,10 +29,10 @@ public class EnemyDeath : EnemyBase
     {
         base.Start();
         detector = gameManager.instance.player.GetComponent<DetectSafeZone>();
-        // dtector = gameManager.instance.PlayerInSafeZone
+        // detector = gameManager.instance.PlayerInSafeZone
 
         if (!detector)
-            Debug.LogWarning("EnemyDeath: No encontré SafeZoneDetector en el Player.");
+            Debug.LogWarning("EnemyDeath: No encontré SafeZoneDetector en el Player");
     }
 
     // Update is called once per frame
@@ -74,6 +83,8 @@ public class EnemyDeath : EnemyBase
     {
         agent.speed = chaseSpeed;
         base.chasePlayer();
+
+        aud.PlayOneShot(audChase[UnityEngine.Random.Range(0, audChase.Length)], audChaseVol); 
 
     }
 
