@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Ground
   - Moveable
+  - Match
   layers:
   - Default
   - TransparentFX
