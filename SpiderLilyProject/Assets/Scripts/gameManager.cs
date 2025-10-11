@@ -122,10 +122,11 @@ public class gameManager : MonoBehaviour
     {
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        if (gameGoalCount <= 0)
+        if (gameGoalCountText.text == "0" )
         {
             // you win!!
-            SceneManagerScript.instance.OnLevelCompleted();
+            //SceneManagerScript.instance.OnLevelCompleted();
+            Debug.Log("You win!");
         }
     }
     private bool AnyMenuActive()
