@@ -195,12 +195,10 @@ MonoBehaviour:
   selfDestruct: 15
   aud: {fileID: 8498317031715625088}
   audChase:
-  - {fileID: 8300000, guid: 727c90cef4c97c545a8860dda29b53b1, type: 3}
-  - {fileID: 8300000, guid: 2d4abed0203b15f4e8d4c72eeb4d8d16, type: 3}
-  - {fileID: 8300000, guid: 727c90cef4c97c545a8860dda29b53b1, type: 3}
-  - {fileID: 8300000, guid: 0045f76525dcdd34dbf31cb4fa3563a5, type: 3}
+  - {fileID: 8300000, guid: 1689058eeeb072842b8c76940508c2a7, type: 3}
   - {fileID: 8300000, guid: 08b4ba6cd22a9ab4986a13fff034f354, type: 3}
-  audChaseVol: 0.53
+  - {fileID: 8300000, guid: 12d1b38b31809714a9e53e77f79ac789, type: 3}
+  audChaseVol: 0.75
 --- !u!135 &4002783719924428617
 SphereCollider:
   m_ObjectHideFlags: 0
