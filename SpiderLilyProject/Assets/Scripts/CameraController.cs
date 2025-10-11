@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] Camera cam;
     [UnityEngine.Range(100, 1000)][SerializeField] int sens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
+    [SerializeField] public float FOV;
+    float FOVOrig;
 
     float rotX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,11 +15,15 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        cam = GetComponent<Camera>();
+        FOVOrig = FOV;
     }
 
     // Update is called once per frame
     void Update()
     {
+        changeFOV();
+        
         //get input
         float mouseX = Input.GetAxisRaw("Mouse X") * sens * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sens * Time.deltaTime;
@@ -34,5 +41,9 @@ public class CameraController : MonoBehaviour
 
         //rotate the player left and right
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+    void changeFOV()
+    {
+        cam.fieldOfView = FOV;
     }
 }
