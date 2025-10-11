@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuSettings;
     // [SerializeField] GameObject menuWin;
 
+    [Header("Settings")]
+    [SerializeField] GameObject settingsGameplay;
+    [SerializeField] GameObject settingsControls;
+    [SerializeField] GameObject settingsGraphics;
+    [SerializeField] GameObject settingsAudio;
     [Header("Menu Title")]
     [SerializeField] TextMeshProUGUI menuTitle;
     [SerializeField] float titleFadeDuration = 0.3f;
@@ -38,12 +44,17 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         timeScaleOrig = Time.timeScale;
+        if(player != null) 
         playerScript = player.GetComponent<PlayerMovement>();
 
         //add any other menus to dictionary here
         menus.Add("Pause", menuPause);
         menus.Add("Lose", menuLose);
         menus.Add("Settings", menuSettings);
+        menus.Add("Settings-Gameplay", settingsGameplay);
+        menus.Add("Settings-Controls", settingsControls);
+        menus.Add("Settings-Graphics", settingsGraphics);
+        menus.Add("Settings-Audio", settingsAudio);
         updateGameGoal(0);
     }
 
@@ -65,7 +76,7 @@ public class gameManager : MonoBehaviour
     }
     public void OpenMenu(string menuName)
     {
-        if(!menus.ContainsKey(menuName))
+        if (!menus.ContainsKey(menuName))
         {
             Debug.LogWarning("Menu " + menuName + " does not exist!");
             return;
@@ -80,6 +91,12 @@ public class gameManager : MonoBehaviour
         currentMenu = menus[menuName];
         currentMenu.SetActive(true);
         UpdateMenuTitle(menuName);
+
+        if (menuName == "Settings")
+        {
+            // Default to Gameplay tab
+            OpenMenu("Settings-Gameplay");
+        }
     }
     public void CloseCurrentMenu()
     {
@@ -108,7 +125,7 @@ public class gameManager : MonoBehaviour
         if (gameGoalCount <= 0)
         {
             // you win!!
-
+            SceneManagerScript.instance.OnLevelCompleted();
         }
     }
     private bool AnyMenuActive()
@@ -139,6 +156,10 @@ public class gameManager : MonoBehaviour
                 "Pause" => "Pause Menu",
                 "Settings" => "Settings",
                 "Lose" => "Game Over",
+                "Gameplay" => "Gameplay Settings",
+                "Controls" => "Controls",
+                "Graphics" => "Graphics",
+                "Audio" => "Audio",
                 _ => menuName
             };
 
