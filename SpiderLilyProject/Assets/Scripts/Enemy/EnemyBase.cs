@@ -58,13 +58,13 @@ public abstract class EnemyBase : MonoBehaviour
         agent.speed = chaseSpeed;
 
         Vector3 targetPos = gameManager.instance.player.transform.position;
-        Vector3 headOffset = headPoint.position - transform.position;
-        
-
+        //Vector3 headOffset = headPoint.position - transform.position;
+       
         agent.stoppingDistance = stoppingDistOrig;
 
         faceTarget();
-        agent.SetDestination(targetPos - headOffset);
+        //agent.SetDestination(targetPos - headOffset);
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
 
     }
