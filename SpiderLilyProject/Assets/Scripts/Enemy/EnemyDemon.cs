@@ -6,6 +6,7 @@ public class EnemyDemon : EnemyBase
     
     [SerializeField] int runDistance;
     [SerializeField] float stunDuration;
+    
     bool isRunningAway = false;
     bool isStunned;
     [SerializeField] Animator anim;
@@ -38,6 +39,7 @@ public class EnemyDemon : EnemyBase
     }
     protected override void chasePlayer()
     {
+
         agent.speed = chaseSpeed;
         base.chasePlayer();
 
@@ -136,4 +138,24 @@ public class EnemyDemon : EnemyBase
             audioSource.PlayOneShot(screamClip);
         }
     }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        if (trigger.gameObject.CompareTag("Match"))
+        {
+            Debug.Log("Demon hit by a match!");
+            OnHitByMatch();
+        }
+    }
+
+    void OnHitByMatch()
+    {
+        if (!isRunningAway)
+        {
+            isRunningAway = true;
+            hasChosenRunDest = false;
+            PlayScream();
+        }
+    }
+
 }

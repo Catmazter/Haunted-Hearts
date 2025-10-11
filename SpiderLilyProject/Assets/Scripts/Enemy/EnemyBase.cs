@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
@@ -7,6 +7,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected int chaseSpeed;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] private Transform headPoint;
     float stoppingDistOrig;
     [Space(2)]
     [Header("Roam")]
@@ -53,18 +54,30 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void chasePlayer()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            faceTarget();
-        }
-            agent.stoppingDistance = stoppingDistOrig;
-            agent.SetDestination(gameManager.instance.player.transform.position);
+       
+        agent.speed = chaseSpeed;
+
+        Vector3 targetPos = gameManager.instance.player.transform.position;
+        Vector3 headOffset = headPoint.position - transform.position;
+        
+
+        agent.stoppingDistance = stoppingDistOrig;
+
+        faceTarget();
+        agent.SetDestination(targetPos - headOffset);
+
 
     }
     void faceTarget( )
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(gameManager.instance.player.transform.position.x, transform.position.y, gameManager.instance.player.transform.position.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+        Vector3 direction = (gameManager.instance.player.transform.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * faceTargetSpeed);
+        }
     }
 
 
