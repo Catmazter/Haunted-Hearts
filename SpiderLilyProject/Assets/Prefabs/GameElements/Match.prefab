@@ -34101,11 +34101,11 @@ GameObject:
   - component: {fileID: 1195075789668286281}
   m_Layer: 8
   m_Name: Match
-  m_TagString: Untagged
+  m_TagString: Match
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3551536767535493753
 Transform:
   m_ObjectHideFlags: 0
