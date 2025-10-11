@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Ground
   - Moveable
+  - Match
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Wall
   - safeZone
   - Match
-  - 
+  - RevealedLayer
   - 
   - 
   - 
