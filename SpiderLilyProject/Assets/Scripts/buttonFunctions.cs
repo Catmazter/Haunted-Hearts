@@ -32,7 +32,10 @@ public class buttonFunctions : MonoBehaviour
     {
         gameManager.instance.CloseCurrentMenu();
     }
-
+    public void OnPlayPressed()
+    {
+        SceneManagerScript.instance.LoadLevel(1); // load first gameplay scene
+    }
     /*    public void respawn()
         {
             gameManager.instance.playerScript.spawnPlayer(); ///check player movement 

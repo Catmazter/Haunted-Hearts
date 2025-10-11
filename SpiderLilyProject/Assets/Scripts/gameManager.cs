@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuSettings;
     // [SerializeField] GameObject menuWin;
 
+    [Header("Settings")]
+    [SerializeField] GameObject settingsGameplay;
+    [SerializeField] GameObject settingsControls;
+    [SerializeField] GameObject settingsGraphics;
+    [SerializeField] GameObject settingsAudio;
+    private Stack<GameObject> menuStack = new Stack<GameObject>();
     [Header("Menu Title")]
     [SerializeField] TextMeshProUGUI menuTitle;
     [SerializeField] float titleFadeDuration = 0.3f;
@@ -38,13 +45,18 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         timeScaleOrig = Time.timeScale;
+        if(player != null) 
         playerScript = player.GetComponent<PlayerMovement>();
 
         //add any other menus to dictionary here
         menus.Add("Pause", menuPause);
         menus.Add("Lose", menuLose);
         menus.Add("Settings", menuSettings);
-        updateGameGoal(0);
+        menus.Add("Settings-Gameplay", settingsGameplay);
+        menus.Add("Settings-Controls", settingsControls);
+        menus.Add("Settings-Graphics", settingsGraphics);
+        menus.Add("Settings-Audio", settingsAudio);
+        
     }
 
 
@@ -57,7 +69,7 @@ public class gameManager : MonoBehaviour
             {
                 OpenMenu("Pause");
             }
-           else if(currentMenu == menuPause)
+           else 
             {
                 CloseCurrentMenu();
             }
@@ -65,7 +77,7 @@ public class gameManager : MonoBehaviour
     }
     public void OpenMenu(string menuName)
     {
-        if(!menus.ContainsKey(menuName))
+        if (!menus.ContainsKey(menuName))
         {
             Debug.LogWarning("Menu " + menuName + " does not exist!");
             return;
@@ -75,32 +87,43 @@ public class gameManager : MonoBehaviour
         if (!isPaused) statePause();
 
         if (currentMenu != null)
-            currentMenu.SetActive(false);
+        {
+            currentMenu.SetActive(false); 
+            menuStack.Push(currentMenu); // Push current menu onto stack
+        }
 
         currentMenu = menus[menuName];
         currentMenu.SetActive(true);
         UpdateMenuTitle(menuName);
+
+        if (menuName == "Settings")
+        {
+            // Default to Gameplay tab
+            OpenMenu("Settings-Audio");
+        }
     }
     public void CloseCurrentMenu()
     {
         if (currentMenu == null) return;
 
-        // If we're closing Settings, go back to Pause instead of hiding all menus
-        if (currentMenu == menus["Settings"])
+        currentMenu.SetActive(false);
+
+        // If there's a menu to go back to, open it
+        if (menuStack.Count > 0)
         {
-            OpenMenu("Pause");
-            return; // Don't unpause
+            currentMenu = menuStack.Pop();
+            currentMenu.SetActive(true);
+            UpdateMenuTitle(currentMenu.name);
+            return; // don't unpause
         }
 
-        // Otherwise, hide the current menu
-        currentMenu.SetActive(false);
+        // Otherwise, no more menus → unpause
         currentMenu = null;
-
-        // Only unpause if no other menus are active
-        if (isPaused && !AnyMenuActive())
+        if (isPaused)
             stateUnpause();
         UpdateMenuTitle("");
     }
+
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
@@ -108,6 +131,8 @@ public class gameManager : MonoBehaviour
         if (gameGoalCount <= 0)
         {
             // you win!!
+
+            SceneManagerScript.instance.OnLevelCompleted();
 
         }
     }
@@ -139,6 +164,10 @@ public class gameManager : MonoBehaviour
                 "Pause" => "Pause Menu",
                 "Settings" => "Settings",
                 "Lose" => "Game Over",
+                "Gameplay" => "Gameplay Settings",
+                "Controls" => "Controls",
+                "Graphics" => "Graphics",
+                "Audio" => "Audio",
                 _ => menuName
             };
 
