@@ -45,18 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0f332a4572a1b40ab8ca183af89d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioBackground
-  transitionSource: {fileID: 503341643969957535}
+  mixer: {fileID: 24100000, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
+  masterVolumeParam: MasterVolume
+  musicVolumeParam: MusicVolume
+  sfxVolumeParam: SFXVolume
+  voiceVolumeParam: VoiceVolume
+  sliderMaster: {fileID: 0}
+  sliderMusic: {fileID: 0}
+  sliderSFX: {fileID: 0}
+  musicSource: {fileID: 503341643969957535}
   transitionClips:
   - {fileID: 8300000, guid: ef7be7a04fa0f474998c014e4233becc, type: 3}
   - {fileID: 8300000, guid: 3a09ee5f3510b954da2ed3890a5f307b, type: 3}
   - {fileID: 8300000, guid: 097d1515069e56647afa07be01d34675, type: 3}
-  minInterval: 0
-  maxInterval: 15
+  - {fileID: 8300000, guid: 2d4594528a286964a8aea0dd946c2a7e, type: 3}
   transitionVolume: 0.274
-  mixer: {fileID: 24100000, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
-  _volumeParameter: MasterVolume
-  sliderMaster: {fileID: 0}
-  _multiplier: 30
+  minInterval: 0
+  maxInterval: 30
+  toggleMuteAll: {fileID: 0}
+  toggleMuteVoice: {fileID: 0}
 --- !u!82 &503341643969957535
 AudioSource:
   m_ObjectHideFlags: 0
@@ -66,7 +73,7 @@ AudioSource:
   m_GameObject: {fileID: 1057797206343103468}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
+  OutputAudioMixerGroup: {fileID: -644908329206108368, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

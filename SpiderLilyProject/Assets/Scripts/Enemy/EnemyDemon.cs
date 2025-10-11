@@ -9,6 +9,8 @@ public class EnemyDemon : EnemyBase
     bool isRunningAway = false;
     bool isStunned;
     [SerializeField] Animator anim;
+    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioClip screamClip;
     float stunTimer;
     bool hasChosenRunDest = false;
 
@@ -43,6 +45,7 @@ public class EnemyDemon : EnemyBase
 
     private void runAway()
     {
+        PlayScream();
         Vector3 oppositeDir = -transform.forward;
         Vector3 targetPos = transform.position + oppositeDir * runDistance;
 
@@ -107,6 +110,7 @@ public class EnemyDemon : EnemyBase
 
     private void stunt()
     {
+        PlayScream();
         isStunned = true;
         stunTimer = 0f;
         agent.isStopped = true;
@@ -123,6 +127,13 @@ public class EnemyDemon : EnemyBase
         else
         {
             anim.speed = 0f; 
+        }
+    }
+    void PlayScream()
+    {
+        if (audioSource != null && screamClip != null)
+        {
+            audioSource.PlayOneShot(screamClip);
         }
     }
 }
