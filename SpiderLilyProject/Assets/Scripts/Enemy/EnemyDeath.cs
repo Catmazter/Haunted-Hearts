@@ -30,9 +30,6 @@ public class EnemyDeath : EnemyBase
         base.Start();
         detector = gameManager.instance.player.GetComponent<DetectSafeZone>();
         // detector = gameManager.instance.PlayerInSafeZone
-
-        if (!detector)
-            Debug.LogWarning("EnemyDeath: No encontré SafeZoneDetector en el Player");
     }
 
     // Update is called once per frame
