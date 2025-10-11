@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6083331420894815816}
   m_Layer: 0
   m_Name: Moveable Box
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

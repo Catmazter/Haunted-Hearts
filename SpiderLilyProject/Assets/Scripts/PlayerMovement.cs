@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] Rigidbody rb;
 
+    [SerializeField] public Transform throwPoint;
+    [SerializeField] public Transform matchCamera;
     [SerializeField] public int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
@@ -31,13 +33,13 @@ public class PlayerMovement : MonoBehaviour
     bool isSprinting;
     bool isOutOfStamina;
     bool isOutOfBreath;
-    public Vector3 throwPoint;
     public float throwPower;
+    public float throwUpwardPower;
 
     [Header("Match")]
 
     [SerializeField] GameObject matchModel;
-    [SerializeField] List<Match> matchList = new List<Match>();
+    [SerializeField] List<GameObject> matchList = new List<GameObject>();
     [SerializeField] int matchMax;
     [SerializeField] float matchRadius;
     [SerializeField] float matchTimer;
@@ -138,14 +140,27 @@ public class PlayerMovement : MonoBehaviour
         {
             if (matchList.Count > 0)
             {
-                matchList[matchListPos] = Instantiate(matchList[matchListPos], matchList[matchListPos].matchModel.transform.position, Quaternion.identity);
-                Rigidbody rb = matchList[matchListPos].matchModel.GetComponent<Rigidbody>();
-                Vector3 throwDir = transform.forward;
-                rb.AddForce(throwDir * 10f, ForceMode.Impulse);
-                matchList.RemoveAt(matchListPos);
-                matchTimer = matchTimerOrig;
-                isMatchLit = false;
-                matchListPos--;
+                Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
+                rb.isKinematic = false;
+                rb.useGravity = true;
+                rb.detectCollisions = true;
+                rb.transform.parent = null;
+                Vector3 forceDir = matchCamera.transform.forward;
+                RaycastHit hit;
+                if (Physics.Raycast(matchCamera.position, forceDir, out hit, 100f))
+                {
+                    forceDir = (hit.point - throwPoint.position).normalized;
+                }
+                Vector3 forceToAdd = forceDir * throwPower + transform.up * throwUpwardPower;
+                //rb.MovePosition(throwPoint.transform.position);
+                rb.AddForce(forceToAdd, ForceMode.Impulse);
+                if (matchTimer <= 0.0f)
+                {
+                    Destroy(matchList[matchListPos]);
+                    matchTimer = matchTimerOrig;
+                    isMatchLit = false;
+                    matchListPos--;
+                }
             }
         }
     }
@@ -153,16 +168,24 @@ public class PlayerMovement : MonoBehaviour
     {
         for (int matchListCount = 0; matchListCount < matchMax; matchListCount++)
         {
-            Match matches = Match.CreateInstance<Match>();
+            GameObject matches = Instantiate(matchModel, throwPoint.transform.position, Quaternion.Euler(-90, 0, 0));
+            matches.transform.parent = matchCamera.transform;
             matchList.Add(matches);
+            matchList[matchListCount].SetActive(false);
         }
     }
     void lightMatch()
     {
         if (Input.GetButtonDown("Light Match"))
         {
-            //matchTimer = matchList[matchListPos].matchTimer;
-            isMatchLit = true;
+            if (matchList.Count > 0)
+            {
+                matchList[matchListPos].SetActive(true);
+                Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.detectCollisions = false;
+                isMatchLit = true;
+            }
         }
         else if (matchTimer > 0 && isMatchLit)
         {
@@ -170,7 +193,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isMatchLit && matchTimer <= 0.0f)
         {
-            //matchTimer = matchList[matchListPos].matchTimer;
             Destroy(matchList[matchListPos]);
             matchList.RemoveAt(matchListPos);
             matchListPos--;
@@ -218,12 +240,12 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
         }
-        if (collision.gameObject.CompareTag("Moveable"))
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 pushDir = collision.contacts[0].normal * -1;
-            rb.AddForce(pushDir * 10f, ForceMode.Impulse);
-        }
+        //if (collision.gameObject.CompareTag("Moveable"))
+        //{
+        //    Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+        //    Vector3 pushDir = collision.contacts[0].normal * -1;
+        //    rb.AddForce(pushDir * 10f, ForceMode.Impulse);
+        //}
 
     }
     private void OnCollisionStay(Collision collision)
