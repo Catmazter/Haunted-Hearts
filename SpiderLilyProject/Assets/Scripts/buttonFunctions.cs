@@ -36,6 +36,11 @@ public class buttonFunctions : MonoBehaviour
     {
         SceneManagerScript.instance.LoadLevel(1); // load first gameplay scene
     }
+    public void SettingActiveTab(string tabname)
+    {
+        Debug.Log("Switching to tab: " + tabname);
+        SettingActiveTab(tabname);
+    }
     /*    public void respawn()
         {
             gameManager.instance.playerScript.spawnPlayer(); ///check player movement 

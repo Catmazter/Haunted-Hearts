@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Transform throwPoint;
     [SerializeField] public Transform matchCamera;
     [SerializeField] public int HP;
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
     [SerializeField] float sprintMod;
     [SerializeField] float jumpHeight;
     [SerializeField] int jumpMax;
@@ -25,14 +25,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runDecreaseRate;
 
     Vector3 moveDir;
+    public Vector3 collisionPos;
     int jumpCount;
     int HPOrig;
     float speedOrig;
     float airStaminaOrig;
     float runStaminaOrig;
-    bool isSprinting;
+    public bool isSprinting;
     bool isOutOfStamina;
     bool isOutOfBreath;
+    public bool didCollide;
     public float throwPower;
     public float throwUpwardPower;
 
@@ -62,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
     [UnityEngine.Range(0, 1)][SerializeField] float audPlayerJumpVol;
     [SerializeField] AudioClip[] audPlayerLand;
     [UnityEngine.Range(0, 1)][SerializeField] float audPlayerLandVol;
+    [SerializeField] AudioClip[] audCollision;
+    [UnityEngine.Range(0, 1)][SerializeField] float audCollisionVol;
+    float audBreathVolOrig;
 
     bool isPlayingSteps;
     bool isPlayingBreath;
@@ -74,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         matchTimerOrig = matchTimer;
         matchInventory();
         matchListPos = matchList.Count - 1;
+        audBreathVolOrig = audBreathVol;
     }
 
     void Update()
@@ -242,11 +248,10 @@ public class PlayerMovement : MonoBehaviour
         }
         //if (collision.gameObject.CompareTag("Moveable"))
         //{
-        //    Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-        //    Vector3 pushDir = collision.contacts[0].normal * -1;
-        //    rb.AddForce(pushDir * 10f, ForceMode.Impulse);
+        //    aud.PlayOneShot(audCollision[UnityEngine.Random.Range(0, audCollision.Length)], audCollisionVol);
+        //    collisionPos = transform.position;
+        //    didCollide = true;
         //}
-
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -275,15 +280,23 @@ public class PlayerMovement : MonoBehaviour
         {
             pickup.OnPickup(other.gameObject);
         }
+        if (other.CompareTag("Ghost"))
+        {
+            audBreathVol += audBreathVol / 5;
+        }
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Safe Zone"))
-    //    {
-    //        gameManager.instance.PlayerInSafeZone = false;
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        //if (other.CompareTag("Safe Zone"))
+        //{
+        //    gameManager.instance.PlayerInSafeZone = false;
+        //}
+        if (other.CompareTag("Ghost"))
+        {
+            audBreathVol = audBreathVolOrig;
+        }
+    }
 
     IEnumerator playSteps()
     {
