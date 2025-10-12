@@ -6622,6 +6622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Reveal Radius '
       objectReference: {fileID: 0}
+    - target: {fileID: 8555835764896238797, guid: 3212253ab07fbc84493887eb7fb7e6be, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

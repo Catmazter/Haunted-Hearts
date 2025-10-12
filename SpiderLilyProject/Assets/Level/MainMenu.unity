@@ -3990,6 +3990,8 @@ MonoBehaviour:
   menuTitle: {fileID: 0}
   titleFadeDuration: 0.3
   gameGoalCountText: {fileID: 0}
+  mapUI: {fileID: 0}
+  isMapOpen: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0

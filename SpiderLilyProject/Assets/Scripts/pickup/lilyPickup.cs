@@ -13,6 +13,9 @@ public class PickupItem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Player")) return; 
+        
+        
         if (pickupData != null)
         {
             pickupData.OnPickup(other.gameObject);
