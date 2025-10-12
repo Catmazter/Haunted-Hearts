@@ -80,6 +80,7 @@ public class Ghost : MonoBehaviour
     void attackPlayer()
     {
         attackCD();
+        ghostNoiseCD();
         Vector3 targetPos = gameManager.instance.player.transform.position - headPos.position;
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, targetPos, out hit))
@@ -185,5 +186,13 @@ public class Ghost : MonoBehaviour
             yield return new WaitForSeconds(2.25f);
         }
         isPlayingNoise = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Moveable"))
+        {
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+        }
     }
 }
