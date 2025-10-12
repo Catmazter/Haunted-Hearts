@@ -35,6 +35,7 @@ public class Ghost : MonoBehaviour
     {
         render = GetComponent<MeshRenderer>();
         render.enabled = false;
+        ghost.speed = gameManager.instance.playerScript.speed;
         ghostSpeedOrig = ghost.speed;
         ghostAttackCDOrig = ghostAttackCD;
         startPos = transform.position;
