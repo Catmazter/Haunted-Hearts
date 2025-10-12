@@ -28,7 +28,7 @@ Shader "Custom/InkBrush_Accumulate"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-                Debug.Log($"Painting at UV: {u:F2}, {v:F2}");
+              
 
                 return o;
             }
