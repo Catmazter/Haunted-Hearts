@@ -310,6 +310,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audHurt.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1002,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2599002330985305119, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2616066385840533573, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
       propertyPath: m_IsActive
@@ -1018,7 +1022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6269412282574905134, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6507805802895820407, guid: 11c7ff8f02fe74f40ac885aea9d077b3, type: 3}
       propertyPath: m_IsActive
