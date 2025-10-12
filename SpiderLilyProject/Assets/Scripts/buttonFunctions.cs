@@ -32,15 +32,49 @@ public class buttonFunctions : MonoBehaviour
     {
         gameManager.instance.CloseCurrentMenu();
     }
+    //Main Menu Buttons
     public void OnPlayPressed()
     {
-        SceneManagerScript.instance.LoadLevel(1); // load first gameplay scene
+        var sm = SceneManagerScript.instance;
+        if (sm == null)
+        {
+            Debug.LogError("SceneManagerScript instance not found!");
+            return;
+        }
+
+        sm.nextLevelIndex = 1;        // Level 1 index in Build Settings
+        sm.nextLevelName = "Level 1";
+        sm.isFinalLevel = false;
+
+        SceneManager.LoadScene("TransitionScene");
+        SceneManager.LoadScene("TransitionScene");
+    }
+    /// <summary>
+    /// Called from Main Menu / Pause Menu Dev/Showcase button
+    /// Loads Showcase Level directly (bypassing story/transition)
+    /// </summary>
+    public void OnShowcasePressed()
+    {
+        var sm = SceneManagerScript.instance;
+        if (sm == null)
+        {
+            Debug.LogError("SceneManagerScript instance not found!");
+            return;
+        }
+
+        SceneManager.LoadScene("ShowcaseLevel"); // Exact scene name
+    }
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        gameManager.instance.stateUnpause();
     }
     public void SettingActiveTab(string tabname)
     {
         Debug.Log("Switching to tab: " + tabname);
         SettingActiveTab(tabname);
     }
+
     /*    public void respawn()
         {
             gameManager.instance.playerScript.spawnPlayer(); ///check player movement 

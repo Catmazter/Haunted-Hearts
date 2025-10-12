@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.UI;
-using TMPro;
 
 public class SceneManagerScript : MonoBehaviour
 {
@@ -16,12 +15,11 @@ public class SceneManagerScript : MonoBehaviour
     [Header("Fade Transition")]
     [SerializeField] Image fadeOverlay;
     [SerializeField] float fadeDuration = 1f;
-    [SerializeField] float transitionHoldTime = 3f;
 
-
-    // --- Transition Scene Data ---
-    [HideInInspector] public string nextLevelName;
-    [HideInInspector] public string nextLevelDescription;
+    // Runtime data
+    [HideInInspector] public int nextLevelIndex = -1;
+    [HideInInspector] public string nextLevelName = "";
+    [HideInInspector] public bool isFinalLevel = false;
 
     private void Awake()
     {
@@ -30,10 +28,7 @@ public class SceneManagerScript : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
     private void Start()
@@ -55,7 +50,7 @@ public class SceneManagerScript : MonoBehaviour
         gameManager.instance.player.SetActive(true);
     }
 
-    // Call this to begin the transition process
+    // Called when player wins a level
     public void OnLevelCompleted()
     {
         int current = SceneManager.GetActiveScene().buildIndex;
@@ -63,49 +58,36 @@ public class SceneManagerScript : MonoBehaviour
 
         if (next < SceneManager.sceneCountInBuildSettings)
         {
-            // Use scene names for display
-            nextLevelName = SceneUtility.GetScenePathByBuildIndex(next).Split('/')[^1].Replace(".unity", "");
-            nextLevelDescription = GetLevelDescription(nextLevelName);
-            LoadTransitionScene(next);
+            nextLevelIndex = next;
+            nextLevelName = SceneUtility.GetScenePathByBuildIndex(next)
+                .Split('/')[^1].Replace(".unity", "");
+            isFinalLevel = (next == SceneManager.sceneCountInBuildSettings - 1);
+
+            StartCoroutine(GoToTransitionScene());
         }
         else
         {
-            Debug.Log("All levels complete!");
-            LoadLevel(0); // back to main menu
+            // No next level — show Win UI
+            nextLevelIndex = -1;
+            nextLevelName = "";
+            isFinalLevel = true;
+            StartCoroutine(GoToTransitionScene());
         }
     }
 
-    private string GetLevelDescription(string levelName)
-    {
-        // Customize these however you like:
-        return levelName switch
-        {
-            "Level 1" => "Title 1",
-            "Level 2" => "Title 2",
-            "Level 3" => "Title 3",
-            _ => "Next Challenge Awaits..."
-        };
-    }
-
-    public void LoadTransitionScene(int nextLevelIndex)
-    {
-        StartCoroutine(LoadTransitionRoutine(nextLevelIndex));
-    }
-
-    private IEnumerator LoadTransitionRoutine(int nextLevelIndex)
+    private IEnumerator GoToTransitionScene()
     {
         yield return Fade(1f);
         SceneManager.LoadScene("TransitionScene");
         yield return Fade(0f);
-
-        // Wait a few seconds in transition before loading the level
-        yield return new WaitForSeconds(transitionHoldTime);
-        LoadLevel(nextLevelIndex);
     }
 
-    public void LoadLevel(int index)
+    public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevelRoutine(index));
+        if (nextLevelIndex >= 0)
+            StartCoroutine(LoadLevelRoutine(nextLevelIndex));
+        else
+            SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator LoadLevelRoutine(int index)
@@ -116,10 +98,9 @@ public class SceneManagerScript : MonoBehaviour
         yield return Fade(0f);
     }
 
-    IEnumerator Fade(float targetAlpha)
+    private IEnumerator Fade(float targetAlpha)
     {
-        if (fadeOverlay == null)
-            yield break;
+        if (fadeOverlay == null) yield break;
 
         fadeOverlay.raycastTarget = true;
         Color color = fadeOverlay.color;
