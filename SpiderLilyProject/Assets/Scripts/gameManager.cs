@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
@@ -29,6 +30,9 @@ public class gameManager : MonoBehaviour
     [Header("GameGoal")]
     int gameGoalCount ;
     [SerializeField] TextMeshProUGUI gameGoalCountText;
+    [Header("Map")]
+    [SerializeField] GameObject mapUI;
+    public bool isMapOpen;
 
 
             // --- Public read-only accessors ---
@@ -74,6 +78,11 @@ public class gameManager : MonoBehaviour
                 CloseCurrentMenu();
             }
         }
+        if(Input.GetButtonDown("Map"))
+        {
+            isMapOpen = !isMapOpen;
+            mapUI.SetActive(isMapOpen);
+        }
     }
     public void OpenMenu(string menuName)
     {
@@ -88,7 +97,7 @@ public class gameManager : MonoBehaviour
 
         if (currentMenu != null)
         {
-            currentMenu.SetActive(false); 
+            currentMenu.SetActive(false);
             menuStack.Push(currentMenu); // Push current menu onto stack
         }
 
@@ -99,9 +108,41 @@ public class gameManager : MonoBehaviour
         if (menuName == "Settings")
         {
             // Default to Gameplay tab
-            OpenMenu("Settings-Audio");
+            currentMenu.SetActive(true);
+            SetActiveSettingsTab("Audio");
+            
         }
     }
+    public void SetActiveSettingsTab(string tabName)
+    {
+        // Disable all tabs first
+        settingsGameplay.SetActive(false);
+        settingsControls.SetActive(false);
+        settingsGraphics.SetActive(false);
+        settingsAudio.SetActive(false);
+
+        // Enable chosen tab
+        switch (tabName)
+        {
+            case "Gameplay":
+                settingsGameplay.SetActive(true);
+                UpdateMenuTitle("Gameplay");
+                break;
+            case "Controls":
+                settingsControls.SetActive(true);
+                UpdateMenuTitle("Controls");
+                break;
+            case "Graphics":
+                settingsGraphics.SetActive(true);
+                UpdateMenuTitle("Graphics");
+                break;
+            case "Audio":
+                settingsAudio.SetActive(true);
+                UpdateMenuTitle("Audio");
+                break;
+        }
+    }
+
     public void CloseCurrentMenu()
     {
         if (currentMenu == null) return;
@@ -123,7 +164,12 @@ public class gameManager : MonoBehaviour
             stateUnpause();
         UpdateMenuTitle("");
     }
-
+    public void ToggleMapUI()
+    {
+        if (currentMenu!= null || isPaused) return; // don't open map if in a menu or paused
+        isMapOpen = !isMapOpen;
+        mapUI.SetActive(isMapOpen);
+    }
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
