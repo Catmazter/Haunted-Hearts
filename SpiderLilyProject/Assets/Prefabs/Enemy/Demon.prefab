@@ -418,8 +418,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDemon
   agent: {fileID: 1398203872419859647}
-  chaseSpeed: 40
-  faceTargetSpeed: 0
+  chaseSpeed: 80
+  faceTargetSpeed: 5
   headPoint: {fileID: 4507375341281061028}
   roamDist: 20
   roamPauseTimer: 5
@@ -428,6 +428,7 @@ MonoBehaviour:
   anim: {fileID: 5765001472295431618}
   audioSource: {fileID: 3332794929072214130}
   screamClip: {fileID: 8300000, guid: 419e30b6d986ce4429efc8bf22859125, type: 3}
+  demonVolume: 0.5
 --- !u!195 &1398203872419859647
 NavMeshAgent:
   m_ObjectHideFlags: 0
