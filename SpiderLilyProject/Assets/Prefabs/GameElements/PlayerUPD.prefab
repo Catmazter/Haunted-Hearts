@@ -1168,7 +1168,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 97b97fae0b55ce141bff2005c510492e, type: 3}
   - {fileID: 8300000, guid: 96860d4e7cdc1f746906da7b7bc7a388, type: 3}
   audStepsVol: 0.601
-  audHurt: []
+  audHurt:
+  - {fileID: 8300000, guid: 5583e9c9a0afdf0408f9d0946666f85a, type: 3}
+  - {fileID: 8300000, guid: 572fe06c861000149bc4b51cc1fdb09d, type: 3}
+  - {fileID: 8300000, guid: 88b91714a2e2cbb428f61e18ca4d39d8, type: 3}
+  - {fileID: 8300000, guid: 80cc6816623c9a04580970e36613d8c4, type: 3}
+  - {fileID: 8300000, guid: cad57fcf83264a4489ae5c41b55e7a8b, type: 3}
+  - {fileID: 8300000, guid: 132005c60d8148440b6f375a773d8f8e, type: 3}
+  - {fileID: 8300000, guid: 50b441f111083504d90ad648f16723e0, type: 3}
+  - {fileID: 8300000, guid: 36104c8b981b4a349a1948b61c9e8a20, type: 3}
+  - {fileID: 8300000, guid: 14a883f5f8241cc4ca1f35fe54fef1d2, type: 3}
+  - {fileID: 8300000, guid: 62c41c4c89235bd42bf85b0e4c855d1a, type: 3}
+  - {fileID: 8300000, guid: c39ba448713aff147bdc2b9b4126b1d8, type: 3}
+  - {fileID: 8300000, guid: f549a9145c031244a89a2d36d5f18757, type: 3}
+  - {fileID: 8300000, guid: 9ef3f6cb1b48c67419812b50793d9da6, type: 3}
+  - {fileID: 8300000, guid: 164c4cd428e81554a89f938451aae22f, type: 3}
+  - {fileID: 8300000, guid: 5c25a8b6c2ef9624caf832fe0d756bbd, type: 3}
+  - {fileID: 8300000, guid: 616758222d84f6f47b8b9dd6a3e5d3b8, type: 3}
+  - {fileID: 8300000, guid: 7ed99645cac6f06438be178db3df164c, type: 3}
+  - {fileID: 8300000, guid: 7b85f48408e15f748a6a7de0f94963cf, type: 3}
+  - {fileID: 8300000, guid: 5d5f587ae155eb94f867257211a96f5e, type: 3}
+  - {fileID: 8300000, guid: 5ed176f89f549d24a83fa420c256201e, type: 3}
+  - {fileID: 8300000, guid: 0e1457ebf7dc95b4db34ba2fa89929fc, type: 3}
   audHurtVol: 0.309
   audJump:
   - {fileID: 8300000, guid: 6aeefb601c305f64487cebdfacae5b6c, type: 3}
@@ -1194,6 +1215,10 @@ MonoBehaviour:
   audJumpVol: 0.369
   audBreath:
   - {fileID: 8300000, guid: 4be9f25858e33b04da0638106aeb97aa, type: 3}
+  - {fileID: 8300000, guid: 21e68833d64d4c34e85ff61add8364ff, type: 3}
+  - {fileID: 8300000, guid: 36320c2f5f4ebaf4dba89b26b61d9b52, type: 3}
+  - {fileID: 8300000, guid: 9fafd9236e5dc4148a207978214a3900, type: 3}
+  - {fileID: 8300000, guid: b8237eb0746eb4e45b36bcac52548532, type: 3}
   audBreathVol: 0.691
   audPlayerJump:
   - {fileID: 8300000, guid: 6aeefb601c305f64487cebdfacae5b6c, type: 3}
