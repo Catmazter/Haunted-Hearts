@@ -40,7 +40,7 @@ public class EnemyDemon : EnemyBase
     protected override void chasePlayer()
     {
 
-        agent.speed = chaseSpeed;
+     
         base.chasePlayer();
 
     }
