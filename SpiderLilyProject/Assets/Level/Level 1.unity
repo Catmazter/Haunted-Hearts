@@ -1106,71 +1106,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5567346010060491461}
   m_CullTransparentMesh: 1
---- !u!1001 &6270209983796450279
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 774570236883826571, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_Name
-      value: MazeBase
-      objectReference: {fileID: 0}
-    - target: {fileID: 774570236883826571, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 78.32425
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 381.50586
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209650668589074171, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100794763309181104, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
-      propertyPath: m_Name
-      value: WallsMaze
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 56dcf3137d46c5c44bee727991f081bb, type: 3}
 --- !u!20 &7258726452571202465
 Camera:
   m_ObjectHideFlags: 0
@@ -1417,7 +1352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3480094682567998916, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3542153703106139496, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
@@ -1425,11 +1360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4552074010689579716, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5956630848722242336, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6117424885167752358, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1449,7 +1384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8255526800880051780, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8413871802387275568, guid: 6e54ad54cbae095428c8f48e90c88d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1611,7 +1546,6 @@ SceneRoots:
   - {fileID: 5445149947545273022}
   - {fileID: 1322336999}
   - {fileID: 1445923221}
-  - {fileID: 6270209983796450279}
   - {fileID: 536071315}
   - {fileID: 8706715900095593727}
   - {fileID: 1307768672}

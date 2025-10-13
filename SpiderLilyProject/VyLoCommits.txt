@@ -1,0 +1,149 @@
+commit 72b4e691bdd0c7fe991374452d97d4410c604624
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Sun Oct 12 15:37:42 2025 -0400
+
+    update
+
+commit 337e93302a7d407330896bbca400b6dd1115abcb
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Sun Oct 12 12:22:19 2025 -0400
+
+    Update EnemyDemon.cs
+
+commit 0df011027e0c9168ecb49962055af7aa584f52af
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Sat Oct 11 16:59:23 2025 -0400
+
+    small fix
+
+commit 4d83cbcde2b95980c4b2704a60cafbecd71d8411
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Sat Oct 11 15:34:02 2025 -0400
+
+    fix demon face target
+
+commit 302060e7f427624a3f632f7c43440579e12365d9
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 16:20:56 2025 -0400
+
+    Update Level 1.unity
+
+commit b24d28cc9f70352e92861045bd78b763a03b6e18
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 16:20:44 2025 -0400
+
+    add menuSelection sound
+
+commit c706b9e021d5f7ee27af1d703eea9ebba5079337
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 16:06:22 2025 -0400
+
+    small update
+
+commit fe6d24b8520bdafbe7522678b740ce1cdc2e304b
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 16:05:42 2025 -0400
+
+    add demon voice and women cry
+
+commit cc34a0c1e8cb9f8fcdf13691d894df26c2ccf700
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 14:59:37 2025 -0400
+
+    Audio settings finish
+
+commit 2a7aa46a888ca487540ab0421529f3545786fdc3
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 11:05:12 2025 -0400
+
+    fix small bug
+
+commit a2e80ca2c92651b9c574499a343fcb02facab8bb
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Fri Oct 10 10:56:42 2025 -0400
+
+    add AudioMixer for master
+
+commit 0c6d1651da644f3849552c75daa4fbd6910e4c6a
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Thu Oct 9 21:58:06 2025 -0400
+
+    AudioUI
+
+commit 399cde6f284f4e85e1291d9f620efafe203924e4
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Thu Oct 9 16:19:21 2025 -0400
+
+    createSpawner
+
+commit addbe8f03739797d50bc24dfa0e804ac2b73b630
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Thu Oct 9 14:31:41 2025 -0400
+
+    audioTransition
+
+commit c2738cfa2ff192766b56894fadfe6738f5e3c207
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 20:56:43 2025 -0400
+
+    updateDamageScript
+
+commit 6dc89c930625419ef684de75c3de6a1bcc2b541c
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 20:43:00 2025 -0400
+
+    update damage
+
+commit 196cb92f35d2de3d3d267bbd5d15cda0847b055a
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 17:20:04 2025 -0400
+
+    update demon
+
+commit 687508a342209db02c2339915aacf532b6fde5b0
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 15:23:09 2025 -0400
+
+    addTagAgain
+
+commit d6068b8681ffb1587aa9939cca21ebcecfc71631
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 14:18:41 2025 -0400
+
+    addTagGround
+
+commit 764a9fa4e11ddf7502a0e57f4c4e973537278f81
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Wed Oct 8 13:43:40 2025 -0400
+
+    update runAway
+
+commit 0deeec8b8c92c8ec739f482f4fdcace10466b838
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Tue Oct 7 22:53:22 2025 -0400
+
+    updatechasePlayer
+
+commit 371c1b7b27f29b462f90e9483b42f728f895ea97
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Tue Oct 7 22:30:23 2025 -0400
+
+    update a bit
+
+commit 16f008fad98d7832684ffdf4a8192faa4437b442
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Tue Oct 7 21:50:40 2025 -0400
+
+    roamPlayer
+
+commit 8d11b346fc7ef4f1e6957f97fa59b5c8527abb75
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Tue Oct 7 19:21:58 2025 -0400
+
+    add enemyBase and enemyDemon
+
+commit 021342adb6fe66c6498d57a66505e5bc2f4e13e9
+Author: Vuynee <179316784+Vuyne@users.noreply.github.com>
+Date:   Tue Oct 7 17:11:10 2025 -0400
+
+    createVyScene
