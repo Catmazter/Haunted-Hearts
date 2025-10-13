@@ -12,6 +12,8 @@ public class EnemyDemon : EnemyBase
     [SerializeField] Animator anim;
     [SerializeField] AudioSource audioSource; 
     [SerializeField] AudioClip screamClip;
+    [Range(0f, 1f)] public float demonVolume = 0.5f;
+
     float stunTimer;
     bool hasChosenRunDest = false;
 
@@ -135,7 +137,7 @@ public class EnemyDemon : EnemyBase
     {
         if (audioSource != null && screamClip != null)
         {
-            audioSource.PlayOneShot(screamClip);
+            audioSource.PlayOneShot(screamClip,demonVolume);
         }
     }
 

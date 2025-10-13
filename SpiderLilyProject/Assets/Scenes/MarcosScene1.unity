@@ -1251,23 +1251,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
   m_PrefabInstance: {fileID: 358060792}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &147787185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147787174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ee523985b37f641927e6a8af0d8efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapRevealPainter
-  mapCamera: {fileID: 0}
-  revealRT: {fileID: 0}
-  brushMaterial: {fileID: 0}
-  player: {fileID: 0}
-  brushSize: 0.08
 --- !u!1001 &150756441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2556,10 +2539,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 938617914}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 298466475869923593, guid: e76235963b6adcf48a69589c924faffd, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 147787185}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e76235963b6adcf48a69589c924faffd, type: 3}
 --- !u!1001 &359570375
 PrefabInstance:
@@ -10797,7 +10777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1805721705
 RectTransform:
   m_ObjectHideFlags: 0
