@@ -20,38 +20,27 @@ public class TransitionSceneController : MonoBehaviour
 
     void SetupUI()
     {
-        // Hide all first
+        var sm = SceneManagerScript.instance;
+
+        // Hide all panels first
         level1Panel.SetActive(false);
         level2Panel.SetActive(false);
         level3Panel.SetActive(false);
         winPanel.SetActive(false);
 
-        var sm = SceneManagerScript.instance;
-
-        if (sm.isFinalLevel && sm.nextLevelIndex == -1)
+        if (sm.isFinalLevel)
         {
-            // Final win screen
             winPanel.SetActive(true);
             continueButton.gameObject.SetActive(false);
         }
         else
         {
-            // Show story panel for next level
             switch (sm.nextLevelName)
             {
-                case "Level 1":
-                    level1Panel.SetActive(true);
-                    break;
-                case "Level 2":
-                    level2Panel.SetActive(true);
-                    break;
-                case "Level 3":
-                    level3Panel.SetActive(true);
-                    break;
-                default:
-                    winPanel.SetActive(true);
-                    continueButton.gameObject.SetActive(false);
-                    break;
+                case "Level 1": level1Panel.SetActive(true); break;
+                case "Level 2": level2Panel.SetActive(true); break;
+                case "Level 3": level3Panel.SetActive(true); break;
+                default: winPanel.SetActive(true); break;
             }
 
             continueButton.onClick.RemoveAllListeners();
