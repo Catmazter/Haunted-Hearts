@@ -64,15 +64,21 @@ public class buttonFunctions : MonoBehaviour
 
         SceneManager.LoadScene("ShowcaseLevel"); // Exact scene name
     }
-    public void ToMainMenu()
+    public void OpenMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        gameManager.instance.stateUnpause();
+        gameManager.instance.unpauseTime();
+
     }
     public void SettingActiveTab(string tabname)
     {
         Debug.Log("Switching to tab: " + tabname);
-        SettingActiveTab(tabname);
+       gameManager.instance.SetActiveSettingsTab(tabname);
+
+    }
+    public void OpenShowcase()
+    {
+        SceneManager.LoadScene("ShowcaseScene");
     }
 
     /*    public void respawn()
