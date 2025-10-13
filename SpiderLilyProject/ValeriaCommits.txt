@@ -1,0 +1,139 @@
+commit d8503d22b69b54c436be9166628fb26b0b8d9dc5
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sun Oct 12 15:28:08 2025 -0400
+
+    changes in level 2 and 3
+
+commit ff5532cd69ceb798af825c9be3b2afd0d06ed602
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sun Oct 12 14:17:43 2025 -0400
+
+    adding menu ui
+
+commit f609cdef69a520b5fcd55709baa3bd1d84d4f492
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sun Oct 12 13:10:57 2025 -0400
+
+    fixed Vy's UI level 1
+
+commit c5a03db400c0730ead40fa4eb80d8afe0ea42f23
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sun Oct 12 12:29:14 2025 -0400
+
+    no big changes
+
+commit 96e200b6b41613be4d9e68ec0899823c49ca6c82
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sat Oct 11 16:51:23 2025 -0400
+
+    Update ValScene.unity
+
+commit da8a6ce28fe80446292e85833e7bf4ff3f4924ad
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sat Oct 11 16:15:39 2025 -0400
+
+    don't need picture
+
+commit 6101ece56d3190f8e91d491babb2252e33e735c7
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sat Oct 11 16:07:11 2025 -0400
+
+    changed back ui
+
+commit daeb79b8b0ed8611655e02b3ee377a035768057a
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sat Oct 11 15:15:32 2025 -0400
+
+    added story panels and modified UI
+
+commit 4f0e4cade31b6c877e91b775df16108d36e95e0c
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Sat Oct 11 01:42:48 2025 -0400
+
+    created visual story panels + added images for dead menu and won end scene
+
+commit 11abbc6070dd82b7762d719d53cfacefd5d76b99
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 19:10:39 2025 -0400
+
+    All mazes with lilys
+
+commit 8dbec9fa08c24962f3ba209d123300b8436b5f0f
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 18:39:44 2025 -0400
+
+    maze base prefab + mazes for each level
+    
+    maze 3 alr with lilys placed
+    Death has creppy sounds
+    Spawns only in one place of the maze (can fix that later)
+
+commit e64e34630003d8ced9dd84289c004bd3e3f97d17
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 13:15:44 2025 -0400
+
+    Night light
+    
+    Go to lighting
+    Environment reflections
+    intensity multiplier to to 0
+
+commit 1bc00eb7390e2fae4cf5f3319ab9d5199dee0ed5
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 13:05:22 2025 -0400
+
+    added comments to change safezone detector later
+    
+    don't delete comments pls :))
+
+commit 9d510e38f2e5ece1bd2199be837aa35020ecc3e1
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 02:49:53 2025 -0400
+
+    timer of death enemy + spawner
+    
+    So far is working: enemy spawns in position, chases enemy, enemy destroys if player stays in safe zone, timer resets
+    
+    still needs more testing.
+
+commit bbcd4fa780e24aa57c963f335c94cf38d50102d1
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Fri Oct 10 00:26:41 2025 -0400
+
+    enemy deletes after enter safe zone
+
+commit c10e4e67e87dbc4c963b7d074172c4af97f8c9a6
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Thu Oct 9 22:32:39 2025 -0400
+
+    enemy creating logic in progress
+
+commit c9734106101a8f72e4706340e69a93d7acb8efe0
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Wed Oct 8 16:50:55 2025 -0400
+
+    Fixed walls collider and Navmesh
+
+commit 303cb6d9b1fd959f5f28b2cc8ac229ed9631bb2a
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Wed Oct 8 15:24:18 2025 -0400
+
+    quick dev pull
+
+commit f0027a6763ef76835b853abd2d02d6ee7ca4363a
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Wed Oct 8 15:12:53 2025 -0400
+
+    resized maze and added enemy asset
+
+commit 15701da40914150373ec56cc4d63ff1d4303a57b
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Wed Oct 8 13:41:08 2025 -0400
+
+    maze base ready for testing
+
+commit e93dd76bd60d9ffc12c831ca41c319af18048041
+Author: Valeria <valemalegre.me@gmail.com>
+Date:   Wed Oct 8 04:03:12 2025 -0400
+
+    maze base + night sky
