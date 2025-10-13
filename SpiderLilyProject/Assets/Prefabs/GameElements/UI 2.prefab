@@ -11143,6 +11143,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7727488594302626423}
     m_Modifications:
+    - target: {fileID: 3580401814885388578, guid: d3c48de800b062343b9fc195467f954a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1795182477783873606}
+    - target: {fileID: 3580401814885388578, guid: d3c48de800b062343b9fc195467f954a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464142833789794323, guid: d3c48de800b062343b9fc195467f954a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1795182477783873606}
+    - target: {fileID: 4464142833789794323, guid: d3c48de800b062343b9fc195467f954a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: quit
+      objectReference: {fileID: 0}
     - target: {fileID: 8044650139492552515, guid: d3c48de800b062343b9fc195467f954a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
