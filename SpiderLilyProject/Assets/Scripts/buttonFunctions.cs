@@ -74,6 +74,10 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Switching to tab: " + tabname);
         SettingActiveTab(tabname);
     }
+    public void OpenShowcase()
+    {
+        SceneManager.LoadScene("ShowcaseScene");
+    }
 
     /*    public void respawn()
         {

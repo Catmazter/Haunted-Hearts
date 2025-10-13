@@ -119,4 +119,14 @@ public class SceneManagerScript : MonoBehaviour
         fadeOverlay.color = color;
         fadeOverlay.raycastTarget = (targetAlpha > 0);
     }
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            Debug.Log("[DEV] Forcing level complete via F10");
+            OnLevelCompleted();
+        }
+    }
+#endif
 }
