@@ -1,0 +1,143 @@
+commit fcf5a62a5b3e86fb09d1ff62fa6deefd34a4cec0
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 12 19:14:50 2025 -0400
+
+    showcase level
+
+commit 93971c783351bc1c2c9b447f6dea1d1e1bc657db
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 12 15:30:48 2025 -0400
+
+    updated player prefab
+
+commit d46f1362d5a7755452869e8ba046ce5b3ffc3ed1
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 12 15:30:28 2025 -0400
+
+    ghost and player fixed
+
+commit 528d49dc2f36cd4871d84fcee5bc570347b414d0
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 11 17:50:15 2025 -0400
+
+    player prefab updated
+
+commit b71e9df825af7729bdd287b28260eccbd4ebab2e
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 11 17:49:49 2025 -0400
+
+    ghost mostly completed
+
+commit 4c8b96dc275b3bf93f40f95a45afd3b4d365450a
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 11 12:21:19 2025 -0400
+
+    ghost WIP
+
+commit 5f5c89a56049a21cf1e7ee51173503fc7de48c91
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 11 00:10:02 2025 -0400
+
+    matches complete
+
+commit f74f759433862c96db08388a196c49498750a033
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 16:09:50 2025 -0400
+
+    match throwing WIP
+
+commit bd50e4a380ba8f79f2f815bd6e59349e957477a5
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 13:19:29 2025 -0400
+
+    slight change to player movement
+
+commit 0b042246bdcf60600081a069179ad99df69d00b5
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 13:10:26 2025 -0400
+
+    match mechanics WIP
+
+commit a6c3682733a441ab51376d7038a8ff259ac38a49
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 12:45:32 2025 -0400
+
+    moveable box prefab
+
+commit b8ac7bdbbdd717b66b34f22e2161a3378e7b7498
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 12:44:29 2025 -0400
+
+    player prefab updated
+
+commit f26a11bdb14bcfbfff7aaaa090e20bbce275aa09
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Fri Oct 10 02:32:32 2025 -0400
+
+    collision
+
+commit c28b174182d6c904dfcf8dbb74022c3bb7ec1c7c
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 9 23:37:06 2025 -0400
+
+    saved scene
+
+commit a444168cb8e8b0945892f1267a2ac8555e253217
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 9 19:01:44 2025 -0400
+
+    match WIP
+
+commit 4d7523a9a7bb0c47857fcefcef1aa9e217bd010e
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 9 17:00:38 2025 -0400
+
+    slight change to player
+
+commit 2165e3af986cb164d7e3b93eb7940d378d55bc43
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 9 16:58:30 2025 -0400
+
+    player audio
+
+commit 12dbb0d5b9ec21ab67fad98618c62982334e1994
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 17:51:21 2025 -0400
+
+    player HP public
+
+commit ce2728ac01c2dbf8a5a30eb2eed9a9443bf43d40
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 16:39:54 2025 -0400
+
+    slight change
+
+commit 49ff87ccb2c784d71f6a5317319596f3494095c7
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 16:38:49 2025 -0400
+
+    new player prefab
+
+commit 87fa8541b51b8bda4349394674e0598bde95870b
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 16:36:37 2025 -0400
+
+    updated player
+
+commit b114eb01f3824080519dc421d2735fe1b4ef5b96
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 15:33:36 2025 -0400
+
+    player update
+
+commit 44718674da289c66a4b1eaf5e750d352760d2c82
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Wed Oct 8 14:42:24 2025 -0400
+
+    match timer WIP
+
+commit c3eb0c2507209b1598c56708f1e0219f3dd18663
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Tue Oct 7 23:39:18 2025 -0400
+
+    match WIP
