@@ -73,7 +73,8 @@ public class buttonFunctions : MonoBehaviour
     public void SettingActiveTab(string tabname)
     {
         Debug.Log("Switching to tab: " + tabname);
-        SettingActiveTab(tabname);
+       gameManager.instance.SetActiveSettingsTab(tabname);
+
     }
     public void OpenShowcase()
     {
