@@ -15,6 +15,7 @@ public abstract class EnemyBase : MonoBehaviour
     Vector3 startingPos;
     [SerializeField] protected float roamDist;
     [SerializeField] protected float roamPauseTimer;
+    private Rigidbody rb;
     
 
 
@@ -22,6 +23,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        rb = GetComponent<Rigidbody>();
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
@@ -54,7 +56,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void chasePlayer()
     {
-       
+        //Vector3 maxSpeed = rb.linearVelocity;
+        //maxSpeed.Normalize();
+        //maxSpeed *= 10;
+        //rb.linearVelocity = maxSpeed;
+
         agent.speed = chaseSpeed;
 
         Vector3 targetPos = gameManager.instance.player.transform.position;
@@ -62,10 +68,10 @@ public abstract class EnemyBase : MonoBehaviour
        
         agent.stoppingDistance = stoppingDistOrig;
 
+        if(agent.remainingDistance < 8)
         faceTarget();
         //agent.SetDestination(targetPos - headOffset);
         agent.SetDestination(gameManager.instance.player.transform.position);
-
 
     }
     void faceTarget( )

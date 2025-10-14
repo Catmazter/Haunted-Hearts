@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289797134507445685}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1.6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9731,7 +9731,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2152646100344495773}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9796,8 +9796,8 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 2
-  moveWithCustomTransform: {fileID: 3551536767535493753}
+  moveWithTransform: 1
+  moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
   InitialModule:
@@ -10560,7 +10560,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40.5
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13521,14 +13521,14 @@ ParticleSystem:
     enabled: 1
     ratio: 1
     light: {fileID: 7552325380232887710, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
-    randomDistribution: 0
+    randomDistribution: 1
     color: 1
     range: 1
     intensity: 1
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5.77
+      scalar: 1.91
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13581,7 +13581,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9.9
+      scalar: 2.94
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14657,8 +14657,8 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 2
-  moveWithCustomTransform: {fileID: 3551536767535493753}
+  moveWithTransform: 0
+  moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
   InitialModule:
@@ -18370,7 +18370,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
@@ -18380,7 +18380,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.93
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -18433,7 +18433,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.39
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -18483,7 +18483,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 66
+    maxLights: 20
   TrailModule:
     enabled: 0
     mode: 0
@@ -24437,7 +24437,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056094657456778002}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1.6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -29282,7 +29282,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5644343194305032011}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1.6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
