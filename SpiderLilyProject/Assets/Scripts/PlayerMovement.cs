@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 collisionPos;
     int jumpCount;
     int HPOrig;
+    int currMatch;
+    float currMatchTimer;
     float speedOrig;
     float airStaminaOrig;
     float runStaminaOrig;
@@ -146,7 +148,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (matchList.Count > 0)
             {
-                Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
+                currMatch = matchListPos;
+                currMatchTimer = matchTimer;
+                currMatchTimer -= Time.deltaTime * 2;
+                Rigidbody rb = matchList[currMatch].GetComponent<Rigidbody>();
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 rb.detectCollisions = true;
@@ -160,15 +165,17 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 forceToAdd = forceDir * throwPower + transform.up * throwUpwardPower;
                 //rb.MovePosition(throwPoint.transform.position);
                 rb.AddForce(forceToAdd, ForceMode.Impulse);
-                if (matchTimer <= 0.0f)
+                if (currMatchTimer <= 0.0f)
                 {
-                    Destroy(matchList[matchListPos]);
-                    matchTimer = matchTimerOrig;
-                    isMatchLit = false;
-                    matchListPos--;
+                    Destroy(matchList[currMatch]);
+                    
                 }
+                matchTimer = matchTimerOrig;
+                matchListPos--;
+                isMatchLit = false;
             }
         }
+        outOfMatches();
     }
     void matchInventory()
     {
@@ -297,7 +304,13 @@ public class PlayerMovement : MonoBehaviour
             audBreathVol = audBreathVolOrig;
         }
     }
-
+    void outOfMatches()
+    {
+        if (matchList.Count == 0)
+        {
+            gameManager.instance.stateLose();
+        }
+    }
     IEnumerator playSteps()
     {
         isPlayingSteps = true;
