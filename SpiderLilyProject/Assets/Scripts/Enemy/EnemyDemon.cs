@@ -16,6 +16,7 @@ public class EnemyDemon : EnemyBase
 
     float stunTimer;
     bool hasChosenRunDest = false;
+    bool isVisible;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -41,10 +42,17 @@ public class EnemyDemon : EnemyBase
     }
     protected override void chasePlayer()
     {
+        if (isVisible)
+        {
+            agent.stoppingDistance = 10;
+        }
+        else
+        {
+            agent.stoppingDistance = 0;
+        }
 
-     
         base.chasePlayer();
-
+        
     }
 
     private void runAway()
@@ -160,4 +168,14 @@ public class EnemyDemon : EnemyBase
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+        agent.stoppingDistance = 0;
+    }
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+        agent.ResetPath();
+    }
 }
