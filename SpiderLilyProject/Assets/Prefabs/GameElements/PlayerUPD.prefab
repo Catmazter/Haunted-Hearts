@@ -1128,7 +1128,7 @@ MonoBehaviour:
   matchList: []
   matchMax: 9
   matchRadius: 10
-  matchTimer: 15
+  matchTimer: 100
   aud: {fileID: 8270935116118550540}
   audSteps:
   - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}

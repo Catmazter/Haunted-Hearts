@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Moveable
   - Match
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Camera
+  - LilyIcon
   - 
   - 
   - 
