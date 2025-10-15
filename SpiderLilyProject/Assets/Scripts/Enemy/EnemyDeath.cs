@@ -5,7 +5,7 @@ using System.Collections;
 
 public class EnemyDeath : EnemyBase
 {
-    [SerializeField] Animator anim;
+    //[SerializeField] Animator anim;
 
     // ====timer==== //
     [SerializeField] float selfDestruct = 5f; //time player has to be inside safezone before enemy destroys
@@ -67,7 +67,11 @@ public class EnemyDeath : EnemyBase
 
     IEnumerator IfEnemySafe()
     {
+        //audio
+
         yield return new WaitForSeconds(selfDestruct);
+
+        //roam
 
         if (detector != null && detector.InSafeZone)
         {
