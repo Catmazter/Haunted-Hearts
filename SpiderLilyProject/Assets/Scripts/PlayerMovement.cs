@@ -28,12 +28,14 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 collisionPos;
     int jumpCount;
     int HPOrig;
+    int matchRemoval;
     float speedOrig;
     float airStaminaOrig;
     float runStaminaOrig;
     public bool isSprinting;
     bool isOutOfStamina;
     bool isOutOfBreath;
+    bool isMatchThrown;
     public bool didCollide;
     public float throwPower;
     public float throwUpwardPower;
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         matchTimerOrig = matchTimer;
         matchInventory();
         matchListPos = matchList.Count - 1;
+        matchRemoval = matchListPos;
         audBreathVolOrig = audBreathVol;
     }
 
@@ -144,31 +147,46 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Throw Match") && isMatchLit)
         {
-            if (matchList.Count > 0)
+            int currMatch = matchListPos;
+            float currMatchTimer = matchTimer;
+            Rigidbody rb = matchList[currMatch].GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.detectCollisions = true;
+            rb.transform.parent = null;
+            Vector3 forceDir = matchCamera.transform.forward;
+            RaycastHit hit;
+            if (Physics.Raycast(matchCamera.position, forceDir, out hit, 100f))
             {
-                Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
-                rb.isKinematic = false;
-                rb.useGravity = true;
-                rb.detectCollisions = true;
-                rb.transform.parent = null;
-                Vector3 forceDir = matchCamera.transform.forward;
-                RaycastHit hit;
-                if (Physics.Raycast(matchCamera.position, forceDir, out hit, 100f))
+                forceDir = (hit.point - throwPoint.position).normalized;
+            }
+            Vector3 forceToAdd = forceDir * throwPower + transform.up * throwUpwardPower;
+            rb.AddForce(forceToAdd, ForceMode.Impulse);
+            Destroy(matchList[currMatch], currMatchTimer);
+            isMatchThrown = true;
+            matchTimer = matchTimerOrig;
+            if (matchListPos != 0)
+            {
+                matchListPos--;
+            }
+            isMatchLit = false;
+        }
+        else if (matchList.Count != 0)
+        {
+            if (matchList[matchRemoval] == null)
+            {
+                matchList.RemoveAt(matchRemoval);
+                if (matchRemoval != 0)
                 {
-                    forceDir = (hit.point - throwPoint.position).normalized;
-                }
-                Vector3 forceToAdd = forceDir * throwPower + transform.up * throwUpwardPower;
-                //rb.MovePosition(throwPoint.transform.position);
-                rb.AddForce(forceToAdd, ForceMode.Impulse);
-                if (matchTimer <= 0.0f)
-                {
-                    Destroy(matchList[matchListPos]);
-                    matchTimer = matchTimerOrig;
-                    isMatchLit = false;
-                    matchListPos--;
+                    matchRemoval--;
                 }
             }
+            else if (matchList[matchListPos] != null)
+            {
+                isMatchThrown = false;
+            }
         }
+        outOfMatches();
     }
     void matchInventory()
     {
@@ -182,28 +200,33 @@ public class PlayerMovement : MonoBehaviour
     }
     void lightMatch()
     {
-        if (Input.GetButtonDown("Light Match"))
+        if (matchList.Count != 0)
         {
-            if (matchList.Count > 0)
+            if (Input.GetButtonDown("Light Match") || isMatchThrown)
             {
-                matchList[matchListPos].SetActive(true);
-                Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.detectCollisions = false;
-                isMatchLit = true;
+                if (matchList[matchListPos] != null)
+                {
+                    matchList[matchListPos].SetActive(true);
+                    Rigidbody rb = matchList[matchListPos].GetComponent<Rigidbody>();
+                    rb.useGravity = false;
+                    rb.detectCollisions = false;
+                    isMatchLit = true;
+                }
             }
-        }
-        else if (matchTimer > 0 && isMatchLit)
-        {
-            matchTimer -= Time.deltaTime;
-        }
-        else if (isMatchLit && matchTimer <= 0.0f)
-        {
-            Destroy(matchList[matchListPos]);
-            matchList.RemoveAt(matchListPos);
-            matchListPos--;
-            matchTimer = matchTimerOrig;
-            isMatchLit = false;
+            if (matchList[matchListPos] == null)
+            {
+                matchList.RemoveAt(matchListPos);
+                if (matchListPos != 0 && matchRemoval != 0)
+                {
+                    matchListPos--;
+                    matchRemoval--;
+                }
+            }
+            else if (matchList[matchListPos].activeInHierarchy)
+            {
+                Destroy(matchList[matchListPos], matchTimer);
+
+            }
         }
         throwMatch();
     }
@@ -297,7 +320,13 @@ public class PlayerMovement : MonoBehaviour
             audBreathVol = audBreathVolOrig;
         }
     }
-
+    void outOfMatches()
+    {
+        if (matchList.Count == 0)
+        {
+            gameManager.instance.stateLose();
+        }
+    }
     IEnumerator playSteps()
     {
         isPlayingSteps = true;

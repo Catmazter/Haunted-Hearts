@@ -1,21 +1,36 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemyDemon : EnemyBase
 {
-    
+
     [SerializeField] int runDistance;
     [SerializeField] float stunDuration;
-    
+    bool hasPlayedStepSound = false;
+
     bool isRunningAway = false;
     bool isStunned;
     [SerializeField] Animator anim;
-    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip screamClip;
     [Range(0f, 1f)] public float demonVolume = 0.5f;
+    [SerializeField] private AudioSource warningSource;
+    [SerializeField] private AudioClip warningClip;
+    [SerializeField] private float maxHearDistance = 15f;
+    [SerializeField] private float fadeSpeed = 2f;
+    private bool isPlayingWarning = false;
+    [SerializeField] private float calmDownTime = 5f;  // how long to roam after running away
+    private float calmDownTimer = 0f;
+    private bool isCalmingDown = false;
+
+
 
     float stunTimer;
     bool hasChosenRunDest = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -35,15 +50,88 @@ public class EnemyDemon : EnemyBase
         }
         else
         {
-            chasePlayer();
+            if (isPlayerOnNavMesh())
+            {
+                chasePlayer();
+            }
+            else
+            {
+                roam();
+
+            }
         }
         UpdateAnimation();
+
     }
+    protected override void roam()
+    {
+        base.roam();
+        if (CanSeePlayer())
+        {
+            Debug.Log("Demon spotted the player while roaming!");
+            chasePlayer();
+        }
+    }
+    bool CanSeePlayer()
+    {
+        if (gameManager.instance == null || gameManager.instance.player == null) return false;
+
+        Vector3 directionToPlayer = (gameManager.instance.player.transform.position - transform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+
+        // Giới hạn khoảng cách nhìn (ví dụ 20 đơn vị)
+        float sightRange = 20f;
+        if (distanceToPlayer > sightRange) return false;
+
+        // Kiểm tra góc nhìn (ví dụ 120 độ)
+        float sightAngle = 120f;
+        if (Vector3.Angle(transform.forward, directionToPlayer) > sightAngle / 2f) return false;
+
+        // Kiểm tra line of sight (không bị tường chắn)
+        Ray ray = new Ray(transform.position + Vector3.up * 1.5f, directionToPlayer);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, sightRange))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected override void chasePlayer()
     {
 
-     
         base.chasePlayer();
+        if (warningSource == null || warningClip == null) return;
+
+        float targetVolume = 0f;
+
+        if (agent.remainingDistance <= maxHearDistance)
+        {
+            targetVolume = Mathf.Clamp01(1 - (agent.remainingDistance / maxHearDistance));
+            if (!isPlayingWarning)
+            {
+                warningSource.clip = warningClip;
+                warningSource.loop = true;
+                warningSource.Play();
+                isPlayingWarning = true;
+            }
+        }
+        else
+        {
+            targetVolume = 0f;
+            if (isPlayingWarning && warningSource.volume <= 0.01f)
+            {
+                warningSource.Stop();
+                isPlayingWarning = false;
+            }
+        }
+
+        warningSource.volume = Mathf.Lerp(warningSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
+
 
     }
 
@@ -77,16 +165,19 @@ public class EnemyDemon : EnemyBase
                 Debug.LogWarning("No valid NavMesh position found for run away.");
             }
         }
+        StartCoroutine(RunThenRoam());
     }
     protected virtual void HandleRunningAway()
     {
         if (isStunned)
         {
             stunTimer += Time.deltaTime;
+            agent.speed = Mathf.Lerp(agent.speed, 0f, Time.deltaTime * 2f);
+
             if (stunTimer >= stunDuration)
             {
                 isStunned = false;
-                isRunningAway = false; 
+                isRunningAway = false;
                 agent.isStopped = false;
                 hasChosenRunDest = false;
             }
@@ -118,28 +209,33 @@ public class EnemyDemon : EnemyBase
         isStunned = true;
         stunTimer = 0f;
         agent.isStopped = true;
+        StartCoroutine(RunThenRoam());
         Debug.Log("Enemy stunned!");
     }
 
     void UpdateAnimation()
     {
-        
+
         if (agent.velocity.magnitude > 0.1f)
         {
-            anim.speed = 1.5f; 
+            anim.speed = 1.5f;
         }
         else
         {
-            anim.speed = 0f; 
+            anim.speed = Mathf.Lerp(anim.speed, 0, Time.deltaTime * 3);
+
         }
     }
     void PlayScream()
     {
         if (audioSource != null && screamClip != null)
         {
-            audioSource.PlayOneShot(screamClip,demonVolume);
+            audioSource.PlayOneShot(screamClip, demonVolume);
         }
     }
+
+
+
 
     private void OnTriggerEnter(Collider trigger)
     {
@@ -159,5 +255,27 @@ public class EnemyDemon : EnemyBase
             PlayScream();
         }
     }
+
+    bool isPlayerOnNavMesh()
+    {
+        NavMeshHit hit;
+
+        return NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 1.0f, NavMesh.AllAreas);
+    }
+
+    private IEnumerator RunThenRoam()
+    {
+        // Wait until demon reaches the run destination
+        yield return new WaitUntil(() => !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
+
+        // then roam for a bit
+        roam();
+
+        // after that, resume normal chase behavior automatically
+        yield return new WaitForSeconds(5f); // optional calm period
+    }
+
+
+
 
 }
