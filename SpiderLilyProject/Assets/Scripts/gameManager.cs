@@ -33,6 +33,7 @@ public class gameManager : MonoBehaviour
     [Header("Map")]
     [SerializeField] GameObject mapUI;
     public bool isMapOpen;
+    bool wasMapOpenBefore;
 
 
             // --- Public read-only accessors ---
@@ -80,8 +81,7 @@ public class gameManager : MonoBehaviour
         }
         if(Input.GetButtonDown("Map"))
         {
-            isMapOpen = !isMapOpen;
-            mapUI.SetActive(isMapOpen);
+            ToggleMapUI();
         }
     }
     public void OpenMenu(string menuName)
@@ -93,8 +93,15 @@ public class gameManager : MonoBehaviour
         }
 
         // Pause the game if needed
-        if (!isPaused) statePause();
-
+        if (!isPaused)
+        {
+            wasMapOpenBefore = isMapOpen;
+            if(isMapOpen && mapUI != null)
+            {
+                ToggleMapUI();
+            }
+            statePause();
+        }
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
@@ -242,6 +249,7 @@ public class gameManager : MonoBehaviour
         unpauseTime();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if (wasMapOpenBefore) { ToggleMapUI(); }
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
