@@ -1,33 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 
 public class EnemyDemon : EnemyBase
 {
-    
+
     [SerializeField] int runDistance;
     [SerializeField] float stunDuration;
     bool hasPlayedStepSound = false;
-    
+
     bool isRunningAway = false;
     bool isStunned;
     [SerializeField] Animator anim;
-    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip screamClip;
     [Range(0f, 1f)] public float demonVolume = 0.5f;
     [SerializeField] private AudioSource warningSource;
     [SerializeField] private AudioClip warningClip;
     [SerializeField] private float maxHearDistance = 15f;
-    [Range(0f, 1f)][SerializeField] private float warningVolume = 0.5f;
-
     [SerializeField] private float fadeSpeed = 2f;
     private bool isPlayingWarning = false;
-    [SerializeField] private float chaseCooldown = 10f; 
-    private bool isCoolingDown = false;
-    private float cooldownTimer = 0f;
-    [SerializeField] private float detectionRange = 20f; // how far the demon can see the player
-    [SerializeField] private float fieldOfView = 120f;  // angle of vision
-
+    [SerializeField] private float calmDownTime = 5f;  // how long to roam after running away
+    private float calmDownTimer = 0f;
+    private bool isCalmingDown = false;
 
 
 
@@ -47,28 +44,9 @@ public class EnemyDemon : EnemyBase
         base.Update();
         //roam();
         //chasePlayer();
-        if (!isRunningAway && CanSeePlayer())
-        {
-            agent.isStopped = false;
-            isStunned = false;
-            isRunningAway = false;
-            hasChosenRunDest = false;
-            chasePlayer();
-            return;
-        }
         if (isRunningAway)
         {
             HandleRunningAway();
-        }
-        else if (isCoolingDown)
-        {
-            cooldownTimer += Time.deltaTime;
-            roam(); // demon wanders during cooldown
-
-            if (cooldownTimer >= chaseCooldown)
-            {
-                isCoolingDown = false; // done roaming
-            }
         }
         else
         {
@@ -90,22 +68,43 @@ public class EnemyDemon : EnemyBase
         base.roam();
         if (CanSeePlayer())
         {
+            Debug.Log("Demon spotted the player while roaming!");
             chasePlayer();
         }
     }
+    bool CanSeePlayer()
+    {
+        if (gameManager.instance == null || gameManager.instance.player == null) return false;
+
+        Vector3 directionToPlayer = (gameManager.instance.player.transform.position - transform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+
+        // Giới hạn khoảng cách nhìn (ví dụ 20 đơn vị)
+        float sightRange = 20f;
+        if (distanceToPlayer > sightRange) return false;
+
+        // Kiểm tra góc nhìn (ví dụ 120 độ)
+        float sightAngle = 120f;
+        if (Vector3.Angle(transform.forward, directionToPlayer) > sightAngle / 2f) return false;
+
+        // Kiểm tra line of sight (không bị tường chắn)
+        Ray ray = new Ray(transform.position + Vector3.up * 1.5f, directionToPlayer);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, sightRange))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected override void chasePlayer()
     {
 
         base.chasePlayer();
-        if (isRunningAway || isCoolingDown || !CanSeePlayer())
-        {
-            if (isPlayingWarning)
-            {
-                FadeOutWarning();
-            }
-            return;
-        }
-
         if (warningSource == null || warningClip == null) return;
 
         float targetVolume = 0f;
@@ -115,8 +114,6 @@ public class EnemyDemon : EnemyBase
             targetVolume = Mathf.Clamp01(1 - (agent.remainingDistance / maxHearDistance));
             if (!isPlayingWarning)
             {
-                warningSource.pitch = 1.3f;
-                warningSource.volume = warningVolume;
                 warningSource.clip = warningClip;
                 warningSource.loop = true;
                 warningSource.Play();
@@ -137,28 +134,6 @@ public class EnemyDemon : EnemyBase
 
 
     }
-    bool CanSeePlayer()
-    {
-        Vector3 directionToPlayer = gameManager.instance.player.transform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
-
-        if (distanceToPlayer > detectionRange) return false;
-
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angle > fieldOfView / 2f) return false;
-
-        Ray ray = new Ray(transform.position + Vector3.up * 1.5f, directionToPlayer.normalized);
-        if (Physics.Raycast(ray, out RaycastHit hit, detectionRange))
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 
     private void runAway()
     {
@@ -190,6 +165,7 @@ public class EnemyDemon : EnemyBase
                 Debug.LogWarning("No valid NavMesh position found for run away.");
             }
         }
+        StartCoroutine(RunThenRoam());
     }
     protected virtual void HandleRunningAway()
     {
@@ -201,10 +177,9 @@ public class EnemyDemon : EnemyBase
             if (stunTimer >= stunDuration)
             {
                 isStunned = false;
-                isRunningAway = false; 
+                isRunningAway = false;
                 agent.isStopped = false;
                 hasChosenRunDest = false;
-                StartCooldown();
             }
             return;
         }
@@ -225,13 +200,7 @@ public class EnemyDemon : EnemyBase
         {
             isRunningAway = false;
             hasChosenRunDest = false;
-            StartCooldown();
         }
-    }
-    void StartCooldown()
-    {
-        isCoolingDown = true;
-        cooldownTimer = 0f;
     }
 
     private void stunt()
@@ -240,15 +209,16 @@ public class EnemyDemon : EnemyBase
         isStunned = true;
         stunTimer = 0f;
         agent.isStopped = true;
+        StartCoroutine(RunThenRoam());
         Debug.Log("Enemy stunned!");
     }
 
     void UpdateAnimation()
     {
-        
+
         if (agent.velocity.magnitude > 0.1f)
         {
-            anim.speed = 1.5f; 
+            anim.speed = 1.5f;
         }
         else
         {
@@ -260,10 +230,10 @@ public class EnemyDemon : EnemyBase
     {
         if (audioSource != null && screamClip != null)
         {
-            audioSource.PlayOneShot(screamClip,demonVolume);
+            audioSource.PlayOneShot(screamClip, demonVolume);
         }
     }
-   
+
 
 
 
@@ -293,15 +263,19 @@ public class EnemyDemon : EnemyBase
         return NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 1.0f, NavMesh.AllAreas);
     }
 
-    void FadeOutWarning()
+    private IEnumerator RunThenRoam()
     {
-        warningSource.volume = Mathf.Lerp(warningSource.volume, 0f, Time.deltaTime * fadeSpeed);
-        if (warningSource.volume <= 0.01f)
-        {
-            warningSource.Stop();
-            isPlayingWarning = false;
-        }
+        // Wait until demon reaches the run destination
+        yield return new WaitUntil(() => !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
+
+        // then roam for a bit
+        roam();
+
+        // after that, resume normal chase behavior automatically
+        yield return new WaitForSeconds(5f); // optional calm period
     }
+
+
 
 
 }
