@@ -163,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eaf98bc3bc7539f4283be8530a69bfd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8498317031715625088}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eaf98bc3bc7539f4283be8530a69bfd3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8003780505179187644}
   m_SourcePrefab: {fileID: 100100000, guid: eaf98bc3bc7539f4283be8530a69bfd3, type: 3}
 --- !u!4 &5599136978506539078 stripped
 Transform:
@@ -190,16 +193,17 @@ MonoBehaviour:
   chaseSpeed: 15
   faceTargetSpeed: 0
   headPoint: {fileID: 0}
-  roamDist: 0
+  roamDist: 15
   roamPauseTimer: 0
-  anim: {fileID: 0}
   selfDestruct: 15
   aud: {fileID: 8498317031715625088}
   audChase:
-  - {fileID: 8300000, guid: 1689058eeeb072842b8c76940508c2a7, type: 3}
   - {fileID: 8300000, guid: 08b4ba6cd22a9ab4986a13fff034f354, type: 3}
-  - {fileID: 8300000, guid: 12d1b38b31809714a9e53e77f79ac789, type: 3}
-  audChaseVol: 0.75
+  - {fileID: 0}
+  audChaseVol: 0.606
+  audDestroy:
+  - {fileID: 8300000, guid: a7091f7b917d7e943beb06db935303c5, type: 3}
+  audDestroyVol: 0
 --- !u!135 &4002783719924428617
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -256,13 +260,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.671
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 145
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -340,3 +344,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-8003780505179187644
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087368851752268480}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3bc1499c59e6b404c9048e6d6ffff4ed, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1ea2358c75ff9ae47a7270b0ca9ac6e6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
