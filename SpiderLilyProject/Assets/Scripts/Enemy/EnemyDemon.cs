@@ -21,10 +21,10 @@ public class EnemyDemon : EnemyBase
     [SerializeField] private AudioClip warningClip;
     [SerializeField] private float maxHearDistance = 15f;
     [SerializeField] private float fadeSpeed = 2f;
+    [SerializeField] float sightRange = 20f;
+    [SerializeField] float sightAngle = 120f;
     private bool isPlayingWarning = false;
-    [SerializeField] private float calmDownTime = 5f;  // how long to roam after running away
-    private float calmDownTimer = 0f;
-    private bool isCalmingDown = false;
+
 
 
 
@@ -78,16 +78,12 @@ public class EnemyDemon : EnemyBase
 
         Vector3 directionToPlayer = (gameManager.instance.player.transform.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
-
-        // Giới hạn khoảng cách nhìn (ví dụ 20 đơn vị)
-        float sightRange = 20f;
+        
         if (distanceToPlayer > sightRange) return false;
-
-        // Kiểm tra góc nhìn (ví dụ 120 độ)
-        float sightAngle = 120f;
+        
         if (Vector3.Angle(transform.forward, directionToPlayer) > sightAngle / 2f) return false;
 
-        // Kiểm tra line of sight (không bị tường chắn)
+        // Ray
         Ray ray = new Ray(transform.position + Vector3.up * 1.5f, directionToPlayer);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, sightRange))
@@ -267,12 +263,8 @@ public class EnemyDemon : EnemyBase
     {
         // Wait until demon reaches the run destination
         yield return new WaitUntil(() => !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
-
-        // then roam for a bit
         roam();
-
-        // after that, resume normal chase behavior automatically
-        yield return new WaitForSeconds(5f); // optional calm period
+        yield return new WaitForSeconds(15); 
     }
 
 

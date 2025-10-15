@@ -337,6 +337,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 527200881503814518, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.48
+      objectReference: {fileID: 0}
     - target: {fileID: 1367036323710042491, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.09
@@ -356,6 +360,10 @@ PrefabInstance:
     - target: {fileID: 3012905363131449986, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
       propertyPath: m_Extents.z
       value: 0.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211089836721545240, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 3296443985777325833, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
       propertyPath: m_LocalScale.z
@@ -397,13 +405,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 1 mazeBeta
       objectReference: {fileID: 0}
+    - target: {fileID: 6072761637630106858, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7585336096929005741, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.09
       objectReference: {fileID: 0}
+    - target: {fileID: 8301408956357165244, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 84.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301408956357165244, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.31
+      objectReference: {fileID: 0}
     - target: {fileID: 8797233457649238823, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
       propertyPath: m_Extents.z
       value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074404150301248332, guid: dcee0d9b2fbfa54428888fbdd3b57c59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -635,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: maxHearDistance
-      value: 40
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 8617612739337012222, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_Enabled
@@ -727,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1362160253
 MonoBehaviour:
   m_ObjectHideFlags: 0
