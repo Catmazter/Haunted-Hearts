@@ -437,7 +437,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1000
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -541,13 +541,17 @@ PrefabInstance:
       propertyPath: m_Acceleration
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 3332794929072214130, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: MaxDistance
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4699100440991412259, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.7
+      value: 76.5
       objectReference: {fileID: 0}
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -555,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -73
+      value: -52.6
       objectReference: {fileID: 0}
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -586,6 +590,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: roamDist
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: stepClip
       value: 
       objectReference: {fileID: 8300000, guid: 3a09ee5f3510b954da2ed3890a5f307b, type: 3}
@@ -614,12 +622,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 812749981}
     - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: warningVolume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: roamPauseTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: faceTargetSpeed
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: maxHearDistance
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8617612739337012222, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_Enabled
