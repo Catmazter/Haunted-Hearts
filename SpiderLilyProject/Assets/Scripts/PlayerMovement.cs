@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float airStaminaOrig;
     float runStaminaOrig;
     public bool isSprinting;
+    bool isInjured;
     bool isOutOfStamina;
     bool isOutOfBreath;
     bool isMatchThrown;
@@ -62,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
     [UnityEngine.Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audBreath;
     [UnityEngine.Range(0, 1)][SerializeField] float audBreathVol;
+    [SerializeField] AudioClip[] audInjuredBreath;
+    [UnityEngine.Range(0, 1)][SerializeField] float audInjuredBreathVol;
     [SerializeField] AudioClip[] audPlayerJump;
     [UnityEngine.Range(0, 1)][SerializeField] float audPlayerJumpVol;
     [SerializeField] AudioClip[] audPlayerLand;
@@ -69,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip[] audCollision;
     [UnityEngine.Range(0, 1)][SerializeField] float audCollisionVol;
     float audBreathVolOrig;
+    float audInjuredBreathVolOrig;
 
     bool isPlayingSteps;
     bool isPlayingBreath;
@@ -83,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         matchListPos = matchList.Count - 1;
         matchRemoval = matchListPos;
         audBreathVolOrig = audBreathVol;
+        audInjuredBreathVolOrig = audInjuredBreathVol;
     }
 
     void Update()
@@ -255,6 +260,7 @@ public class PlayerMovement : MonoBehaviour
     public void takeDamage(int damage)
     {
         HP -= damage;
+        isInjured = true;
         aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
         if (HP <= 0)
         {
@@ -305,7 +311,14 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("Ghost"))
         {
-            audBreathVol += audBreathVol / 5;
+            if (HP < HPOrig)
+            {
+                audInjuredBreathVol += audInjuredBreathVol / 5;
+            }
+            else
+            {
+                audBreathVol += audBreathVol / 5;
+            }
         }
     }
 
@@ -317,7 +330,14 @@ public class PlayerMovement : MonoBehaviour
         //}
         if (other.CompareTag("Ghost"))
         {
-            audBreathVol = audBreathVolOrig;
+            if (HP < HPOrig)
+            {
+                audInjuredBreathVol = audInjuredBreathVolOrig;
+            }
+            else
+            {
+                audBreathVol = audBreathVolOrig;
+            }
         }
     }
     void outOfMatches()
@@ -344,14 +364,35 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator playBreath()
     {
         isPlayingBreath = true;
-        aud.PlayOneShot(audBreath[UnityEngine.Random.Range(0, audBreath.Length)], audBreathVol);
-        if (isSprinting)
+        if (HP < HPOrig)
         {
-            yield return new WaitForSeconds(0.5f);
+            aud.PlayOneShot(audInjuredBreath[UnityEngine.Random.Range(0, audInjuredBreath.Length)], audInjuredBreathVol);
         }
         else
         {
-            yield return new WaitForSeconds(1f);
+            aud.PlayOneShot(audBreath[UnityEngine.Random.Range(0, audBreath.Length)], audBreathVol);
+        }
+        if (isSprinting)
+        {
+            if (isInjured)
+            {
+                yield return new WaitForSeconds(0.8f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else
+        {
+            if (isInjured)
+            {
+                yield return new WaitForSeconds(1.3f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
         isPlayingBreath = false;
     }

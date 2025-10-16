@@ -111,6 +111,7 @@ public class Ghost : MonoBehaviour
                             faceTarget(targetPos);
                             if (ghostAttackCD <= 0.0f && ghostAttackRange >= ghost.remainingDistance)
                             {
+                                
                                 gameManager.instance.playerScript.takeDamage(ghostDamage);
                                 ghostAttackCD = ghostAttackCDOrig;
                             }
