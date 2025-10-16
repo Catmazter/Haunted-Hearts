@@ -31,9 +31,9 @@ public class gameManager : MonoBehaviour
     int gameGoalCount ;
     [SerializeField] TextMeshProUGUI gameGoalCountText;
     [Header("Map")]
-    [SerializeField] GameObject mapUI;
-    public bool isMapOpen;
-    bool wasMapOpenBefore;
+    [SerializeField] GameObject radarUI;
+    public bool isRadarOpen;
+    bool wasRadarOpenBefore;
 
 
             // --- Public read-only accessors ---
@@ -81,7 +81,7 @@ public class gameManager : MonoBehaviour
         }
         if(Input.GetButtonDown("Map"))
         {
-            ToggleMapUI();
+            ToggleRadarUI();
         }
     }
     public void OpenMenu(string menuName)
@@ -95,10 +95,10 @@ public class gameManager : MonoBehaviour
         // Pause the game if needed
         if (!isPaused)
         {
-            wasMapOpenBefore = isMapOpen;
-            if(isMapOpen && mapUI != null)
+            wasRadarOpenBefore = isRadarOpen;
+            if(isRadarOpen && radarUI != null)
             {
-                ToggleMapUI();
+                ToggleRadarUI();
             }
             statePause();
         }
@@ -171,11 +171,11 @@ public class gameManager : MonoBehaviour
             stateUnpause();
         UpdateMenuTitle("");
     }
-    public void ToggleMapUI()
+    public void ToggleRadarUI()
     {
-        if (currentMenu!= null || isPaused) return; // don't open map if in a menu or paused
-        isMapOpen = !isMapOpen;
-        mapUI.SetActive(isMapOpen);
+        if (currentMenu!= null || isPaused) return; // don't open radar if in a menu or paused
+        isRadarOpen = !isRadarOpen;
+        radarUI.SetActive(isRadarOpen);
     }
     public void updateGameGoal(int amount)
     {
@@ -249,7 +249,7 @@ public class gameManager : MonoBehaviour
         unpauseTime();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        if (wasMapOpenBefore) { ToggleMapUI(); }
+        if (wasRadarOpenBefore) { ToggleRadarUI(); }
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);

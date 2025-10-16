@@ -3,14 +3,14 @@ using UnityEngine;
 public class MapRevealPainter : MonoBehaviour
 {
     [Header("References")]
-    public Camera mapCamera;        // stationary top-down camera rendering _MapTex
+    public Camera radarCamera;        // stationary top-down camera rendering _MapTex
     public RenderTexture revealRT;  // the dynamic reveal texture
     public Material brushMaterial;
     public Transform player;        // the player object
     public float brushSize = 0.08f; // in normalized UV (0-1)
 
-    private Vector3 mapBottomLeft;
-    private Vector3 mapTopRight;
+    private Vector3 radarBottomLeft;
+    private Vector3 radarTopRight;
 
     void Start()
     {
@@ -34,21 +34,21 @@ public class MapRevealPainter : MonoBehaviour
     void CalculateMapBounds()
     {
         // Get the bottom-left and top-right points in world space based on orthographic camera
-        float camHeight = mapCamera.orthographicSize;
-        float camWidth = camHeight * mapCamera.aspect;
+        float camHeight = radarCamera.orthographicSize;
+        float camWidth = camHeight * radarCamera.aspect;
 
-        Vector3 camPos = mapCamera.transform.position;
-        mapBottomLeft = new Vector3(camPos.x - camWidth, 0, camPos.z - camHeight);
-        mapTopRight = new Vector3(camPos.x + camWidth, 0, camPos.z + camHeight);
+        Vector3 camPos = radarCamera.transform.position;
+        radarBottomLeft = new Vector3(camPos.x - camWidth, 0, camPos.z - camHeight);
+        radarTopRight = new Vector3(camPos.x + camWidth, 0, camPos.z + camHeight);
     }
 
     void PaintAtPlayer()
     {
         // Convert player world position to normalized UV coordinates (0-1)
-        float u = Mathf.InverseLerp(mapBottomLeft.x, mapTopRight.x, player.position.x);
-        float v = Mathf.InverseLerp(mapBottomLeft.z, mapTopRight.z, player.position.z);
+        float u = Mathf.InverseLerp(radarBottomLeft.x, radarTopRight.x, player.position.x);
+        float v = Mathf.InverseLerp(radarBottomLeft.z, radarTopRight.z, player.position.z);
 
-        // Outside map bounds? skip painting
+        // Outside radar bounds? skip painting
         if (u < 0f || u > 1f || v < 0f || v > 1f) return;
 
         // Send brush data to shader

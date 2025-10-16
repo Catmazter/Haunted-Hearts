@@ -43,7 +43,7 @@ Shader "Custom/InkOnParchment"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 mapCol = tex2D(_MapTex, i.uv);
+                fixed4 radarCol = tex2D(_MapTex, i.uv);
                 float revealMask = tex2D(_RevealTex, i.uv).r; // 0 = hidden, 1 = revealed
 
                 // Smooth edges
@@ -52,8 +52,8 @@ Shader "Custom/InkOnParchment"
                 // Alpha is based on reveal amount (hidden = transparent)
                 float alpha = revealMask;
 
-                // Blend between map color (revealed) and transparent
-                fixed4 finalCol = lerp(fixed4(0,0,0,0), mapCol, revealMask);
+                // Blend between radar color (revealed) and transparent
+                fixed4 finalCol = lerp(fixed4(0,0,0,0), radarCol, revealMask);
                 finalCol.a = alpha;
 
                 return finalCol;
