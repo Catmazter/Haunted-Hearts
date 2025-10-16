@@ -253,7 +253,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3988788894613529150}
-  - component: {fileID: 8303390521122836503}
   m_Layer: 5
   m_Name: RadarUI
   m_TagString: Untagged
@@ -270,7 +269,7 @@ RectTransform:
   m_GameObject: {fileID: 290923761229478413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1202, y: 1.1202, z: 1.1202}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4805179278121554610}
@@ -278,52 +277,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7625001, y: 0.033333335}
   m_AnchorMax: {x: 0.93000007, y: 0.38000003}
-  m_AnchoredPosition: {x: -61.500122, y: 60.5}
+  m_AnchoredPosition: {x: -78.295, y: 56.651}
   m_SizeDelta: {x: -97.00012, y: -195}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8303390521122836503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290923761229478413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479e1a50e47fe1c48bdbbb59fd317c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  canvasGroup: {fileID: 0}
-  radarPanel: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
-  slideDistance: 300
-  slideDuration: 0.35
-  fadeDuration: 0.25
-  easeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &332864411830837630
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,7 +6713,7 @@ MonoBehaviour:
   menuTitle: {fileID: 9068103016428941001}
   titleFadeDuration: 0.3
   gameGoalCountText: {fileID: 1423574191604240135}
-  radarUI: {fileID: 0}
+  radarUI: {fileID: 290923761229478413}
   isRadarOpen: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
@@ -8506,7 +8462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 76, y: 40.5}
+  m_AnchoredPosition: {x: 69, y: -47}
   m_SizeDelta: {x: 866, y: 1063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1820866173882900876
