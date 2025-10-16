@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -94,9 +95,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        if(SceneManager.GetActiveScene().name == "Level 1")
+        {
         musicSource.PlayOneShot(
             womenCry,
             womenCryVolume);
+        }
         SetNextPlayTime();
     }
 

@@ -77,6 +77,7 @@ public class EnemyDeath : EnemyBase
 
         if (PlayerSafe())
         {
+
             if (audDestroy.Length > 0)
                 aud.PlayOneShot(audDestroy[Random.Range(0, audDestroy.Length)], audDestroyVol);
 
@@ -110,7 +111,7 @@ public class EnemyDeath : EnemyBase
         agent.speed = chaseSpeed;
         base.chasePlayer();
 
-       // aud.PlayOneShot(audChase[UnityEngine.Random.Range(0, audChase.Length)], audChaseVol);
+        aud.PlayOneShot(audChase[UnityEngine.Random.Range(0, audChase.Length)], audChaseVol);
 
     }
 
