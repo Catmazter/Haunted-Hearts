@@ -25,6 +25,9 @@ public class cobwebb : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!collision.gameObject.CompareTag("Match"))
+            return;
+
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 
