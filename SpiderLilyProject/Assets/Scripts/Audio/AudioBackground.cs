@@ -118,6 +118,13 @@ public class AudioManager : MonoBehaviour
             womenCryVolume);
         }
         SetNextPlayTime();
+
+        if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            musicSource.PlayOneShot(
+                timerStartedClip, timerStartedVol
+                );
+        }
     }
 
     private void Update()

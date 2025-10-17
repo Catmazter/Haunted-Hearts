@@ -32,6 +32,7 @@ public class EnemyDeath : EnemyBase
     {
         base.Start();
         detector = gameManager.instance.player.GetComponent<DetectSafeZone>();
+        
         // detector = gameManager.instance.PlayerInSafeZone
     }
 
@@ -43,7 +44,6 @@ public class EnemyDeath : EnemyBase
         if (PlayerSafe())
         {
             EscapefromPlayer();
-            RoamDestruct();
 
             //start destroy timer
             if (killEnemy == null)
@@ -68,15 +68,6 @@ public class EnemyDeath : EnemyBase
         {
             timerChase -= Time.deltaTime;
             return;
-        }
-    }
-
-    void RoamDestruct()
-    {
-        if (killEnemy == null)
-        {
-            AudioManager.instance?.PlayTimerStarted();
-            killEnemy = StartCoroutine(IfEnemySafe(selfDestruct));
         }
     }
   
@@ -110,6 +101,8 @@ public class EnemyDeath : EnemyBase
         {
 
             AudioManager.instance?.PlayEnemyDestroy();
+
+            AudioManager.instance?.PlayTimerStarted();
 
             Destroy(gameObject, 0.05f);
         }
