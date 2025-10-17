@@ -24,7 +24,7 @@ public class EnemyDemon : EnemyBase
     [SerializeField] float sightRange = 20f;
     [SerializeField] float sightAngle = 120f;
     private bool isPlayingWarning = false;
-
+    public bool onMesh;
 
 
 
@@ -60,6 +60,8 @@ public class EnemyDemon : EnemyBase
 
             }
         }
+        onMesh = isPlayerOnNavMesh();
+        Debug.Log($"[EnemyDemon] Player on NavMesh: {onMesh} | Agent stopped: {agent.isStopped} | Agent pathPending: {agent.pathPending}");
         UpdateAnimation();
 
     }
