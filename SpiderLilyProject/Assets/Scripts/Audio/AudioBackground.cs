@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private string masterVolumeParam = "MasterVolume";
@@ -26,6 +28,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private float minInterval = 15f;
     [SerializeField] private float maxInterval = 40f;
 
+    [Header("Enemy / Timer SFX")]
+    [SerializeField] private AudioSource sfxSource;               
+    [SerializeField] private AudioClip enemyDestroyedClip;
+    [Range(0f, 1f)] public float enemyDestroyedVol = 1f;
+
+    [SerializeField] private AudioClip timerStartedClip;
+    [Range(0f, 1f)] public float timerStartedVol = 0.9f;
+
+    [SerializeField] private AudioClip timerAlmostDoneClip; 
+    [Range(0f, 1f)] public float timerAlmostDoneVol = 0.9f;
+
     [Header("Toggles")]
     [SerializeField] private Toggle toggleMuteAll;
     [SerializeField] private Toggle toggleMuteVoice;
@@ -46,6 +59,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null) instance = this;
+        else Debug.LogWarning("Multiple AudioManager instances!");
+
         // Load saved slider values
         sliderMaster.value = PlayerPrefs.GetFloat(masterVolumeParam, sliderMaster.value);
         sliderMusic.value = PlayerPrefs.GetFloat(musicVolumeParam, sliderMusic.value);
@@ -112,6 +128,28 @@ public class AudioManager : MonoBehaviour
         {
             PlayRandomTransition();
             SetNextPlayTime();
+        }
+    }
+
+    public void PlayEnemyDestroy()
+    {
+        if(sfxSource != null && enemyDestroyedClip  != null)
+        {
+            sfxSource.PlayOneShot(enemyDestroyedClip, enemyDestroyedVol);
+        }
+    }
+    public void PlayTimerStarted()
+    {
+        if(sfxSource != null && timerStartedClip != null)
+        {
+            sfxSource.PlayOneShot(timerStartedClip, timerStartedVol);
+        }
+    }
+    public void PlayTimerAlmostDone()
+    {
+        if(sfxSource != null && timerAlmostDoneClip != null)
+        {
+            sfxSource.PlayOneShot(timerAlmostDoneClip, timerAlmostDoneVol);
         }
     }
 

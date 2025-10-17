@@ -22,8 +22,8 @@ public class EnemyDeath : EnemyBase
     [SerializeField] AudioClip[] audChase;
     [UnityEngine.Range(0, 1)][SerializeField] float audChaseVol;
 
-    [SerializeField] AudioClip[] audDestroy;
-    [UnityEngine.Range(0, 1)][SerializeField] float audDestroyVol;
+    //[SerializeField] AudioClip[] audDestroy;
+    //[UnityEngine.Range(0, 1)][SerializeField] float audDestroyVol;
 
 
 
@@ -43,11 +43,12 @@ public class EnemyDeath : EnemyBase
         if (PlayerSafe())
         {
             EscapefromPlayer();
+            RoamDestruct();
 
             //start destroy timer
             if (killEnemy == null)
             {
-                killEnemy = StartCoroutine(IfEnemySafe());
+                killEnemy = StartCoroutine(IfEnemySafe(selfDestruct));
             }
 
         }
@@ -70,18 +71,47 @@ public class EnemyDeath : EnemyBase
         }
     }
 
-    IEnumerator IfEnemySafe()
+    void RoamDestruct()
     {
+        if (killEnemy == null)
+        {
+            AudioManager.instance?.PlayTimerStarted();
+            killEnemy = StartCoroutine(IfEnemySafe(selfDestruct));
+        }
+    }
+  
+    IEnumerator IfEnemySafe(float totalTime)
+    {
+        float t = totalTime;
+        bool almostDonePlayed = false;
 
-        yield return new WaitForSeconds(selfDestruct);
+        while (t > 0f)
+        {
+
+           if(!PlayerSafe())
+            {
+                killEnemy = null;
+                yield break;
+
+            }
+
+            if (!almostDonePlayed && t <= 10f)
+            {
+                AudioManager.instance?.PlayTimerAlmostDone();
+                almostDonePlayed= true;
+            }
+
+            t -= Time.deltaTime;
+            yield return null;
+
+        }
 
         if (PlayerSafe())
         {
 
-            if (audDestroy.Length > 0)
-                aud.PlayOneShot(audDestroy[Random.Range(0, audDestroy.Length)], audDestroyVol);
+            AudioManager.instance?.PlayEnemyDestroy();
 
-            Destroy(gameObject);
+            Destroy(gameObject, 0.05f);
         }
             killEnemy = null;
     }
