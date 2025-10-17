@@ -478,10 +478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f730e1ed360c88f469d969cdc9a5096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cobwebb
-  objectRenderer: {fileID: 0}
   damageColor: {r: 0.3132075, g: 0.001772847, b: 0.001772847, a: 1}
   emissionIntensity: 3
   fadeDuration: 0.5
+  flashCount: 2
 --- !u!1001 &486249011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1362160253
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,12 +4,13 @@ using UnityEngine;
 public class cobwebb : MonoBehaviour
 {
     [Header("Renderer & Material")]
-    public Renderer objectRenderer;
+    private Renderer objectRenderer;
 
     [Header("Emission Settings")]
     public Color damageColor = Color.red;
     public float emissionIntensity = 3f;
-    public float fadeDuration = 0.5f;
+    public float fadeDuration = 0.3f;
+    public int flashCount = 2;
 
     private Material materialInstance;
     private Color originalEmissionColor;
@@ -17,19 +18,13 @@ public class cobwebb : MonoBehaviour
 
     void Start()
     {
-        if (objectRenderer == null)
-            objectRenderer = GetComponent<Renderer>();
-
-        // Make a material instance (avoid editing shared materials)
+        objectRenderer = GetComponent<Renderer>();
         materialInstance = objectRenderer.material;
         originalEmissionColor = materialInstance.GetColor("_EmissionColor");
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Optional: filter specific tag
-        // if (!collision.collider.CompareTag("Enemy")) return;
-
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 
@@ -38,20 +33,24 @@ public class cobwebb : MonoBehaviour
 
     IEnumerator FlashEmission()
     {
-        // Set to red instantly
         Color targetColor = damageColor * emissionIntensity;
-        materialInstance.SetColor("_EmissionColor", targetColor);
 
-        // Fade back to original color over fadeDuration seconds
-        float elapsed = 0f;
-        while (elapsed < fadeDuration)
+        for (int i = 0; i < flashCount; i++)
         {
-            elapsed += Time.deltaTime;
-            Color current = Color.Lerp(targetColor, originalEmissionColor, elapsed / fadeDuration);
-            materialInstance.SetColor("_EmissionColor", current);
-            yield return null;
+            
+            materialInstance.SetColor("_EmissionColor", targetColor);
+            yield return new WaitForSeconds(fadeDuration);
+
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                Color current = Color.Lerp(targetColor, originalEmissionColor, elapsed / fadeDuration);
+                materialInstance.SetColor("_EmissionColor", current);
+                yield return null;
+            }
         }
 
-        materialInstance.SetColor("_EmissionColor", originalEmissionColor);
+        Destroy(gameObject);
     }
 }
