@@ -8,11 +8,16 @@ using UnityEngine.SceneManagement;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+
+  
+ 
     [Header("Menus")]
+    [SerializeField] GameObject menuRoot;
+   // [SerializeField] GameObject background;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSettings;
-    // [SerializeField] GameObject menuWin;
+   
 
     [Header("Settings")]
     [SerializeField] GameObject settingsGameplay;
@@ -30,7 +35,7 @@ public class gameManager : MonoBehaviour
     [Header("GameGoal")]
     int gameGoalCount ;
     [SerializeField] TextMeshProUGUI gameGoalCountText;
-    [Header("Map")]
+    [Header("Radar")]
     [SerializeField] GameObject radarUI;
     public bool isRadarOpen;
     bool wasRadarOpenBefore;
@@ -68,7 +73,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P))
         {
            if(currentMenu == null )
             {
@@ -102,6 +107,10 @@ public class gameManager : MonoBehaviour
             }
             statePause();
         }
+        // Ensure background and root are visible
+        if (menuRoot != null) menuRoot.SetActive(true);
+      
+
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
@@ -114,7 +123,7 @@ public class gameManager : MonoBehaviour
 
         if (menuName == "Settings")
         {
-            // Default to Gameplay tab
+           
             currentMenu.SetActive(true);
             SetActiveSettingsTab("Audio");
             
@@ -167,6 +176,7 @@ public class gameManager : MonoBehaviour
 
         // Otherwise, no more menus → unpause
         currentMenu = null;
+        if (menuRoot != null) menuRoot.SetActive(false);
         if (isPaused)
             stateUnpause();
         UpdateMenuTitle("");
@@ -217,7 +227,7 @@ public class gameManager : MonoBehaviour
                 "Pause" => "Pause Menu",
                 "Settings" => "Settings",
                 "Lose" => "Game Over",
-                "Gameplay" => "Gameplay Settings",
+                "Gameplay" => "Gameplay",
                 "Controls" => "Controls",
                 "Graphics" => "Graphics",
                 "Audio" => "Audio",
