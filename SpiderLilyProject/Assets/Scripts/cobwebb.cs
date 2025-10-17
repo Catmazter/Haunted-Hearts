@@ -9,7 +9,7 @@ public class cobwebb : MonoBehaviour
     [Header("Emission Settings")]
     public Color damageColor = Color.red;
     public float emissionIntensity = 3f;
-    public float fadeDuration = 0.3f;S
+    public float fadeDuration = 0.3f;
     public int flashCount = 2;
 
     private Material materialInstance;
