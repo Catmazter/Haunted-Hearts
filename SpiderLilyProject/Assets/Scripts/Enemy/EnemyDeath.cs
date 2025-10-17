@@ -22,8 +22,8 @@ public class EnemyDeath : EnemyBase
     [SerializeField] AudioClip[] audChase;
     [UnityEngine.Range(0, 1)][SerializeField] float audChaseVol;
 
-    [SerializeField] AudioClip[] audDestroy;
-    [UnityEngine.Range(0, 1)][SerializeField] float audDestroyVol;
+    //[SerializeField] AudioClip[] audDestroy;
+    //[UnityEngine.Range(0, 1)][SerializeField] float audDestroyVol;
 
 
 
@@ -32,6 +32,7 @@ public class EnemyDeath : EnemyBase
     {
         base.Start();
         detector = gameManager.instance.player.GetComponent<DetectSafeZone>();
+        
         // detector = gameManager.instance.PlayerInSafeZone
     }
 
@@ -47,7 +48,7 @@ public class EnemyDeath : EnemyBase
             //start destroy timer
             if (killEnemy == null)
             {
-                killEnemy = StartCoroutine(IfEnemySafe());
+                killEnemy = StartCoroutine(IfEnemySafe(selfDestruct));
             }
 
         }
@@ -69,18 +70,41 @@ public class EnemyDeath : EnemyBase
             return;
         }
     }
-
-    IEnumerator IfEnemySafe()
+  
+    IEnumerator IfEnemySafe(float totalTime)
     {
+        float t = totalTime;
+        bool almostDonePlayed = false;
 
-        yield return new WaitForSeconds(selfDestruct);
+        while (t > 0f)
+        {
+
+           if(!PlayerSafe())
+            {
+                killEnemy = null;
+                yield break;
+
+            }
+
+            if (!almostDonePlayed && t <= 10f)
+            {
+                AudioManager.instance?.PlayTimerAlmostDone();
+                almostDonePlayed= true;
+            }
+
+            t -= Time.deltaTime;
+            yield return null;
+
+        }
 
         if (PlayerSafe())
         {
-            if (audDestroy.Length > 0)
-                aud.PlayOneShot(audDestroy[Random.Range(0, audDestroy.Length)], audDestroyVol);
 
-            Destroy(gameObject);
+            AudioManager.instance?.PlayEnemyDestroy();
+
+            AudioManager.instance?.PlayTimerStarted();
+
+            Destroy(gameObject, 0.05f);
         }
             killEnemy = null;
     }
@@ -110,7 +134,7 @@ public class EnemyDeath : EnemyBase
         agent.speed = chaseSpeed;
         base.chasePlayer();
 
-       // aud.PlayOneShot(audChase[UnityEngine.Random.Range(0, audChase.Length)], audChaseVol);
+        aud.PlayOneShot(audChase[UnityEngine.Random.Range(0, audChase.Length)], audChaseVol);
 
     }
 

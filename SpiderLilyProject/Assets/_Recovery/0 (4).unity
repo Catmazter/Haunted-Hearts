@@ -270,10 +270,10 @@ MonoBehaviour:
   sfxSource: {fileID: 222861231}
   enemyDestroyedClip: {fileID: 8300000, guid: a7091f7b917d7e943beb06db935303c5, type: 3}
   enemyDestroyedVol: 1
-  timerStartedClip: {fileID: 8300000, guid: b915934ddf413a04593878eddefd335e, type: 3}
-  timerStartedVol: 0.71
+  timerStartedClip: {fileID: 8300000, guid: f6b10e2e6ea1e3d43965d6102e5f7dd8, type: 3}
+  timerStartedVol: 0.9
   timerAlmostDoneClip: {fileID: 8300000, guid: 1e5dc3e7a6abe7242884c7c740ffd1d6, type: 3}
-  timerAlmostDoneVol: 0
+  timerAlmostDoneVol: 0.9
   toggleMuteAll: {fileID: 7697528312767598805}
   toggleMuteVoice: {fileID: 6455037335578258389}
   uiSource: {fileID: 222861231}
@@ -703,15 +703,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.448278
+      value: 27.448277
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 208.14476
+      value: 206.14476
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3704,10 +3704,6 @@ PrefabInstance:
     - target: {fileID: 6602455082730397791, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919331427707552641, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
-      propertyPath: spawnTime
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7054497936210334682, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
       propertyPath: m_LocalScale.z
