@@ -21,8 +21,6 @@ public class gameManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] GameObject settingsGameplay;
-    [SerializeField] GameObject settingsControls;
-    [SerializeField] GameObject settingsGraphics;
     [SerializeField] GameObject settingsAudio;
     private Stack<GameObject> menuStack = new Stack<GameObject>();
     [Header("Menu Title")]
@@ -63,8 +61,7 @@ public class gameManager : MonoBehaviour
         menus.Add("Lose", menuLose);
         menus.Add("Settings", menuSettings);
         menus.Add("Settings-Gameplay", settingsGameplay);
-        menus.Add("Settings-Controls", settingsControls);
-        menus.Add("Settings-Graphics", settingsGraphics);
+
         menus.Add("Settings-Audio", settingsAudio);
         
     }
@@ -133,8 +130,6 @@ public class gameManager : MonoBehaviour
     {
         // Disable all tabs first
         settingsGameplay.SetActive(false);
-        settingsControls.SetActive(false);
-        settingsGraphics.SetActive(false);
         settingsAudio.SetActive(false);
 
         // Enable chosen tab
@@ -144,14 +139,7 @@ public class gameManager : MonoBehaviour
                 settingsGameplay.SetActive(true);
                 UpdateMenuTitle("Gameplay");
                 break;
-            case "Controls":
-                settingsControls.SetActive(true);
-                UpdateMenuTitle("Controls");
-                break;
-            case "Graphics":
-                settingsGraphics.SetActive(true);
-                UpdateMenuTitle("Graphics");
-                break;
+
             case "Audio":
                 settingsAudio.SetActive(true);
                 UpdateMenuTitle("Audio");
@@ -226,10 +214,8 @@ public class gameManager : MonoBehaviour
             {
                 "Pause" => "Pause Menu",
                 "Settings" => "Settings",
-                "Lose" => "Game Over",
+                "Lose" => "",
                 "Gameplay" => "Gameplay",
-                "Controls" => "Controls",
-                "Graphics" => "Graphics",
                 "Audio" => "Audio",
                 _ => menuName
             };
