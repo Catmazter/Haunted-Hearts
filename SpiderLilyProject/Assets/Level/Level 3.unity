@@ -741,6 +741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455108068679000952, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: HP
       value: 10
@@ -5465,8 +5469,8 @@ MonoBehaviour:
   menuTitle: {fileID: 9068103017449075186}
   titleFadeDuration: 0.3
   gameGoalCountText: {fileID: 1423574190709674044}
-  mapUI: {fileID: 4283433977680364295}
-  isMapOpen: 0
+  radarUI: {fileID: 0}
+  isRadarOpen: 0
   player: {fileID: 925162746}
   playerScript: {fileID: 0}
   isPaused: 0
