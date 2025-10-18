@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isSprinting;
     public bool isHoldingBreath;
     public bool didCollide;
+    bool isFlashing;
     bool isInjured;
     bool isOutOfStamina;
     bool isOutOfBreath;
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         matchRemoval = matchListPos;
         audBreathVolOrig = audBreathVol;
         audInjuredBreathVolOrig = audInjuredBreathVol;
+        updatePlayerUI();
     }
 
     void Update()
@@ -96,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         movement();
         sprint();
         holdBreath();
+        updatePlayerUI();
     }
     void movement()
     {
@@ -186,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     matchRemoval--;
                 }
+                //updatePlayerUI();
             }
             else if (matchList[matchListPos] != null)
             {
@@ -227,11 +231,11 @@ public class PlayerMovement : MonoBehaviour
                     matchListPos--;
                     matchRemoval--;
                 }
+                //updatePlayerUI();
             }
             else if (matchList[matchListPos].activeInHierarchy)
             {
                 Destroy(matchList[matchListPos], matchTimer);
-
             }
         }
         throwMatch();
@@ -243,6 +247,7 @@ public class PlayerMovement : MonoBehaviour
             aud.Pause();
             airStamina -= Time.deltaTime * airDecreaseRate;
             isHoldingBreath = true;
+            StartCoroutine(holdingBreathFlash());
             if (airStamina <= 0)
                 isOutOfBreath = true;
         }
@@ -265,6 +270,7 @@ public class PlayerMovement : MonoBehaviour
         HP -= damage;
         isInjured = true;
         aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
+        StartCoroutine(playerFlash());
         if (HP <= 0)
         {
             gameManager.instance.stateLose();
@@ -350,6 +356,22 @@ public class PlayerMovement : MonoBehaviour
             gameManager.instance.stateLose();
         }
     }
+    void updatePlayerUI()
+    {
+        if (matchList.Count > 0)
+        {
+            gameManager.instance.matchCount.text = matchList.Count.ToString("F0");
+        }
+        if (gameManager.instance.timer > 0)
+        {
+            gameManager.instance.holdBreath.enabled = true;
+            gameManager.instance.timer -= Time.deltaTime;
+        }
+        else
+        {
+            gameManager.instance.holdBreath.enabled = false;
+        }
+    }
     IEnumerator playSteps()
     {
         isPlayingSteps = true;
@@ -399,6 +421,26 @@ public class PlayerMovement : MonoBehaviour
         }
         isPlayingBreath = false;
     }
-
-    
+    IEnumerator holdingBreathFlash()
+    {
+        if (isHoldingBreath)
+        {
+            gameManager.instance.holdingBreath.SetActive(true);
+            if (airStamina < airStaminaOrig / 2)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            } 
+            gameManager.instance.holdingBreath.SetActive(false);
+        }
+    }
+    IEnumerator playerFlash()
+    {
+        gameManager.instance.hit.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.hit.SetActive(false);
+    }
 }

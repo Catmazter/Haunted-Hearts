@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class gameManager : MonoBehaviour
@@ -41,6 +42,16 @@ public class gameManager : MonoBehaviour
     [Header("Lose Video")]
     [SerializeField] private VideoPlayer loseVideoPlayer;
     [SerializeField] private GameObject loseVideoScreen;
+
+    [Header("Match Count")]
+    public TMP_Text matchCount;
+    [Header("Hold Breath")]
+    public GameObject holdingBreath;
+    public TMP_Text holdBreath;
+    public float timer = 3f;
+
+    [Header("Hit Effect")]
+    public GameObject hit;
 
     // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
