@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: cfdc9d5b35e896644b839e590dae3dae
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _MapTex: {fileID: 8400000, guid: 83a56385bd89bdc409849f15e9318f78, type: 2}
+  - _RevealTex: {fileID: 2800000, guid: 4d850aa4e275d464c85b3f9dd941e116, type: 3}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 
