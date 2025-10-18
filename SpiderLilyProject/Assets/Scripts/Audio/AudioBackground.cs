@@ -204,16 +204,21 @@ public class AudioManager : MonoBehaviour
     }
     public void PauseAllAudio()
     {
-        if (musicSource != null) musicSource.Pause();
-        if (sfxSource != null) sfxSource.Pause();
-        if (uiSource != null) uiSource.Pause();
+        AudioSource[] all = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (var src in all)
+        {
+            if (src.isPlaying)
+                src.Pause();
+        }
     }
 
     public void ResumeAllAudio()
     {
-        if (musicSource != null) musicSource.UnPause();
-        if (sfxSource != null) sfxSource.UnPause();
-        if (uiSource != null) uiSource.UnPause();
+        AudioSource[] all = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (var src in all)
+        {
+            src.UnPause();
+        }
     }
 
 }

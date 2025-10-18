@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8736698829028710616}
+  - component: {fileID: 9199180220146320745}
   m_Layer: 0
   m_Name: pumpkin guy 1
   m_TagString: Untagged
@@ -35,6 +36,18 @@ Transform:
   - {fileID: 2905560802768283767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -159.13, z: 0}
+--- !u!114 &9199180220146320745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861455272233253972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c8d4361f1e7684186dd5b103906809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FacePlayer
 --- !u!1001 &1220713460152744988
 PrefabInstance:
   m_ObjectHideFlags: 0
