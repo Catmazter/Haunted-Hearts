@@ -1716,7 +1716,7 @@ Shader "SH_Vefects_VFX_URP_Particles_Erosion_01"
 				float2 panner53 = ( windSpeed21 * _Noise01Speed + texCoord36);
 				float2 texCoord43 = IN.ase_texcoord.xy * _Noise02Scale + float2( 0,0 );
 				float2 panner51 = ( windSpeed21 * _Noise02Speed + texCoord43);
-				float Noises85 = saturate( ( pow( ( tex2D( _Noise_01_Texture, ( Distortion39 + panner53 ) ).r * tex2D( _Noise_02_Texture, ( Distortion39 + panner51 ) ).r ) , _NoisesPower ) * _NoisesMultiply ) );
+				float Noises85 = saturate( ( pow( ( tex2D( _Noise_01_Texture, ( Distortion39 + panner53 ) ).r * tex2D( _Noise_02_Texture, ( Distortion39 + panner51 ) ).r ) , _NoisesPower ) * _NoisesMultiply ) );	
 				float temp_output_120_0 = saturate( ( saturate( ( saturate( ( pow( tex2D( _MaskTexture, ( ( Distortion39 * _DistortionIntensity ) + panner57 ) ).r , _MaskPower ) * _MaskMultiply ) ) * saturate( ( pow( tex2D( _MaskMoveTexture, ( texCoord58 + appendResult60 ) ).r , _MaskMovePower ) * _MaskMoveMultiply ) ) ) ) * Noises85 ) );
 				float4 screenPos = IN.ase_texcoord2;
 				float4 ase_screenPosNorm = screenPos / screenPos.w;
