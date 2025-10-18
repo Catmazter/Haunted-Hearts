@@ -103,8 +103,9 @@ public class EnemyDeath : EnemyBase
             AudioManager.instance?.PlayEnemyDestroy();
 
             AudioManager.instance?.PlayTimerStarted();
-
+           
             Destroy(gameObject, 0.05f);
+            
         }
             killEnemy = null;
     }

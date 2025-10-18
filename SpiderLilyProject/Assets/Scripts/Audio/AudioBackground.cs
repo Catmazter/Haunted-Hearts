@@ -202,4 +202,18 @@ public class AudioManager : MonoBehaviour
             uiSource.PlayOneShot(menuClickClip, uiVolume);
         }
     }
+    public void PauseAllAudio()
+    {
+        if (musicSource != null) musicSource.Pause();
+        if (sfxSource != null) sfxSource.Pause();
+        if (uiSource != null) uiSource.Pause();
+    }
+
+    public void ResumeAllAudio()
+    {
+        if (musicSource != null) musicSource.UnPause();
+        if (sfxSource != null) sfxSource.UnPause();
+        if (uiSource != null) uiSource.UnPause();
+    }
+
 }
