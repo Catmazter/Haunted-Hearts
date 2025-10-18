@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class gameManager : MonoBehaviour
 {
@@ -37,9 +38,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject radarUI;
     public bool isRadarOpen;
     bool wasRadarOpenBefore;
+    [Header("Lose Video")]
+    [SerializeField] private VideoPlayer loseVideoPlayer;
+    [SerializeField] private GameObject loseVideoScreen;
 
-
-            // --- Public read-only accessors ---
+    // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
     [Header("Player")]
@@ -70,13 +73,14 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P))
+        if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P) ))
         {
-           if(currentMenu == null )
+            if (currentMenu == menuLose) return;
+            else if (currentMenu == null)
             {
                 OpenMenu("Pause");
             }
-           else 
+            else
             {
                 CloseCurrentMenu();
             }
@@ -88,6 +92,7 @@ public class gameManager : MonoBehaviour
     }
     public void OpenMenu(string menuName)
     {
+
         if (!menus.ContainsKey(menuName))
         {
             Debug.LogWarning("Menu " + menuName + " does not exist!");
@@ -105,8 +110,9 @@ public class gameManager : MonoBehaviour
             statePause();
         }
         // Ensure background and root are visible
-        if (menuRoot != null) menuRoot.SetActive(true);
-      
+        if (menuRoot != null && menuName != "Lose") menuRoot.SetActive(true);
+
+
 
         if (currentMenu != null)
         {
@@ -254,7 +260,7 @@ public class gameManager : MonoBehaviour
     }
     public void stateLose()
     {
-        OpenMenu("Lose");
+        StartCoroutine(PlayLoseVideoThenShowMenu());
     }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
     {
@@ -301,5 +307,33 @@ public class gameManager : MonoBehaviour
         color.a = fadeIn ? 1f : 0f;
         menuTitle.color = color;
         titleFadeRoutine = null;
+    }
+    private IEnumerator PlayLoseVideoThenShowMenu()
+    {
+        if (currentMenu != null) currentMenu.SetActive(false);
+        if (radarUI != null) radarUI.SetActive(false);
+
+        if (loseVideoScreen != null)
+            loseVideoScreen.SetActive(true);
+
+
+        if (loseVideoPlayer != null)
+        {
+            loseVideoPlayer.Play();
+            Debug.Log("Lose video started...");
+           
+            yield return new WaitForSeconds(2.6f);
+            
+        }
+
+        Debug.Log("Lose video finished!");
+
+        if (loseVideoScreen != null)
+            loseVideoScreen.SetActive(false);
+
+     
+        // Sau khi video kết thúc → pause game
+        statePause();
+        OpenMenu("Lose");
     }
 }
