@@ -240,6 +240,8 @@ public class gameManager : MonoBehaviour
         pauseTime();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        if (AudioManager.instance != null)
+            AudioManager.instance.PauseAllAudio();
     }
     public void unpauseTime()
     {
@@ -257,6 +259,9 @@ public class gameManager : MonoBehaviour
             currentMenu.SetActive(false);
             currentMenu = null;
         }
+
+        if (AudioManager.instance != null)
+            AudioManager.instance.ResumeAllAudio();
     }
     public void stateLose()
     {
@@ -313,16 +318,19 @@ public class gameManager : MonoBehaviour
         if (currentMenu != null) currentMenu.SetActive(false);
         if (radarUI != null) radarUI.SetActive(false);
 
+        if (AudioManager.instance != null)
+            AudioManager.instance.PauseAllAudio();
+
         if (loseVideoScreen != null)
             loseVideoScreen.SetActive(true);
-
+       
 
         if (loseVideoPlayer != null)
         {
             loseVideoPlayer.Play();
             Debug.Log("Lose video started...");
            
-            yield return new WaitForSeconds(2.6f);
+            yield return new WaitForSeconds(2.9f);
             
         }
 
@@ -332,7 +340,7 @@ public class gameManager : MonoBehaviour
             loseVideoScreen.SetActive(false);
 
      
-        // Sau khi video kết thúc → pause game
+      
         statePause();
         OpenMenu("Lose");
     }

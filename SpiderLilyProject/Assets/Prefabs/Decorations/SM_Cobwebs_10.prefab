@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5689309670402180248}
   - component: {fileID: 2733840002490901701}
   - component: {fileID: 20345499043982346}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Cobwebs_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
