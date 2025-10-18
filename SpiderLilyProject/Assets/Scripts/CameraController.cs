@@ -1,4 +1,6 @@
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,11 +10,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertY;
     [SerializeField] public float FOV;
     float FOVOrig;
+    public PostProcessVolume postProcess;
+    ColorGrading color;
+    float timer;
+    float percent;
 
     float rotX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        postProcess.profile.TryGetSettings(out color);
+        color.enabled.Override(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponent<Camera>();
@@ -41,9 +49,30 @@ public class CameraController : MonoBehaviour
 
         //rotate the player left and right
         transform.parent.Rotate(Vector3.up * mouseX);
+
+        holdingBreath();
     }
     void changeFOV()
     {
         cam.fieldOfView = FOV;
+        if (gameManager.instance.playerScript.isSprinting)
+        {
+            FOV -= Time.deltaTime * 8;
+        }
+        else if (FOV < FOVOrig)
+        {
+            FOV += Time.deltaTime * 8;
+        }
+    }
+    void holdingBreath()
+    {
+        if (color == null || timer >= gameManager.instance.playerScript.airStamina)
+            return;
+        if (gameManager.instance.playerScript.isHoldingBreath)
+        {
+            timer += Time.deltaTime;
+            percent = Mathf.Clamp01(timer / gameManager.instance.playerScript.airStamina);
+            color.saturation.value = Mathf.Lerp(0, -100, percent);
+        }
     }
 }

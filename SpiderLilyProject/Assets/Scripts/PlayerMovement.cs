@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprintMod;
     [SerializeField] float jumpHeight;
     [SerializeField] int jumpMax;
-    [SerializeField] float airStamina;
+    [SerializeField] public float airStamina;
     [SerializeField] float airDecreaseRate;
     [SerializeField] float airRegainRate;
     [SerializeField] float runStamina;
@@ -33,11 +33,12 @@ public class PlayerMovement : MonoBehaviour
     float airStaminaOrig;
     float runStaminaOrig;
     public bool isSprinting;
+    public bool isHoldingBreath;
+    public bool didCollide;
     bool isInjured;
     bool isOutOfStamina;
     bool isOutOfBreath;
     bool isMatchThrown;
-    public bool didCollide;
     public float throwPower;
     public float throwUpwardPower;
 
@@ -241,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
         {
             aud.Pause();
             airStamina -= Time.deltaTime * airDecreaseRate;
+            isHoldingBreath = true;
             if (airStamina <= 0)
                 isOutOfBreath = true;
         }
@@ -255,6 +257,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 airStamina += Time.deltaTime * airRegainRate;
             }
+            isHoldingBreath = false;
         }
     }
     public void takeDamage(int damage)
@@ -275,12 +278,12 @@ public class PlayerMovement : MonoBehaviour
             aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
             jumpCount = 0;
         }
-        //if (collision.gameObject.CompareTag("Moveable"))
-        //{
-        //    aud.PlayOneShot(audCollision[UnityEngine.Random.Range(0, audCollision.Length)], audCollisionVol);
-        //    collisionPos = transform.position;
-        //    didCollide = true;
-        //}
+        if (collision.gameObject.CompareTag("Moveable"))
+        {
+            aud.PlayOneShot(audCollision[UnityEngine.Random.Range(0, audCollision.Length)], audCollisionVol);
+            collisionPos = transform.position;
+            didCollide = true;
+        }
     }
     private void OnCollisionStay(Collision collision)
     {
