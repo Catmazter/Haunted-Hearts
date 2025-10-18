@@ -61,7 +61,7 @@ public class EnemyDemon : EnemyBase
             }
         }
         onMesh = isPlayerOnNavMesh();
-        Debug.Log($"[EnemyDemon] Player on NavMesh: {onMesh} | Agent stopped: {agent.isStopped} | Agent pathPending: {agent.pathPending}");
+        //Debug.Log($"[EnemyDemon] Player on NavMesh: {onMesh} | Agent stopped: {agent.isStopped} | Agent pathPending: {agent.pathPending}");
         UpdateAnimation();
 
     }
@@ -258,7 +258,7 @@ public class EnemyDemon : EnemyBase
     {
         NavMeshHit hit;
 
-        return NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 1.0f, NavMesh.AllAreas);
+        return NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 3.0f, NavMesh.AllAreas);
     }
 
     private IEnumerator RunThenRoam()
