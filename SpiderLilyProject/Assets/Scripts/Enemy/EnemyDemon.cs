@@ -9,7 +9,7 @@ public class EnemyDemon : EnemyBase
 
     [SerializeField] int runDistance;
     [SerializeField] float stunDuration;
-    bool hasPlayedStepSound = false;
+  
 
     bool isRunningAway = false;
     bool isStunned;
