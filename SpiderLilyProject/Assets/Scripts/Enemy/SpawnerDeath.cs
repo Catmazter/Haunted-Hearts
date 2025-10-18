@@ -7,8 +7,11 @@ public class SpawnerDeath : MonoBehaviour
 
     //timer
     [SerializeField] float spawnTime = 5.0f;
+    [SerializeField] GameObject[] wallSafeZone;
+
     float timer;
     bool counting; //waiting until re-spawn 
+    private int gamecount = 0;
 
     EnemyDeath status;
 
@@ -37,6 +40,14 @@ public class SpawnerDeath : MonoBehaviour
 
                 spawnEnemy();
                 counting = false;
+
+            if (gamecount == 3)
+            {
+                for (int i = 0; i < wallSafeZone.Length; i++)
+                {
+                    wallSafeZone[i].SetActive(true);
+                }
+            }
         }
     }
 
@@ -59,7 +70,10 @@ public class SpawnerDeath : MonoBehaviour
         GameObject alive = Instantiate(objectToSpawn, pos, rot);
 
         status = alive.GetComponent<EnemyDeath>();
-        if( status != null )
+
+        gamecount += 1;
+
+        if ( status != null )
         {
             status.ChaseNow();
         }
