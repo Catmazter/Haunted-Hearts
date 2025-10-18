@@ -4,20 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+
+  
+ 
     [Header("Menus")]
+    [SerializeField] GameObject menuRoot;
+   // [SerializeField] GameObject background;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSettings;
-    // [SerializeField] GameObject menuWin;
+   
 
     [Header("Settings")]
     [SerializeField] GameObject settingsGameplay;
-    [SerializeField] GameObject settingsControls;
-    [SerializeField] GameObject settingsGraphics;
     [SerializeField] GameObject settingsAudio;
     private Stack<GameObject> menuStack = new Stack<GameObject>();
     [Header("Menu Title")]
@@ -30,13 +34,15 @@ public class gameManager : MonoBehaviour
     [Header("GameGoal")]
     int gameGoalCount ;
     [SerializeField] TextMeshProUGUI gameGoalCountText;
-    [Header("Map")]
-    [SerializeField] GameObject mapUI;
-    public bool isMapOpen;
-    bool wasMapOpenBefore;
+    [Header("Radar")]
+    [SerializeField] GameObject radarUI;
+    public bool isRadarOpen;
+    bool wasRadarOpenBefore;
+    [Header("Lose Video")]
+    [SerializeField] private VideoPlayer loseVideoPlayer;
+    [SerializeField] private GameObject loseVideoScreen;
 
-
-            // --- Public read-only accessors ---
+    // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
     [Header("Player")]
@@ -58,8 +64,7 @@ public class gameManager : MonoBehaviour
         menus.Add("Lose", menuLose);
         menus.Add("Settings", menuSettings);
         menus.Add("Settings-Gameplay", settingsGameplay);
-        menus.Add("Settings-Controls", settingsControls);
-        menus.Add("Settings-Graphics", settingsGraphics);
+
         menus.Add("Settings-Audio", settingsAudio);
         
     }
@@ -68,24 +73,26 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P) ))
         {
-           if(currentMenu == null )
+            if (currentMenu == menuLose) return;
+            else if (currentMenu == null)
             {
                 OpenMenu("Pause");
             }
-           else 
+            else
             {
                 CloseCurrentMenu();
             }
         }
         if(Input.GetButtonDown("Map"))
         {
-            ToggleMapUI();
+            ToggleRadarUI();
         }
     }
     public void OpenMenu(string menuName)
     {
+
         if (!menus.ContainsKey(menuName))
         {
             Debug.LogWarning("Menu " + menuName + " does not exist!");
@@ -95,13 +102,18 @@ public class gameManager : MonoBehaviour
         // Pause the game if needed
         if (!isPaused)
         {
-            wasMapOpenBefore = isMapOpen;
-            if(isMapOpen && mapUI != null)
+            wasRadarOpenBefore = isRadarOpen;
+            if(isRadarOpen && radarUI != null)
             {
-                ToggleMapUI();
+                ToggleRadarUI();
             }
             statePause();
         }
+        // Ensure background and root are visible
+        if (menuRoot != null && menuName != "Lose") menuRoot.SetActive(true);
+
+
+
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
@@ -114,7 +126,7 @@ public class gameManager : MonoBehaviour
 
         if (menuName == "Settings")
         {
-            // Default to Gameplay tab
+           
             currentMenu.SetActive(true);
             SetActiveSettingsTab("Audio");
             
@@ -124,8 +136,6 @@ public class gameManager : MonoBehaviour
     {
         // Disable all tabs first
         settingsGameplay.SetActive(false);
-        settingsControls.SetActive(false);
-        settingsGraphics.SetActive(false);
         settingsAudio.SetActive(false);
 
         // Enable chosen tab
@@ -135,14 +145,7 @@ public class gameManager : MonoBehaviour
                 settingsGameplay.SetActive(true);
                 UpdateMenuTitle("Gameplay");
                 break;
-            case "Controls":
-                settingsControls.SetActive(true);
-                UpdateMenuTitle("Controls");
-                break;
-            case "Graphics":
-                settingsGraphics.SetActive(true);
-                UpdateMenuTitle("Graphics");
-                break;
+
             case "Audio":
                 settingsAudio.SetActive(true);
                 UpdateMenuTitle("Audio");
@@ -167,15 +170,16 @@ public class gameManager : MonoBehaviour
 
         // Otherwise, no more menus → unpause
         currentMenu = null;
+        if (menuRoot != null) menuRoot.SetActive(false);
         if (isPaused)
             stateUnpause();
         UpdateMenuTitle("");
     }
-    public void ToggleMapUI()
+    public void ToggleRadarUI()
     {
-        if (currentMenu!= null || isPaused) return; // don't open map if in a menu or paused
-        isMapOpen = !isMapOpen;
-        mapUI.SetActive(isMapOpen);
+        if (currentMenu!= null || isPaused) return; // don't open radar if in a menu or paused
+        isRadarOpen = !isRadarOpen;
+        radarUI.SetActive(isRadarOpen);
     }
     public void updateGameGoal(int amount)
     {
@@ -216,10 +220,8 @@ public class gameManager : MonoBehaviour
             {
                 "Pause" => "Pause Menu",
                 "Settings" => "Settings",
-                "Lose" => "Game Over",
-                "Gameplay" => "Gameplay Settings",
-                "Controls" => "Controls",
-                "Graphics" => "Graphics",
+                "Lose" => "",
+                "Gameplay" => "Gameplay",
                 "Audio" => "Audio",
                 _ => menuName
             };
@@ -249,7 +251,7 @@ public class gameManager : MonoBehaviour
         unpauseTime();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        if (wasMapOpenBefore) { ToggleMapUI(); }
+        if (wasRadarOpenBefore) { ToggleRadarUI(); }
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
@@ -258,7 +260,7 @@ public class gameManager : MonoBehaviour
     }
     public void stateLose()
     {
-        OpenMenu("Lose");
+        StartCoroutine(PlayLoseVideoThenShowMenu());
     }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
     {
@@ -305,5 +307,33 @@ public class gameManager : MonoBehaviour
         color.a = fadeIn ? 1f : 0f;
         menuTitle.color = color;
         titleFadeRoutine = null;
+    }
+    private IEnumerator PlayLoseVideoThenShowMenu()
+    {
+        if (currentMenu != null) currentMenu.SetActive(false);
+        if (radarUI != null) radarUI.SetActive(false);
+
+        if (loseVideoScreen != null)
+            loseVideoScreen.SetActive(true);
+
+
+        if (loseVideoPlayer != null)
+        {
+            loseVideoPlayer.Play();
+            Debug.Log("Lose video started...");
+           
+            yield return new WaitForSeconds(2.6f);
+            
+        }
+
+        Debug.Log("Lose video finished!");
+
+        if (loseVideoScreen != null)
+            loseVideoScreen.SetActive(false);
+
+     
+        // Sau khi video kết thúc → pause game
+        statePause();
+        OpenMenu("Lose");
     }
 }
