@@ -470,7 +470,7 @@ MonoBehaviour:
   menuTitle: {fileID: 1099471253324984564}
   titleFadeDuration: 0.3
   gameGoalCountText: {fileID: 6057086939668149917}
-  radarUI: {fileID: 3917102414063310307}
+  radarUI: {fileID: 8691561631780491134}
   isRadarOpen: 0
   loseVideoPlayer: {fileID: 3950557346568208891}
   loseVideoScreen: {fileID: 4252762353567072851}
@@ -1245,11 +1245,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6200e8700061741aa2aacc19ca253d, type: 3}
---- !u!1 &3917102414063310307 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7146854631193847148, guid: ab6200e8700061741aa2aacc19ca253d, type: 3}
-  m_PrefabInstance: {fileID: 6157244842003640463}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6057086939668149917 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 107512400456467986, guid: ab6200e8700061741aa2aacc19ca253d, type: 3}
@@ -1264,5 +1259,10 @@ MonoBehaviour:
 --- !u!224 &8042853827519610857 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4246641005996658534, guid: ab6200e8700061741aa2aacc19ca253d, type: 3}
+  m_PrefabInstance: {fileID: 6157244842003640463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8691561631780491134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3309104276659994609, guid: ab6200e8700061741aa2aacc19ca253d, type: 3}
   m_PrefabInstance: {fileID: 6157244842003640463}
   m_PrefabAsset: {fileID: 0}
