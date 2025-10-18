@@ -543,15 +543,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.419327
+      value: -48.43
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -175.21335
+      value: -167.25
       objectReference: {fileID: 0}
     - target: {fileID: 3530622629802367774, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -581,9 +581,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455108068679000952, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: matchTimer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270935116118550540, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: MinDistance
+      value: 0.6236839
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -908,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1342008068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1097,7 +1105,7 @@ PrefabInstance:
       objectReference: {fileID: 1032353968}
     - target: {fileID: 3917102414063310307, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3945007117671832342, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1459,7 +1467,7 @@ PrefabInstance:
       objectReference: {fileID: 23800000, guid: 7ffce16de8a629f459e6cbd1925b81e2, type: 2}
     - target: {fileID: 3541783425045674980, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_LayerMask.m_Bits
-      value: 2230327
+      value: 133175
       objectReference: {fileID: 0}
     - target: {fileID: 6298005804192904683, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
