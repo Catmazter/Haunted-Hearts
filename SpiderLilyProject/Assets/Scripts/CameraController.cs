@@ -1,29 +1,27 @@
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Camera cam;
-    [UnityEngine.Range(100, 1000)][SerializeField] int sens;
+    [Range(100, 1000)][SerializeField] private int sensX = 653;
+    [Range(100, 1000)][SerializeField] private int sensY = 653;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
     [SerializeField] public float FOV;
     float FOVOrig;
-    //public PostProcessVolume postProcess;
-    //ColorGrading color;
-    float timer;
-    float percent;
 
     float rotX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //postProcess.profile.TryGetSettings(out color);
-        //color.enabled.Override(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponent<Camera>();
         FOVOrig = FOV;
+
+        sensX = PlayerPrefs.GetInt("SensitivityX", sensX);
+        sensY = PlayerPrefs.GetInt("SensitivityY", sensY);
+        FOV = PlayerPrefs.GetFloat("FOV", FOV);
     }
 
     // Update is called once per frame
@@ -32,8 +30,8 @@ public class CameraController : MonoBehaviour
         changeFOV();
         
         //get input
-        float mouseX = Input.GetAxisRaw("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * sens * Time.deltaTime;
+        float mouseX = Input.GetAxisRaw("Mouse X") * sensX * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * sensY * Time.deltaTime;
         //use invertY to give option of look up/down
         if (invertY)
             rotX += mouseY;
@@ -48,30 +46,15 @@ public class CameraController : MonoBehaviour
 
         //rotate the player left and right
         transform.parent.Rotate(Vector3.up * mouseX);
-
-        //holdingBreath();
     }
     void changeFOV()
     {
         cam.fieldOfView = FOV;
-        if (gameManager.instance.playerScript.isSprinting)
-        {
-            FOV -= Time.deltaTime * 8;
-        }
-        else if (FOV < FOVOrig)
-        {
-            FOV += Time.deltaTime * 8;
-        }
     }
-    //void holdingBreath()
-    //{
-    //    if (color == null || timer >= gameManager.instance.playerScript.airStamina)
-    //        return;
-    //    if (gameManager.instance.playerScript.isHoldingBreath)
-    //    {
-    //        timer += Time.deltaTime;
-    //        percent = Mathf.Clamp01(timer / gameManager.instance.playerScript.airStamina);
-    //        color.saturation.value = Mathf.Lerp(0, -100, percent);
-    //    }
-    //}
+
+    public int GetSensitivityX() => sensX;
+    public int GetSensitivityY() => sensY;
+
+    public void SetSensitivityX(int newSensX) => sensX = newSensX;
+    public void SetSensitivityY(int newSensY) => sensY = newSensY;
 }

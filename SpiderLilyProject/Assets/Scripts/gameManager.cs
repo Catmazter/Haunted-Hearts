@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
 
 public class gameManager : MonoBehaviour
@@ -19,7 +20,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSettings;
-   
+    [SerializeField] GameObject menuCredits;
+
 
     [Header("Settings")]
     [SerializeField] GameObject settingsGameplay;
@@ -43,16 +45,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] private VideoPlayer loseVideoPlayer;
     [SerializeField] private GameObject loseVideoScreen;
 
-    [Header("Match Count")]
-    public TMP_Text matchCount;
-    [Header("Hold Breath")]
-    public GameObject holdingBreath;
-    public TMP_Text holdBreath;
-    public float timer = 3f;
-
-    [Header("Hit Effect")]
-    public GameObject hit;
-
     // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
@@ -62,6 +54,10 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
+
+    [SerializeField] private CameraController cameraController;
+    [SerializeField] private UnityEngine.UI.Slider xSlider;
+    [SerializeField] private UnityEngine.UI.Slider ySlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -77,7 +73,33 @@ public class gameManager : MonoBehaviour
         menus.Add("Settings-Gameplay", settingsGameplay);
 
         menus.Add("Settings-Audio", settingsAudio);
-        
+        menus.Add("Credits", menuCredits);
+
+        xSlider.minValue = 100;
+        xSlider.maxValue = 1000;
+        ySlider.minValue = 100;
+        ySlider.maxValue = 1000;
+
+        xSlider.value = 653;
+        ySlider.value = 653;
+
+        xSlider.onValueChanged.AddListener(OnXSliderChanged);
+        ySlider.onValueChanged.AddListener(OnYSliderChanged);
+
+    }
+
+    void OnXSliderChanged(float newValue)
+    {
+        cameraController.SetSensitivityX((int)newValue);
+        PlayerPrefs.SetInt("SensitivityX", (int)newValue);
+        PlayerPrefs.Save();
+    }
+
+    void OnYSliderChanged(float newValue)
+    {
+        cameraController.SetSensitivityY((int)newValue);
+        PlayerPrefs.SetInt("SensitivityY", (int)newValue);
+        PlayerPrefs.Save();
     }
 
 
@@ -182,7 +204,7 @@ public class gameManager : MonoBehaviour
         // Otherwise, no more menus → unpause
         currentMenu = null;
         if (menuRoot != null) menuRoot.SetActive(false);
-        if (isPaused)
+        if (isPaused  && SceneManager.GetActiveScene().name != "Main Menu") 
             stateUnpause();
         UpdateMenuTitle("");
     }
@@ -249,8 +271,10 @@ public class gameManager : MonoBehaviour
     public void statePause()
     {
         pauseTime();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        if (AudioManager.instance != null)
+            AudioManager.instance.PauseAllAudio();
     }
     public void unpauseTime()
     {
@@ -260,14 +284,17 @@ public class gameManager : MonoBehaviour
     public void stateUnpause()
     {
         unpauseTime();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         if (wasRadarOpenBefore) { ToggleRadarUI(); }
         if (currentMenu != null)
         {
             currentMenu.SetActive(false);
             currentMenu = null;
         }
+
+        if (AudioManager.instance != null)
+            AudioManager.instance.ResumeAllAudio();
     }
     public void stateLose()
     {
@@ -324,16 +351,19 @@ public class gameManager : MonoBehaviour
         if (currentMenu != null) currentMenu.SetActive(false);
         if (radarUI != null) radarUI.SetActive(false);
 
+        if (AudioManager.instance != null)
+            AudioManager.instance.PauseAllAudio();
+
         if (loseVideoScreen != null)
             loseVideoScreen.SetActive(true);
-
+       
 
         if (loseVideoPlayer != null)
         {
             loseVideoPlayer.Play();
             Debug.Log("Lose video started...");
            
-            yield return new WaitForSeconds(2.6f);
+            yield return new WaitForSeconds(2.9f);
             
         }
 
@@ -343,7 +373,7 @@ public class gameManager : MonoBehaviour
             loseVideoScreen.SetActive(false);
 
      
-        // Sau khi video kết thúc → pause game
+      
         statePause();
         OpenMenu("Lose");
     }

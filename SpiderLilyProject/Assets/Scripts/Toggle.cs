@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class Togglebutton : MonoBehaviour
+public class Togglebutton  : MonoBehaviour
 {
     [SerializeField] private Sprite[] buttonSprites;
     [SerializeField] private Image targetImage;
