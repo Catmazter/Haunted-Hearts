@@ -365,9 +365,9 @@ public class gameManager : MonoBehaviour
         }
         else if (_loseType == 2)
         {
-            {
+            
                 OpenMenu("LoseBreathe");
-            }
+            
         }
     }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
