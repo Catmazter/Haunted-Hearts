@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Ghost : MonoBehaviour
 {
     [SerializeField] NavMeshAgent ghost;
-    [SerializeField] MeshRenderer render;
+    [SerializeField] SkinnedMeshRenderer render;
     [SerializeField] Transform headPos;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
@@ -33,7 +33,7 @@ public class Ghost : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        render = GetComponent<MeshRenderer>();
+        render = GetComponent<SkinnedMeshRenderer>();
         render.enabled = false;
         ghost.speed = gameManager.instance.playerScript.speed;
         ghostSpeedOrig = ghost.speed;
