@@ -196,7 +196,8 @@ public class PlayerMovement : MonoBehaviour
                 isMatchThrown = false;
             }
         }
-        outOfMatches();
+        if (matchList.Count == 0)
+            StartCoroutine(outOfMatches());
     }
     void matchInventory()
     {
@@ -349,28 +350,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    void outOfMatches()
-    {
-        if (matchList.Count == 0)
-        {
-            gameManager.instance.stateLose(2);
-        }
-    }
     void updatePlayerUI()
     {
-        if (matchList.Count > 0)
+        if (matchList.Count >= 0)
         {
             gameManager.instance.matchCount.text = matchList.Count.ToString("F0");
         }
-        if (gameManager.instance.timer > 0)
-        {
-            gameManager.instance.holdBreath.enabled = true;
-            gameManager.instance.timer -= Time.deltaTime;
-        }
-        else
-        {
-            gameManager.instance.holdBreath.enabled = false;
-        }
+        //if (gameManager.instance.timer > 0)
+        //{
+        //    gameManager.instance.holdBreath.enabled = true;
+        //    gameManager.instance.timer -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    gameManager.instance.holdBreath.enabled = false;
+        //}
     }
     IEnumerator playSteps()
     {
@@ -442,5 +436,10 @@ public class PlayerMovement : MonoBehaviour
         gameManager.instance.hit.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.hit.SetActive(false);
+    }
+    IEnumerator outOfMatches()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.instance.stateLose(2);
     }
 }

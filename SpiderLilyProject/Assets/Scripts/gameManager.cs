@@ -51,9 +51,9 @@ public class gameManager : MonoBehaviour
     public TMP_Text matchCount;
 
     [Header("Hold Breath")]
-    public TMP_Text holdBreath;
+    //public TMP_Text holdBreath;
     public GameObject holdingBreath;
-    public float timer;
+    //public float timer;
 
     [Header("Hit Effect")]
     public GameObject hit;
@@ -366,7 +366,8 @@ public class gameManager : MonoBehaviour
         else if (_loseType == 2)
         {
             
-                OpenMenu("LoseBreathe");
+            holdingBreath.SetActive(false);    
+            OpenMenu("LoseBreathe");
             
         }
     }
