@@ -1420,6 +1420,14 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: matchMax
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: airStamina
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: matchTimer
       value: 15
       objectReference: {fileID: 0}
@@ -2606,6 +2614,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 486783457796485978, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
+      objectReference: {fileID: 0}
     - target: {fileID: 716473731310989190, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
       value: 0.5
@@ -2626,6 +2638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 1 mazeBeta2
       objectReference: {fileID: 0}
+    - target: {fileID: 2194119912087682757, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.36
+      objectReference: {fileID: 0}
     - target: {fileID: 3541783425045674980, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_NavMeshData
       value: 
@@ -2642,6 +2658,18 @@ PrefabInstance:
       propertyPath: m_Extents.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4726748181779876854, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924277208556065780, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119059934181210277, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.36
+      objectReference: {fileID: 0}
     - target: {fileID: 5801753675285262542, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
       value: 0.5
@@ -2657,6 +2685,18 @@ PrefabInstance:
     - target: {fileID: 6298005804192904683, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
       value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425153406189471337, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693754846269365867, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897543710752912698, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
       objectReference: {fileID: 0}
     - target: {fileID: 6945054793555321118, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2701,6 +2741,14 @@ PrefabInstance:
     - target: {fileID: 7272968312060047155, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_LocalScale.z
       value: 9.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889048874680431381, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_Center.y
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487590614662364810, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.8
       objectReference: {fileID: 0}
     - target: {fileID: 8798650072392471585, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
@@ -3694,13 +3742,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 5445149947545273022}
+  - {fileID: 976248664}
   - {fileID: 1393223302}
-  - {fileID: 6270209983796450279}
   - {fileID: 1565711440}
   - {fileID: 1678487211}
-  - {fileID: 1342008070}
-  - {fileID: 976248664}
   - {fileID: 2064313004}
   - {fileID: 1787013355}
   - {fileID: 738027859}
   - {fileID: 570597164}
+  - {fileID: 1342008070}
+  - {fileID: 6270209983796450279}
