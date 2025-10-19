@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
 
 public class gameManager : MonoBehaviour
@@ -52,6 +54,10 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
+
+    [SerializeField] private CameraController cameraController;
+    [SerializeField] private UnityEngine.UI.Slider xSlider;
+    [SerializeField] private UnityEngine.UI.Slider ySlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -69,6 +75,31 @@ public class gameManager : MonoBehaviour
         menus.Add("Settings-Audio", settingsAudio);
         menus.Add("Credits", menuCredits);
 
+        xSlider.minValue = 100;
+        xSlider.maxValue = 1000;
+        ySlider.minValue = 100;
+        ySlider.maxValue = 1000;
+
+        xSlider.value = cameraController.GetSensitivityX();
+        ySlider.value = cameraController.GetSensitivityY();
+
+        xSlider.onValueChanged.AddListener(OnXSliderChanged);
+        ySlider.onValueChanged.AddListener(OnYSliderChanged);
+
+    }
+
+    void OnXSliderChanged(float newValue)
+    {
+        cameraController.SetSensitivityX((int)newValue);
+        PlayerPrefs.SetInt("SensitivityX", (int)newValue);
+        PlayerPrefs.Save();
+    }
+
+    void OnYSliderChanged(float newValue)
+    {
+        cameraController.SetSensitivityY((int)newValue);
+        PlayerPrefs.SetInt("SensitivityY", (int)newValue);
+        PlayerPrefs.Save();
     }
 
 
@@ -240,8 +271,8 @@ public class gameManager : MonoBehaviour
     public void statePause()
     {
         pauseTime();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         if (AudioManager.instance != null)
             AudioManager.instance.PauseAllAudio();
     }
@@ -253,8 +284,8 @@ public class gameManager : MonoBehaviour
     public void stateUnpause()
     {
         unpauseTime();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         if (wasRadarOpenBefore) { ToggleRadarUI(); }
         if (currentMenu != null)
         {
