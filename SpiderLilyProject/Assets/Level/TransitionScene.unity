@@ -220,6 +220,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2008908745}
     m_Modifications:
+    - target: {fileID: 84893404394216035, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 03f15945423c3184c94c3d239e11b378, type: 3}
+    - target: {fileID: 3561721149310316642, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5816060776313139030, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_Name
       value: PanelStory3 (1)
@@ -269,6 +277,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -278,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 785.66907
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_LocalRotation.w
@@ -298,11 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -160.90277
+      value: -140.4929
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -103.5
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 8586735497683628259, guid: 8235f7d04ad0c624b8646420c04f1175, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -725,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2673788083269952997, guid: 32646659163051642b50e467a169a8fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 216.38283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2673788083269952997, guid: 32646659163051642b50e467a169a8fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -814,7 +830,7 @@ RectTransform:
   m_GameObject: {fileID: 1581393877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.68, y: 1.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2008908745}
@@ -907,12 +923,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1434,7 +1450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2.9999835, y: 79.100006}
+  m_AnchoredPosition: {x: 2.9999835, y: 200.88486}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4284515714666942252
@@ -1708,7 +1724,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9195444644474239512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 993.32715}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.04, y: 1.02, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

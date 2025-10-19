@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0.9779874, b: 0.9779874, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
@@ -7438,6 +7438,7 @@ MonoBehaviour:
   menuPause: {fileID: 3590040253210216898}
   menuLose: {fileID: 3172854339124939356}
   menuSettings: {fileID: 4773597367228268608}
+  menuCredits: {fileID: 0}
   settingsGameplay: {fileID: 897497052607402673}
   settingsAudio: {fileID: 4612939758153106479}
   menuTitle: {fileID: 9068103017449075186}
