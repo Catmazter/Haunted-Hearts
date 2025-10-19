@@ -76,9 +76,9 @@ public class buttonFunctions : MonoBehaviour
        gameManager.instance.SetActiveSettingsTab(tabname);
 
     }
-    public void OpenShowcase()
+    public void OpenCredits()
     {
-        SceneManager.LoadScene("ShowcaseScene");
+        gameManager.instance.OpenMenu("Credits");
     }
 
     /*    public void respawn()

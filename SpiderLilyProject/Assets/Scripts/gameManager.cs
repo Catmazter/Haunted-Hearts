@@ -18,7 +18,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSettings;
-   
+    [SerializeField] GameObject menuCredits;
+
 
     [Header("Settings")]
     [SerializeField] GameObject settingsGameplay;
@@ -66,7 +67,8 @@ public class gameManager : MonoBehaviour
         menus.Add("Settings-Gameplay", settingsGameplay);
 
         menus.Add("Settings-Audio", settingsAudio);
-        
+        menus.Add("Credits", menuCredits);
+
     }
 
 
