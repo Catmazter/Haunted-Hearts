@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         else if (isOutOfBreath)
         {
             isOutOfBreath = false;
-            gameManager.instance.stateLose();
+            gameManager.instance.stateLose(2);
         }
         else
         {
@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
         aud.PlayOneShot(audHurt[UnityEngine.Random.Range(0, audHurt.Length)], audHurtVol);
         if (HP <= 0)
         {
-            gameManager.instance.stateLose();
+            gameManager.instance.stateLose(0);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -344,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (matchList.Count == 0)
         {
-            gameManager.instance.stateLose();
+            gameManager.instance.stateLose(2);
         }
     }
     IEnumerator playSteps()
