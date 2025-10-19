@@ -195,7 +195,8 @@ public class gameManager : MonoBehaviour
             statePause();
         }
         // Ensure background and root are visible
-        if (menuRoot != null && (menuName != "Lose" || menuName != "LoseBreathe" || menuName != "LoseMatch")) menuRoot.SetActive(true);
+        if (menuRoot != null && menuName != "Lose" && menuName != "LoseBreathe" && menuName != "LoseMatch") 
+            menuRoot.SetActive(true);
 
 
 
