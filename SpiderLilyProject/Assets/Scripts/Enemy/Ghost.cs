@@ -88,11 +88,11 @@ public class Ghost : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 ghost.SetDestination(gameManager.instance.player.transform.position);
-                if (gameManager.instance.playerScript.isSprinting /*|| gameManager.instance.playerScript.didCollide*/)
+                if (gameManager.instance.playerScript.isSprinting)
                 {
                     ghost.speed *= gameManager.instance.playerScript.speed / ghost.speed;
                 }
-                else if (!gameManager.instance.playerScript.isSprinting && ghost.speed > gameManager.instance.playerScript.speed /*&& transform.position == gameManager.instance.playerScript.collisionPos*/)
+                else if (!gameManager.instance.playerScript.isSprinting && ghost.speed > gameManager.instance.playerScript.speed)
                 {
                     ghost.speed = ghostSpeedOrig;
                 }
