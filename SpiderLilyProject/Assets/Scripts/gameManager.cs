@@ -72,6 +72,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Slider xSlider;
     [SerializeField] private UnityEngine.UI.Slider ySlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool cameraSettingsApplied = false;
+
     private void Awake()
     {
         instance = this;
@@ -105,22 +107,57 @@ public class gameManager : MonoBehaviour
 
     void OnXSliderChanged(float newValue)
     {
-        cameraController.SetSensitivityX((int)newValue);
         PlayerPrefs.SetInt("SensitivityX", (int)newValue);
         PlayerPrefs.Save();
+
+        // Chỉ apply nếu CameraController tồn tại
+        if (cameraController != null)
+        {
+            cameraController.SetSensitivityX((int)newValue);
+        }
+        else
+        {
+            Debug.Log("CameraController not found, X sensitivity saved but not applied yet.");
+        }
     }
 
     void OnYSliderChanged(float newValue)
     {
-        cameraController.SetSensitivityY((int)newValue);
         PlayerPrefs.SetInt("SensitivityY", (int)newValue);
         PlayerPrefs.Save();
+
+        if (cameraController != null)
+        {
+            cameraController.SetSensitivityY((int)newValue);
+        }
+        else
+        {
+            Debug.Log("CameraController not found, Y sensitivity saved but not applied yet.");
+        }
+    }
+    public void ApplyCameraSettings()
+    {
+        if (cameraController == null) return; // an toàn
+
+        int sensX = PlayerPrefs.GetInt("SensitivityX", 653);
+        int sensY = PlayerPrefs.GetInt("SensitivityY", 653);
+
+        cameraController.SetSensitivityX(sensX);
+        cameraController.SetSensitivityY(sensY);
+
+        Debug.Log($"Camera settings applied: X={sensX}, Y={sensY}");
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (!cameraSettingsApplied && cameraController != null)
+        {
+            ApplyCameraSettings();
+            cameraSettingsApplied = true;
+        }
+
         if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P) ))
         {
             if (currentMenu == menuLose) return;
@@ -177,7 +214,9 @@ public class gameManager : MonoBehaviour
            
             currentMenu.SetActive(true);
             SetActiveSettingsTab("Audio");
-            
+            xSlider.value = PlayerPrefs.GetInt("SensitivityX", 653);
+            ySlider.value = PlayerPrefs.GetInt("SensitivityY", 653);
+
         }
     }
     public void SetActiveSettingsTab(string tabName)

@@ -95,7 +95,15 @@ public class SceneManagerScript : MonoBehaviour
         yield return Fade(1f);
         AsyncOperation async = SceneManager.LoadSceneAsync(index);
         while (!async.isDone) yield return null;
+
+        if (gameManager.instance != null)
+        {
+           
+            gameManager.instance.ApplyCameraSettings();
+        }
         yield return Fade(0f);
+
+
     }
 
     private IEnumerator Fade(float targetAlpha)
