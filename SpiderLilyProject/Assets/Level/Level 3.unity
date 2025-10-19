@@ -347,6 +347,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3195912748714865338, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
   m_PrefabInstance: {fileID: 1717739426031124341}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &115605613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4499395025125066596, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+  m_PrefabInstance: {fileID: 1764160095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &115605618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115605613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bfb12feda6ebf4696507f9c44954a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuitButtonWeb
+  quitButton: {fileID: 115605613}
 --- !u!1001 &137657263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2313,7 +2331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: matchTimer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audHurt.Array.size
@@ -2668,6 +2686,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2074833026161668504, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 755885776}
+    - target: {fileID: 2074833026161668504, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: quit
+      objectReference: {fileID: 0}
     - target: {fileID: 2527152363228464677, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2685,6 +2711,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3291783483069863741, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_Name
+      value: LoseBreathe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291783483069863741, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2695,11 +2725,11 @@ PrefabInstance:
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseMatch
       value: 
-      objectReference: {fileID: 614722251}
+      objectReference: {fileID: 1537836300}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseBreathe
       value: 
-      objectReference: {fileID: 1537836300}
+      objectReference: {fileID: 614722251}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: cameraController
       value: 
@@ -2804,6 +2834,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -2.109375
       objectReference: {fileID: 0}
+    - target: {fileID: 6810130409679016434, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 755885776}
+    - target: {fileID: 6810130409679016434, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restart
+      objectReference: {fileID: 0}
     - target: {fileID: 7392502264960503983, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -2852,6 +2890,10 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7834807525498362683, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c01de277cc130a54ab3db18d3e2a65ee, type: 3}
     - target: {fileID: 7834807525498362683, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_PreserveAspect
       value: 0
@@ -2903,7 +2945,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4499395025125066596, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 115605618}
   m_SourcePrefab: {fileID: 100100000, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
 --- !u!1 &1782528432
 GameObject:

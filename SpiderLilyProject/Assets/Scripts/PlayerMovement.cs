@@ -353,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (matchList.Count == 0)
         {
-            gameManager.instance.stateLose(2);
+            gameManager.instance.stateLose(1);
         }
     }
     void updatePlayerUI()
