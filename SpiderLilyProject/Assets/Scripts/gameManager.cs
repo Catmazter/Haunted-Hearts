@@ -258,7 +258,7 @@ public class gameManager : MonoBehaviour
         // Otherwise, no more menus → unpause
         currentMenu = null;
         if (menuRoot != null) menuRoot.SetActive(false);
-        if (isPaused  && SceneManager.GetActiveScene().name != "Main Menu") 
+        if (isPaused  && SceneManager.GetActiveScene().name != "MainMenu") 
             stateUnpause();
         UpdateMenuTitle("");
     }
