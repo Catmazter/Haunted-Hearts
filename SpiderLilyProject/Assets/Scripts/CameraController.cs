@@ -22,13 +22,15 @@ public class CameraController : MonoBehaviour
         sensX = PlayerPrefs.GetInt("SensitivityX", sensX);
         sensY = PlayerPrefs.GetInt("SensitivityY", sensY);
         FOV = PlayerPrefs.GetFloat("FOV", FOV);
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
         changeFOV();
-        
+
         //get input
         float mouseX = Input.GetAxisRaw("Mouse X") * sensX * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensY * Time.deltaTime;
@@ -52,9 +54,9 @@ public class CameraController : MonoBehaviour
         cam.fieldOfView = FOV;
     }
 
+    public void SetSensitivityX(int value) => sensX = value;
+    public void SetSensitivityY(int value) => sensY = value;
     public int GetSensitivityX() => sensX;
     public int GetSensitivityY() => sensY;
-
-    public void SetSensitivityX(int newSensX) => sensX = newSensX;
-    public void SetSensitivityY(int newSensY) => sensY = newSensY;
 }
+

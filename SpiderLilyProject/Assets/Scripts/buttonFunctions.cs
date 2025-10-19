@@ -38,15 +38,14 @@ public class buttonFunctions : MonoBehaviour
         var sm = SceneManagerScript.instance;
         if (sm == null)
         {
-            Debug.LogError("SceneManagerScript instance not found!");
+           // Debug.LogError("SceneManagerScript instance not found!");
             return;
         }
 
         sm.nextLevelIndex = 1;        // Level 1 index in Build Settings
         sm.nextLevelName = "Level 1";
         sm.isFinalLevel = false;
-
-        SceneManager.LoadScene("TransitionScene");
+        
         SceneManager.LoadScene("TransitionScene");
     }
     /// <summary>
@@ -58,7 +57,7 @@ public class buttonFunctions : MonoBehaviour
         var sm = SceneManagerScript.instance;
         if (sm == null)
         {
-            Debug.LogError("SceneManagerScript instance not found!");
+          //  Debug.LogError("SceneManagerScript instance not found!");
             return;
         }
 
@@ -72,7 +71,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void SettingActiveTab(string tabname)
     {
-        Debug.Log("Switching to tab: " + tabname);
+       // Debug.Log("Switching to tab: " + tabname);
        gameManager.instance.SetActiveSettingsTab(tabname);
 
     }

@@ -27,8 +27,8 @@ public class Ghost : MonoBehaviour
     float roamTimer;
     float stoppingDistOrig;
     bool isPlayerInTrigger;
-    bool isVisible;
-    bool isPlayingNoise;
+  //  bool isVisible;
+   // bool isPlayingNoise;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -169,24 +169,24 @@ public class Ghost : MonoBehaviour
     }
     IEnumerator ghostVisible()
     {
-        isVisible = true;
+       // isVisible = true;
         render.enabled = true;
         if (isPlayerInTrigger)
         {
             yield return new WaitForSeconds(0.3f);
         }
         render.enabled = false;
-        isVisible = false;
+     //   isVisible = false;
     }
     IEnumerator ghostSounds()
     {
-        isPlayingNoise = true;
+       // isPlayingNoise = true;
         aud.PlayOneShot(ghostNoise[Random.Range(0, ghostNoise.Length)], ghostNoiseVol);
         if (isPlayerInTrigger)
         {
             yield return new WaitForSeconds(2.25f);
         }
-        isPlayingNoise = false;
+       // isPlayingNoise = false;
     }
     private void OnCollisionEnter(Collision collision)
     {

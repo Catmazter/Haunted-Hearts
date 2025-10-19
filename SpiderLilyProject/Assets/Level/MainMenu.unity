@@ -1435,6 +1435,79 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &1046221760
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1057797206343103468, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderSFX
+      value: 
+      objectReference: {fileID: 2010868038168868883}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderMusic
+      value: 
+      objectReference: {fileID: 8363078167340810301}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderMaster
+      value: 
+      objectReference: {fileID: 2864281107729021118}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: toggleMuteAll
+      value: 
+      objectReference: {fileID: 374262691377983192}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -458.92523
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -614.7198
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1128.9037
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
 --- !u!1 &1148668921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,6 +2151,8 @@ MonoBehaviour:
   menuRoot: {fileID: 0}
   menuPause: {fileID: 0}
   menuLose: {fileID: 0}
+  menuLoseMatch: {fileID: 0}
+  menuLoseBreathe: {fileID: 0}
   menuSettings: {fileID: 1361627031}
   menuCredits: {fileID: 541627349}
   settingsGameplay: {fileID: 5566154723820115169}
@@ -2089,6 +2164,11 @@ MonoBehaviour:
   isRadarOpen: 0
   loseVideoPlayer: {fileID: 0}
   loseVideoScreen: {fileID: 0}
+  matchCount: {fileID: 0}
+  holdBreath: {fileID: 0}
+  holdingBreath: {fileID: 0}
+  timer: 0
+  hit: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
@@ -7915,3 +7995,4 @@ SceneRoots:
   - {fileID: 401599693}
   - {fileID: 1191527216}
   - {fileID: 163368542}
+  - {fileID: 1046221760}

@@ -24,7 +24,7 @@ public class lilyScriptableObject : ScriptableObject , iPickup
         }
         else
         {
-            Debug.LogWarning("GameManager instance not found!");
+          //  Debug.LogWarning("GameManager instance not found!");
         }
     }
 }
