@@ -19,6 +19,8 @@ public class gameManager : MonoBehaviour
    // [SerializeField] GameObject background;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuLoseMatch;
+    [SerializeField] GameObject menuLoseBreathe;
     [SerializeField] GameObject menuSettings;
     [SerializeField] GameObject menuCredits;
 
@@ -69,6 +71,8 @@ public class gameManager : MonoBehaviour
         //add any other menus to dictionary here
         menus.Add("Pause", menuPause);
         menus.Add("Lose", menuLose);
+        menus.Add("LoseMatch", menuLoseMatch);
+        menus.Add("LoseBreathe", menuLoseBreathe);
         menus.Add("Settings", menuSettings);
         menus.Add("Settings-Gameplay", settingsGameplay);
 
@@ -296,9 +300,22 @@ public class gameManager : MonoBehaviour
         if (AudioManager.instance != null)
             AudioManager.instance.ResumeAllAudio();
     }
-    public void stateLose()
+    public void stateLose(int _loseType)
     {
-        StartCoroutine(PlayLoseVideoThenShowMenu());
+        if (_loseType == 0)
+        {
+            StartCoroutine(PlayLoseVideoThenShowMenu());
+        }
+        else if (_loseType == 1)
+        {
+            OpenMenu("LoseMatch");
+        }
+        else if (_loseType == 2)
+        {
+            {
+                OpenMenu("LoseBreathe");
+            }
+        }
     }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
     {
