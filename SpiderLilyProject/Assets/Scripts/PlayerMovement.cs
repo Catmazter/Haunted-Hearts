@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
+       // Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         moveDir = (transform.right * h + transform.forward * v).normalized;
@@ -307,7 +307,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered" + other.name);
+       // Debug.Log("Trigger Entered" + other.name);
 
         //if(other.CompareTag("Safe Zone"))
         //{
