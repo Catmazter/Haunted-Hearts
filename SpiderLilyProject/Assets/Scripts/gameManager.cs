@@ -195,7 +195,7 @@ public class gameManager : MonoBehaviour
             statePause();
         }
         // Ensure background and root are visible
-        if (menuRoot != null && menuName != "Lose") menuRoot.SetActive(true);
+        if (menuRoot != null && (menuName != "Lose" || menuName != "LoseBreathe" || menuName != "LoseMatch")) menuRoot.SetActive(true);
 
 
 
@@ -258,9 +258,11 @@ public class gameManager : MonoBehaviour
         // Otherwise, no more menus → unpause
         currentMenu = null;
         if (menuRoot != null) menuRoot.SetActive(false);
-        if (isPaused  && SceneManager.GetActiveScene().name != "Main Menu") 
+        if (isPaused && SceneManager.GetActiveScene().name != "MainMenu")
             stateUnpause();
-        UpdateMenuTitle("");
+        else if (isPaused && SceneManager.GetActiveScene().name == "MainMenu")
+            unpauseTime();
+            UpdateMenuTitle("");
     }
     public void ToggleRadarUI()
     {
