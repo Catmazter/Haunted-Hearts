@@ -45,8 +45,7 @@ public class buttonFunctions : MonoBehaviour
         sm.nextLevelIndex = 1;        // Level 1 index in Build Settings
         sm.nextLevelName = "Level 1";
         sm.isFinalLevel = false;
-
-        SceneManager.LoadScene("TransitionScene");
+        
         SceneManager.LoadScene("TransitionScene");
     }
     /// <summary>
