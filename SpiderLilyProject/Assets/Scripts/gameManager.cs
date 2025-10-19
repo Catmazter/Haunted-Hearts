@@ -117,7 +117,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CameraController not found, X sensitivity saved but not applied yet.");
+           // Debug.Log("CameraController not found, X sensitivity saved but not applied yet.");
         }
     }
 
@@ -132,7 +132,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CameraController not found, Y sensitivity saved but not applied yet.");
+           // Debug.Log("CameraController not found, Y sensitivity saved but not applied yet.");
         }
     }
     public void ApplyCameraSettings()
@@ -145,7 +145,7 @@ public class gameManager : MonoBehaviour
         cameraController.SetSensitivityX(sensX);
         cameraController.SetSensitivityY(sensY);
 
-        Debug.Log($"Camera settings applied: X={sensX}, Y={sensY}");
+       // Debug.Log($"Camera settings applied: X={sensX}, Y={sensY}");
     }
 
 
@@ -180,7 +180,7 @@ public class gameManager : MonoBehaviour
 
         if (!menus.ContainsKey(menuName))
         {
-            Debug.LogWarning("Menu " + menuName + " does not exist!");
+          //  Debug.LogWarning("Menu " + menuName + " does not exist!");
             return;
         }
 
@@ -365,9 +365,9 @@ public class gameManager : MonoBehaviour
         }
         else if (_loseType == 2)
         {
-            {
+            
                 OpenMenu("LoseBreathe");
-            }
+            
         }
     }
     private IEnumerator FadeTitle(string newText, bool fadeIn)
@@ -431,13 +431,13 @@ public class gameManager : MonoBehaviour
         if (loseVideoPlayer != null)
         {
             loseVideoPlayer.Play();
-            Debug.Log("Lose video started...");
+           // Debug.Log("Lose video started...");
            
             yield return new WaitForSeconds(2.9f);
             
         }
 
-        Debug.Log("Lose video finished!");
+       // Debug.Log("Lose video finished!");
 
         if (loseVideoScreen != null)
             loseVideoScreen.SetActive(false);

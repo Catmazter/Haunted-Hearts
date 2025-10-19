@@ -132,7 +132,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            Debug.Log("[DEV] Forcing level complete via F10");
+          //  Debug.Log("[DEV] Forcing level complete via F10");
             OnLevelCompleted();
         }
     }
