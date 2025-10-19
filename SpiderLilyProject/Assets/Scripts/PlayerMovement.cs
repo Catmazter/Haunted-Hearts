@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
             airStamina -= Time.deltaTime * airDecreaseRate;
             isHoldingBreath = true;
             StartCoroutine(holdingBreathFlash());
-            if (airStamina <= 0)
+            if (airStamina <= 0.1f)
                 isOutOfBreath = true;
         }
         else if (isOutOfBreath)

@@ -70,7 +70,7 @@ public class EnemyDemon : EnemyBase
         base.roam();
         if (CanSeePlayer())
         {
-            Debug.Log("Demon spotted the player while roaming!");
+          //  Debug.Log("Demon spotted the player while roaming!");
             chasePlayer();
         }
     }
@@ -147,7 +147,7 @@ public class EnemyDemon : EnemyBase
             agent.SetDestination(hit.position);
             transform.rotation = Quaternion.LookRotation(oppositeDir);
 
-            Debug.Log(" Enemy is running away to: " + hit.position);
+           // Debug.Log(" Enemy is running away to: " + hit.position);
         }
         else
         {
@@ -156,11 +156,11 @@ public class EnemyDemon : EnemyBase
             {
                 agent.SetDestination(hit.position);
                 transform.rotation = Quaternion.LookRotation(hit.position - transform.position);
-                Debug.Log("Enemy ran away using random direction (fallback).");
+              //  Debug.Log("Enemy ran away using random direction (fallback).");
             }
             else
             {
-                Debug.LogWarning("No valid NavMesh position found for run away.");
+             //   Debug.LogWarning("No valid NavMesh position found for run away.");
             }
         }
         StartCoroutine(RunThenRoam());
@@ -208,7 +208,7 @@ public class EnemyDemon : EnemyBase
         stunTimer = 0f;
         agent.isStopped = true;
         StartCoroutine(RunThenRoam());
-        Debug.Log("Enemy stunned!");
+       // Debug.Log("Enemy stunned!");
     }
 
     void UpdateAnimation()
@@ -239,7 +239,7 @@ public class EnemyDemon : EnemyBase
     {
         if (trigger.gameObject.CompareTag("Match"))
         {
-            Debug.Log("Demon hit by a match!");
+           // Debug.Log("Demon hit by a match!");
             OnHitByMatch();
         }
     }

@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        else Debug.LogWarning("Multiple AudioManager instances!");
+       // else Debug.LogWarning("Multiple AudioManager instances!");
 
         // Load saved slider values
         sliderMaster.value = PlayerPrefs.GetFloat(masterVolumeParam, sliderMaster.value);

@@ -38,7 +38,7 @@ public class buttonFunctions : MonoBehaviour
         var sm = SceneManagerScript.instance;
         if (sm == null)
         {
-            Debug.LogError("SceneManagerScript instance not found!");
+           // Debug.LogError("SceneManagerScript instance not found!");
             return;
         }
 
@@ -57,7 +57,7 @@ public class buttonFunctions : MonoBehaviour
         var sm = SceneManagerScript.instance;
         if (sm == null)
         {
-            Debug.LogError("SceneManagerScript instance not found!");
+          //  Debug.LogError("SceneManagerScript instance not found!");
             return;
         }
 
@@ -71,7 +71,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void SettingActiveTab(string tabname)
     {
-        Debug.Log("Switching to tab: " + tabname);
+       // Debug.Log("Switching to tab: " + tabname);
        gameManager.instance.SetActiveSettingsTab(tabname);
 
     }
