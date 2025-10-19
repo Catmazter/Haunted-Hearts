@@ -188,6 +188,99 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcdfd52848ea62e419f1dc9237325b1e, type: 3}
+--- !u!1001 &73975869
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1057797206343103468, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_Name
+      value: AudioManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 501579946}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderSFX
+      value: 
+      objectReference: {fileID: 228814272}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderMusic
+      value: 
+      objectReference: {fileID: 223074060}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: sliderMaster
+      value: 
+      objectReference: {fileID: 2132266306}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: toggleMuteAll
+      value: 
+      objectReference: {fileID: 805147386}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: timerStartedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b915934ddf413a04593878eddefd335e, type: 3}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: enemyDestroyedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7091f7b917d7e943beb06db935303c5, type: 3}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: timerAlmostDoneVol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041779383999430589, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: timerAlmostDoneClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e5dc3e7a6abe7242884c7c740ffd1d6, type: 3}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1421.6962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1174.8359
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280773381576635036, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
 --- !u!4 &113973578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3195912748714865338, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
@@ -288,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &222861231
 AudioSource:
   m_ObjectHideFlags: 0
@@ -393,7 +486,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222861230}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec0f332a4572a1b40ab8ca183af89d69, type: 3}
   m_Name: 
@@ -422,7 +515,6 @@ MonoBehaviour:
   timerAlmostDoneClip: {fileID: 8300000, guid: 1e5dc3e7a6abe7242884c7c740ffd1d6, type: 3}
   timerAlmostDoneVol: 0
   toggleMuteAll: {fileID: 805147386}
-  toggleMuteVoice: {fileID: 0}
   uiSource: {fileID: 222861231}
   menuClickClip: {fileID: 8300000, guid: 22429b54d07ef49409e00093087f60a9, type: 3}
   uiVolume: 0.7
@@ -811,6 +903,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2269312342823349674, guid: 69414aae6040136499ca9a19d86fd76b, type: 3}
   m_PrefabInstance: {fileID: 2095251147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &501579946 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 503341643969957535, guid: 126e49c0fe6c3bb419533dfeaa3bb6cd, type: 3}
+  m_PrefabInstance: {fileID: 73975869}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &532105508
 PrefabInstance:
@@ -3948,3 +4045,4 @@ SceneRoots:
   - {fileID: 1717739426031124341}
   - {fileID: 4821767298889344515}
   - {fileID: 222861233}
+  - {fileID: 73975869}

@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Toggles")]
     [SerializeField] private Toggle toggleMuteAll;
-    [SerializeField] private Toggle toggleMuteVoice;
+   // [SerializeField] private Toggle toggleMuteVoice;
 
     [Header("UI Sounds")]
     [SerializeField] private AudioSource uiSource;
@@ -102,7 +102,7 @@ public class AudioManager : MonoBehaviour
 
         // Add toggle listeners
         toggleMuteAll.onValueChanged.AddListener(MuteAllChanged);
-        toggleMuteVoice.onValueChanged.AddListener(MuteVoiceChanged);
+       // toggleMuteVoice.onValueChanged.AddListener(MuteVoiceChanged);
 
        
         mixer.GetFloat(voiceVolumeParam, out float voiceDb);
