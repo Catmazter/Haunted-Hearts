@@ -45,6 +45,17 @@ public class gameManager : MonoBehaviour
     [SerializeField] private VideoPlayer loseVideoPlayer;
     [SerializeField] private GameObject loseVideoScreen;
 
+    [Header("Match Count")]
+    public TMP_Text matchCount;
+
+    [Header("Hold Breath")]
+    public TMP_Text holdBreath;
+    public GameObject holdingBreath;
+    public float timer;
+
+    [Header("Hit Effect")]
+    public GameObject hit;
+
     // --- Public read-only accessors ---
     public GameObject CurrentMenu => currentMenu;
     public Dictionary<string, GameObject> Menus => menus;
