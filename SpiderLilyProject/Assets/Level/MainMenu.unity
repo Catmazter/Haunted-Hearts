@@ -2078,6 +2078,8 @@ MonoBehaviour:
   menuRoot: {fileID: 0}
   menuPause: {fileID: 0}
   menuLose: {fileID: 0}
+  menuLoseMatch: {fileID: 0}
+  menuLoseBreathe: {fileID: 0}
   menuSettings: {fileID: 1361627031}
   menuCredits: {fileID: 541627349}
   settingsGameplay: {fileID: 5566154723820115169}
@@ -2089,6 +2091,11 @@ MonoBehaviour:
   isRadarOpen: 0
   loseVideoPlayer: {fileID: 0}
   loseVideoScreen: {fileID: 0}
+  matchCount: {fileID: 0}
+  holdBreath: {fileID: 0}
+  holdingBreath: {fileID: 0}
+  timer: 0
+  hit: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
