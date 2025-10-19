@@ -816,6 +816,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4083251534099089662, guid: ed89aa0bb6db6b4428d56a3718a73341, type: 3}
   m_PrefabInstance: {fileID: 426921066}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &435044830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1241951296580120485, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+  m_PrefabInstance: {fileID: 976248664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fc50d1b0490eb4f8a72ed688d9f582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
 --- !u!1001 &438714105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1983,6 +1994,10 @@ PrefabInstance:
       propertyPath: ySlider
       value: 
       objectReference: {fileID: 1515828555}
+    - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 435044830}
     - target: {fileID: 3523615796678933504, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2069,7 +2084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7757465752706008642, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8744465925810488690, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_IsActive
