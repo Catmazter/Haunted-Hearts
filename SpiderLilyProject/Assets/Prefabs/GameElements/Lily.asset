@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Lily
   m_EditorClassIdentifier: Assembly-CSharp::lilyScriptableObject
   pickupName: New Pickup
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 31170b67788ff3043912c3e5c0a5503f, type: 3}
