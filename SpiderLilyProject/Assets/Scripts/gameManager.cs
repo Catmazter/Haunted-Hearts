@@ -80,8 +80,8 @@ public class gameManager : MonoBehaviour
         ySlider.minValue = 100;
         ySlider.maxValue = 1000;
 
-        xSlider.value = cameraController.GetSensitivityX();
-        ySlider.value = cameraController.GetSensitivityY();
+        xSlider.value = 653;
+        ySlider.value = 653;
 
         xSlider.onValueChanged.AddListener(OnXSliderChanged);
         ySlider.onValueChanged.AddListener(OnYSliderChanged);
@@ -204,7 +204,7 @@ public class gameManager : MonoBehaviour
         // Otherwise, no more menus → unpause
         currentMenu = null;
         if (menuRoot != null) menuRoot.SetActive(false);
-        if (isPaused)
+        if (isPaused  && SceneManager.GetActiveScene().name != "Main Menu") 
             stateUnpause();
         UpdateMenuTitle("");
     }

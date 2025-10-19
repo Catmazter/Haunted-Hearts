@@ -11,7 +11,7 @@ public class lilyScriptableObject : ScriptableObject , iPickup
 
     public void OnPickup(GameObject pickup)
     {
-        Debug.Log($"{pickup.name} picked up {pickupName}!");
+     
 
         // Play pickup sound if assigned
         if (pickupSound != null)
