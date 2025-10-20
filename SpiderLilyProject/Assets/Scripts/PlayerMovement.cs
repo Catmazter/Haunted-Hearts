@@ -440,6 +440,6 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator outOfMatches()
     {
         yield return new WaitForSeconds(3f);
-        gameManager.instance.stateLose(2);
+        gameManager.instance.stateLose(1);
     }
 }
