@@ -1197,8 +1197,8 @@ MonoBehaviour:
   menuRoot: {fileID: 7757465752706008642}
   menuPause: {fileID: 5919182640764785223}
   menuLose: {fileID: 8853290673870032076}
-  menuLoseMatch: {fileID: 0}
-  menuLoseBreathe: {fileID: 0}
+  menuLoseMatch: {fileID: 8570532436001723091}
+  menuLoseBreathe: {fileID: 3291783483069863741}
   menuSettings: {fileID: 4526561928571900189}
   menuCredits: {fileID: 0}
   settingsGameplay: {fileID: 5298407069153225126}
@@ -1211,9 +1211,7 @@ MonoBehaviour:
   loseVideoPlayer: {fileID: 3950557346568208891}
   loseVideoScreen: {fileID: 4252762353567072851}
   matchCount: {fileID: 1891267492226093414}
-  holdBreath: {fileID: 1838861950474660070}
   holdingBreath: {fileID: 7875318049349970351}
-  timer: 3
   hit: {fileID: 5310591798803811753}
   player: {fileID: 0}
   playerScript: {fileID: 0}
@@ -2115,6 +2113,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1311715744577924629, guid: b2c41ca44a24848488d206ae4b94b906, type: 3}
   m_PrefabInstance: {fileID: 3457974330835565396}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8570532436001723091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416948332958574983, guid: b2c41ca44a24848488d206ae4b94b906, type: 3}
+  m_PrefabInstance: {fileID: 3457974330835565396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6157244842003640463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2381,6 +2384,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8775470727065014489}
   m_SourcePrefab: {fileID: 100100000, guid: b2c41ca44a24848488d206ae4b94b906, type: 3}
+--- !u!1 &3291783483069863741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416948332958574983, guid: b2c41ca44a24848488d206ae4b94b906, type: 3}
+  m_PrefabInstance: {fileID: 8404657131162664634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7291162437896979082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1264454567985298480, guid: b2c41ca44a24848488d206ae4b94b906, type: 3}

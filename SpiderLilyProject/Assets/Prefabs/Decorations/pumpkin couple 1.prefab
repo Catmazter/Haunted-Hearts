@@ -187,7 +187,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5955926966632312486}
-  - component: {fileID: 5442890681065876626}
   m_Layer: 0
   m_Name: pumpkin couple 1
   m_TagString: Untagged
@@ -212,15 +211,3 @@ Transform:
   - {fileID: 32848439444326671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5442890681065876626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8462695851310550027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c8d4361f1e7684186dd5b103906809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FacePlayer
