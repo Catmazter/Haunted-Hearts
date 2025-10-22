@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public int HP;
     [SerializeField] public float speed;
     [SerializeField] float sprintMod;
-    [SerializeField] float jumpHeight;
-    [SerializeField] int jumpMax;
+    //[SerializeField] float jumpHeight;
+    //[SerializeField] int jumpMax;
     [SerializeField] public float airStamina;
     [SerializeField] float airDecreaseRate;
     [SerializeField] float airRegainRate;
@@ -62,16 +62,16 @@ public class PlayerMovement : MonoBehaviour
     [UnityEngine.Range(0, 1)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
     [UnityEngine.Range(0, 1)][SerializeField] float audHurtVol;
-    [SerializeField] AudioClip[] audJump;
-    [UnityEngine.Range(0, 1)][SerializeField] float audJumpVol;
+    //[SerializeField] AudioClip[] audJump;
+    //[UnityEngine.Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audBreath;
     [UnityEngine.Range(0, 1)][SerializeField] float audBreathVol;
     [SerializeField] AudioClip[] audInjuredBreath;
     [UnityEngine.Range(0, 1)][SerializeField] float audInjuredBreathVol;
-    [SerializeField] AudioClip[] audPlayerJump;
-    [UnityEngine.Range(0, 1)][SerializeField] float audPlayerJumpVol;
-    [SerializeField] AudioClip[] audPlayerLand;
-    [UnityEngine.Range(0, 1)][SerializeField] float audPlayerLandVol;
+    //[SerializeField] AudioClip[] audPlayerJump;
+    //[UnityEngine.Range(0, 1)][SerializeField] float audPlayerJumpVol;
+    //[SerializeField] AudioClip[] audPlayerLand;
+    //[UnityEngine.Range(0, 1)][SerializeField] float audPlayerLandVol;
     [SerializeField] AudioClip[] audCollision;
     [UnityEngine.Range(0, 1)][SerializeField] float audCollisionVol;
     float audBreathVolOrig;
@@ -103,28 +103,28 @@ public class PlayerMovement : MonoBehaviour
     }
     void movement()
     {
-       // Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
+        // Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * matchRadius, Color.red);
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         moveDir = (transform.right * h + transform.forward * v).normalized;
         Vector3 newVel = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
         rb.linearVelocity = newVel;
-        jump();
+        //jump();
         lightMatch();
     }
-    void jump()
-    {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
-        {
-            aud.PlayOneShot(audPlayerJump[UnityEngine.Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
-            jumpCount++;
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }
-    }
+    //void jump()
+    //{
+    //    if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+    //    {
+    //        aud.PlayOneShot(audPlayerJump[UnityEngine.Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
+    //        jumpCount++;
+    //        rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+    //    }
+    //}
     void sprint()
     {
         if (Input.GetButton("Sprint") && !isOutOfStamina)
-        { 
+        {
             if (Input.GetButtonDown("Sprint"))
             {
                 speed *= sprintMod;
@@ -281,12 +281,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
-            aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
-            jumpCount = 0;
-        }
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
+        //    aud.PlayOneShot(audPlayerLand[UnityEngine.Random.Range(0, audPlayerLand.Length)], audPlayerLandVol);
+        //    jumpCount = 0;
+        //}
         if (collision.gameObject.CompareTag("Moveable"))
         {
             aud.PlayOneShot(audCollision[UnityEngine.Random.Range(0, audCollision.Length)], audCollisionVol);
@@ -295,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //if (collision.gameObject.CompareTag("Match"))
         //{
-             
+
         //}
     }
     private void OnCollisionStay(Collision collision)
@@ -314,7 +314,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-       // Debug.Log("Trigger Entered" + other.name);
+        // Debug.Log("Trigger Entered" + other.name);
 
         //if(other.CompareTag("Safe Zone"))
         //{
@@ -433,7 +433,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 yield return new WaitForSeconds(0.1f);
-            } 
+            }
             gameManager.instance.holdingBreath.SetActive(false);
         }
     }
