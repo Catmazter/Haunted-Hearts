@@ -1,0 +1,65 @@
+commit a48723ffc2ee8f4d31d859498c37b9fccc4fb7fb
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 21:09:27 2025 -0400
+
+    death screen fixed
+
+commit af37f02096d4c5ac56ddcf10df74c2c2ce2f3e2c
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 20:09:05 2025 -0400
+
+    scene save
+
+commit 303c38fc5e8b0d44194fd3b64c20166cc8cea0e4
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 19:27:30 2025 -0400
+
+    matches lose fixed
+
+commit 3039851122a623dd8eb595751b5669ffec82e54d
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 17:09:07 2025 -0400
+
+    scene save
+
+commit 1281aa996ffdd54a80ee12e3333776abd307d156
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 01:45:17 2025 -0400
+
+    prefabs UPD
+
+commit 8ba29d0094c0fdcf1b98026efa2aeeb3fdeba679
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sun Oct 19 01:26:21 2025 -0400
+
+    fixed game manager
+
+commit a6e363f75c0e4f7007ffb4ddb6d4403f3fca9c78
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 18 18:43:43 2025 -0400
+
+    scene save
+
+commit 25d73c6ac0b2067b8537c4ab70c313edce0e8e2e
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 18 18:43:21 2025 -0400
+
+    player UI complete
+
+commit d1cb897532d96920bd9b066abd40859f7d36fea0
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Sat Oct 18 14:11:01 2025 -0400
+
+    collision audio
+
+commit 283b335073717b223aafebf2e7e20a79c2e5d8f5
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 16 14:52:10 2025 -0400
+
+    player prefab upd
+
+commit 8b11444c7f5b1a43b7dfc0c7023ef922430575da
+Author: Dancing3 <sherard50@gmail.com>
+Date:   Thu Oct 16 14:43:33 2025 -0400
+
+    injured player audio WIP

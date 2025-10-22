@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -154,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void throwMatch()
     {
-        if (Input.GetButtonDown("Throw Match") && isMatchLit)
+        if (Input.GetButtonDown("Throw Match") && isMatchLit && !gameManager.instance.isPaused)
         {
             int currMatch = matchListPos;
             float currMatchTimer = matchTimer;
@@ -227,6 +228,7 @@ public class PlayerMovement : MonoBehaviour
             if (matchList[matchListPos] == null)
             {
                 matchList.RemoveAt(matchListPos);
+                isMatchLit = false;
                 if (matchListPos != 0 && matchRemoval != 0)
                 {
                     matchListPos--;
@@ -291,6 +293,10 @@ public class PlayerMovement : MonoBehaviour
             collisionPos = transform.position;
             didCollide = true;
         }
+        //if (collision.gameObject.CompareTag("Match"))
+        //{
+             
+        //}
     }
     private void OnCollisionStay(Collision collision)
     {
