@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3530622629802367774}
   - component: {fileID: 648029536467385667}
+  - component: {fileID: 1850556369440734603}
   - component: {fileID: 1497275524576594400}
   - component: {fileID: 4880964303164464371}
   - component: {fileID: 5200742094200405971}
@@ -17,7 +18,7 @@ GameObject:
   - component: {fileID: 3961047697982243854}
   - component: {fileID: 8270935116118550540}
   - component: {fileID: 4455108068679000952}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: PlayerUPD
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1078,6 +1079,18 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+--- !u!114 &1850556369440734603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298466475869923593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02862d63a317c47967502a196c1ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectSafeZone
 --- !u!114 &1497275524576594400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,7 +1126,7 @@ MonoBehaviour:
   sprintMod: 1.5
   jumpHeight: 5
   jumpMax: 1
-  airStamina: 100
+  airStamina: 15
   airDecreaseRate: 2
   airRegainRate: 2
   runStamina: 10
@@ -1125,11 +1138,11 @@ MonoBehaviour:
   didCollide: 0
   throwPower: 10
   throwUpwardPower: 5
-  matchModel: {fileID: 6721467549569503755, guid: 63e5a960d42628545b5cf23f3bc6cb1e, type: 3}
+  matchModel: {fileID: 6322385561864856746, guid: 8a8f9a9e38b76634fafc11fb70dbf8a1, type: 3}
   matchList: []
-  matchMax: 9
+  matchMax: 40
   matchRadius: 10
-  matchTimer: 5
+  matchTimer: 10
   aud: {fileID: 8270935116118550540}
   audSteps:
   - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
@@ -1300,8 +1313,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0bd6d911a80f46040977198422926d29, type: 3}
   - {fileID: 8300000, guid: b15f8eaceae712040a379ad0aaff9240, type: 3}
   audPlayerLandVol: 0.671
-  audCollision: []
-  audCollisionVol: 0
+  audCollision:
+  - {fileID: 8300000, guid: ec630b97f4e563248aa7f58ce7fc8b0b, type: 3}
+  - {fileID: 8300000, guid: ed7da78155eb62a44b514c83c4995b16, type: 3}
+  - {fileID: 8300000, guid: 03e01fcadb2ab8440be1cd1992e84044, type: 3}
+  - {fileID: 8300000, guid: a51802b3cd9e2814688bb6e3f301b3df, type: 3}
+  - {fileID: 8300000, guid: 501d2400c8303ef498c0e1ea3d72ac50, type: 3}
+  - {fileID: 8300000, guid: a35dc72993219624c8d728a3dd5efa4f, type: 3}
+  - {fileID: 8300000, guid: 06491bb6a6a848a469ad275f99bd632c, type: 3}
+  - {fileID: 8300000, guid: bf3e53732a6b0db499c2e6e1e5d97b16, type: 3}
+  - {fileID: 8300000, guid: 7082d8b9cd01eb942ae46d11f3ae8176, type: 3}
+  - {fileID: 8300000, guid: b47d0a41860796441bc187045b05f2f1, type: 3}
+  - {fileID: 8300000, guid: c3997fb417739674cb62154f3b5122ea, type: 3}
+  - {fileID: 8300000, guid: a619c1af7ed24174ead4a7adb3acd8bf, type: 3}
+  - {fileID: 8300000, guid: a819601271564c74997b8a44a6c6cc4e, type: 3}
+  audCollisionVol: 0.394
 --- !u!33 &5200742094200405971
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1403,7 +1429,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 3290.7488
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1486,7 +1512,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298466475869923593}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1876,7 +1902,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.08679241, g: 0.014902092, b: 0.014902092, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1905,7 +1931,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3277047
+    m_Bits: 3149047
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
