@@ -355,6 +355,7 @@ public class gameManager : MonoBehaviour
     }
     public void stateLose(int _loseType)
     {
+       
         if (_loseType == 0)
         {
             StartCoroutine(PlayLoseVideoThenShowMenu());
@@ -446,6 +447,7 @@ public class gameManager : MonoBehaviour
      
       
         statePause();
+        if (isRadarOpen) radarUI.SetActive(false);
         OpenMenu("Lose");
     }
 }
