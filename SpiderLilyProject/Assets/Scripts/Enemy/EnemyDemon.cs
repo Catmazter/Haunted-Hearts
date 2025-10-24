@@ -107,7 +107,14 @@ public class EnemyDemon : EnemyBase
 
         float targetVolume = 0f;
 
-        if (agent.remainingDistance <= maxHearDistance)
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        float pathLength = 0f;
+        for (int i = 1; i < path.corners.Length; i++)
+            pathLength += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+
+
+        if (pathLength <= maxHearDistance)
         {
             targetVolume = Mathf.Clamp01(1 - (agent.remainingDistance / maxHearDistance));
             if (!isPlayingWarning)
