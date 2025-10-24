@@ -8,11 +8,10 @@ public class EnemyDemon : EnemyBase
 {
 
     [SerializeField] int runDistance;
-    [SerializeField] float stunDuration;
+   
   
 
     bool isRunningAway = false;
-    bool isStunned;
     [SerializeField] Animator anim;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip screamClip;
@@ -28,7 +27,7 @@ public class EnemyDemon : EnemyBase
 
 
 
-    float stunTimer;
+   
     bool hasChosenRunDest = false;
 
 
@@ -167,33 +166,12 @@ public class EnemyDemon : EnemyBase
     }
     protected virtual void HandleRunningAway()
     {
-        if (isStunned)
-        {
-            stunTimer += Time.deltaTime;
-            agent.speed = Mathf.Lerp(agent.speed, 0f, Time.deltaTime * 2f);
-
-            if (stunTimer >= stunDuration)
-            {
-                isStunned = false;
-                isRunningAway = false;
-                agent.isStopped = false;
-                hasChosenRunDest = false;
-            }
-            return;
-        }
         if (!hasChosenRunDest)
         {
-            int choice = Random.Range(0, 2);
-            if (choice == 0)
-            {
-                stunt();
-            }
-            else
-            {
-                runAway();
-            }
+            runAway(); 
             hasChosenRunDest = true;
         }
+
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             isRunningAway = false;
@@ -201,15 +179,7 @@ public class EnemyDemon : EnemyBase
         }
     }
 
-    private void stunt()
-    {
-        PlayScream();
-        isStunned = true;
-        stunTimer = 0f;
-        agent.isStopped = true;
-        StartCoroutine(RunThenRoam());
-       // Debug.Log("Enemy stunned!");
-    }
+   
 
     void UpdateAnimation()
     {

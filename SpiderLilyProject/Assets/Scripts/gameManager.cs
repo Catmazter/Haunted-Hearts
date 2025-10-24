@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -355,6 +356,7 @@ public class gameManager : MonoBehaviour
     }
     public void stateLose(int _loseType)
     {
+       
         if (_loseType == 0)
         {
             StartCoroutine(PlayLoseVideoThenShowMenu());
@@ -419,6 +421,7 @@ public class gameManager : MonoBehaviour
     }
     private IEnumerator PlayLoseVideoThenShowMenu()
     {
+        playerScript.enabled = false;
         if (currentMenu != null) currentMenu.SetActive(false);
         if (radarUI != null) radarUI.SetActive(false);
 
@@ -446,6 +449,8 @@ public class gameManager : MonoBehaviour
      
       
         statePause();
+        if (isRadarOpen) radarUI.SetActive(false);
+        playerScript.enabled = true;
         OpenMenu("Lose");
     }
 }

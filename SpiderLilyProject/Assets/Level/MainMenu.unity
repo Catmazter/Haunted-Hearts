@@ -301,7 +301,7 @@ AudioSource:
   m_GameObject: {fileID: 163368540}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
+  OutputAudioMixerGroup: {fileID: -644908329206108368, guid: 52e8de008d2048e478a0b73c386cc85e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 96720e27d1bf11b41b7a82931fcead4f, type: 3}
   m_PlayOnAwake: 1
@@ -2165,9 +2165,7 @@ MonoBehaviour:
   loseVideoPlayer: {fileID: 0}
   loseVideoScreen: {fileID: 0}
   matchCount: {fileID: 0}
-  holdBreath: {fileID: 0}
   holdingBreath: {fileID: 0}
-  timer: 0
   hit: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
