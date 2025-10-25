@@ -2224,7 +2224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: matchTimer
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
       propertyPath: audHurt.Array.size
@@ -2278,7 +2278,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1764907462484484414, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+    - {fileID: 1850556369440734603, guid: e76235963b6adcf48a69589c924faffd, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6742952093338961161, guid: e76235963b6adcf48a69589c924faffd, type: 3}
     m_AddedGameObjects: []

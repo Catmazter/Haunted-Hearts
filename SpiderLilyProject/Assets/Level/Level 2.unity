@@ -11402,6 +11402,10 @@ PrefabInstance:
       propertyPath: matchMax
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4880964303164464371, guid: e76235963b6adcf48a69589c924faffd, type: 3}
+      propertyPath: matchTimer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1764907462484484414, guid: e76235963b6adcf48a69589c924faffd, type: 3}
     - {fileID: 1850556369440734603, guid: e76235963b6adcf48a69589c924faffd, type: 3}
