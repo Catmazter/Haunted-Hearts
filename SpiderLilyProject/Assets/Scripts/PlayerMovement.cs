@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] List<GameObject> matchList = new List<GameObject>();
     [SerializeField] int matchMax;
     [SerializeField] float matchRadius;
-    [SerializeField] float matchTimer;
+    [SerializeField] public float matchTimer;
     float matchTimerOrig;
     int matchListPos;
-    bool isMatchLit;
+    public bool isMatchLit;
 
     [Header("Audio")]
 

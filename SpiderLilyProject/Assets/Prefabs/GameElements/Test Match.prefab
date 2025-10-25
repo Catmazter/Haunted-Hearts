@@ -18983,6 +18983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1030790400699741979}
+  - component: {fileID: 5543530150766966396}
   - component: {fileID: 5589386301047600662}
   - component: {fileID: 7206799989188750876}
   - component: {fileID: 899815734829892793}
@@ -18993,7 +18994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1030790400699741979
 Transform:
   m_ObjectHideFlags: 0
@@ -19010,6 +19011,19 @@ Transform:
   - {fileID: 1066862018771267126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -98.374, y: 128.757, z: 66.729}
+--- !u!114 &5543530150766966396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322385561864856746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ee7a60730297542bd48a61d7381052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::lightFade
+  matchLight: {fileID: 7552325380232887710, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
 --- !u!33 &5589386301047600662
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23013,7 +23027,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.95
+      scalar: 5.18
       minScalar: 1
       maxCurve:
         serializedVersion: 2
