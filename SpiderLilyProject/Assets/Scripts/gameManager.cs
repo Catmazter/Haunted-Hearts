@@ -434,6 +434,25 @@ public class gameManager : MonoBehaviour
 
         if (loseVideoPlayer != null)
         {
+            string sceneName = SceneManager.GetActiveScene().name;
+            string videoFileName = "";
+
+            switch (sceneName)
+            {
+                case "Level 1":
+                    videoFileName = "Zombiescream.mp4";
+                    break;
+                case "Level 2":
+                    videoFileName = "Ghostscream.mp4";
+                    break;
+                case "Level 3":
+                    videoFileName = "Deathscream.mp4";
+                    break;
+                
+            }
+
+            loseVideoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, videoFileName);
+
             loseVideoPlayer.Play();
            // Debug.Log("Lose video started...");
            
