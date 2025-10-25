@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] Rigidbody rb;
+    [SerializeField] Camera matchCam;
 
     [SerializeField] public Transform throwPoint;
     [SerializeField] public Transform matchCamera;
@@ -302,10 +303,31 @@ public class PlayerMovement : MonoBehaviour
             collisionPos = transform.position;
             didCollide = true;
         }
-        //if (collision.gameObject.CompareTag("Match"))
-        //{
-
-        //}
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            int layerIndex = LayerMask.NameToLayer("Default");
+            matchCam.cullingMask &= ~(1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("Cobweb");
+            matchCam.cullingMask &= ~(1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("safeZone");
+            matchCam.cullingMask &= ~(1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("Enemy");
+            matchCam.cullingMask &= ~(1 << layerIndex);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            int layerIndex = LayerMask.NameToLayer("Default");
+            matchCam.cullingMask |= (1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("Cobweb");
+            matchCam.cullingMask |= (1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("safeZone");
+            matchCam.cullingMask |= (1 << layerIndex);
+            layerIndex = LayerMask.NameToLayer("Enemy");
+            matchCam.cullingMask |= (1 << layerIndex);
+        }
     }
     private void OnCollisionStay(Collision collision)
     {

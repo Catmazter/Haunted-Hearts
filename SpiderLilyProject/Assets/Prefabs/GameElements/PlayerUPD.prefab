@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3530622629802367774}
   - component: {fileID: 648029536467385667}
-  - component: {fileID: 1764907462484484414}
-  - component: {fileID: 1850556369440734603}
   - component: {fileID: 1497275524576594400}
   - component: {fileID: 4880964303164464371}
   - component: {fileID: 5200742094200405971}
@@ -1080,30 +1078,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
---- !u!114 &1764907462484484414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298466475869923593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02862d63a317c47967502a196c1ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectSafeZone
---- !u!114 &1850556369440734603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298466475869923593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02862d63a317c47967502a196c1ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectSafeZone
 --- !u!114 &1497275524576594400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,9 +1106,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2097152
   rb: {fileID: 4455108068679000952}
+  matchCam: {fileID: 6508393879047637170}
   throwPoint: {fileID: 4170790416056058699}
   matchCamera: {fileID: 980849337163723983}
-  HP: 10
+  HP: 8
   speed: 15
   sprintMod: 1.5
   airStamina: 15
@@ -1151,9 +1126,9 @@ MonoBehaviour:
   throwUpwardPower: 5
   matchModel: {fileID: 6322385561864856746, guid: 8a8f9a9e38b76634fafc11fb70dbf8a1, type: 3}
   matchList: []
-  matchMax: 40
+  matchMax: 50
   matchRadius: 10
-  matchTimer: 10
+  matchTimer: 15
   isMatchLit: 0
   aud: {fileID: 8270935116118550540}
   audSteps:
@@ -1776,7 +1751,7 @@ Transform:
   m_GameObject: {fileID: 6575781468251524561}
   serializedVersion: 2
   m_LocalRotation: {x: -0.4157701, y: 0.1644397, z: 0.032019638, w: 0.89390695}
-  m_LocalPosition: {x: -0.313, y: -0.488, z: 0.346}
+  m_LocalPosition: {x: -0.313, y: -0.42, z: 0.314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2014,7 +1989,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 3457
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
