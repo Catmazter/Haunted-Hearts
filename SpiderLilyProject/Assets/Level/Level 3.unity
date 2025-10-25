@@ -347,24 +347,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3195912748714865338, guid: c2233ed8c224b4b4288f1183abed1380, type: 3}
   m_PrefabInstance: {fileID: 1717739426031124341}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &115605613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4499395025125066596, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-  m_PrefabInstance: {fileID: 1764160095}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &115605618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115605613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bfb12feda6ebf4696507f9c44954a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuitButtonWeb
-  quitButton: {fileID: 115605613}
 --- !u!1001 &137657263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1301,11 +1283,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69414aae6040136499ca9a19d86fd76b, type: 3}
---- !u!1 &614722251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8570532436001723091, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-  m_PrefabInstance: {fileID: 1764160095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &634911463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2486,11 +2463,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2269312342823349674, guid: 69414aae6040136499ca9a19d86fd76b, type: 3}
   m_PrefabInstance: {fileID: 2006702575}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1537836300 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3291783483069863741, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-  m_PrefabInstance: {fileID: 1764160095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1656179493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2634,6 +2606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 417020642221936902, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 566401265015941071, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2733,11 +2709,11 @@ PrefabInstance:
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseMatch
       value: 
-      objectReference: {fileID: 614722251}
+      objectReference: {fileID: 0}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseBreathe
       value: 
-      objectReference: {fileID: 1537836300}
+      objectReference: {fileID: 0}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: cameraController
       value: 
@@ -2961,10 +2937,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4499395025125066596, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 115605618}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
 --- !u!1 &1782528432
 GameObject:

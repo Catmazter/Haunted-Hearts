@@ -775,11 +775,6 @@ Transform:
   - {fileID: 676838326}
   m_Father: {fileID: 1100467272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &104092355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3291783483069863741, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-  m_PrefabInstance: {fileID: 1393223302}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &105947365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12438,11 +12433,11 @@ PrefabInstance:
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseMatch
       value: 
-      objectReference: {fileID: 2125139407}
+      objectReference: {fileID: 0}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseBreathe
       value: 
-      objectReference: {fileID: 104092355}
+      objectReference: {fileID: 0}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: cameraController
       value: 
@@ -12459,6 +12454,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3950557346568208891, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: e1ebd0a549323704193050c3059524a2, type: 3}
     - target: {fileID: 4805179278121554610, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -17643,11 +17642,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2138046776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2125139407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8570532436001723091, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
-  m_PrefabInstance: {fileID: 1393223302}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2128650684
 GameObject:
   m_ObjectHideFlags: 0
