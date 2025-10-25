@@ -8,11 +8,10 @@ public class EnemyDemon : EnemyBase
 {
 
     [SerializeField] int runDistance;
-    [SerializeField] float stunDuration;
+   
   
 
     bool isRunningAway = false;
-    bool isStunned;
     [SerializeField] Animator anim;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip screamClip;
@@ -28,8 +27,10 @@ public class EnemyDemon : EnemyBase
 
 
 
-    float stunTimer;
+    private bool isRecoveringAfterRun = false;
     bool hasChosenRunDest = false;
+    private bool isChasingPlayer = false;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +49,11 @@ public class EnemyDemon : EnemyBase
         {
             HandleRunningAway();
         }
+        else if (isRecoveringAfterRun)
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                roam();
+        }
         else
         {
             if (isPlayerOnNavMesh())
@@ -63,10 +69,12 @@ public class EnemyDemon : EnemyBase
         onMesh = isPlayerOnNavMesh();
         //Debug.Log($"[EnemyDemon] Player on NavMesh: {onMesh} | Agent stopped: {agent.isStopped} | Agent pathPending: {agent.pathPending}");
         UpdateAnimation();
+        UpdateWarningSound();
 
     }
     protected override void roam()
     {
+        isChasingPlayer = false;
         base.roam();
         if (CanSeePlayer())
         {
@@ -101,41 +109,16 @@ public class EnemyDemon : EnemyBase
 
     protected override void chasePlayer()
     {
-
+        isChasingPlayer = true;
         base.chasePlayer();
-        if (warningSource == null || warningClip == null) return;
-
-        float targetVolume = 0f;
-
-        if (agent.remainingDistance <= maxHearDistance)
-        {
-            targetVolume = Mathf.Clamp01(1 - (agent.remainingDistance / maxHearDistance));
-            if (!isPlayingWarning)
-            {
-                warningSource.clip = warningClip;
-                warningSource.loop = true;
-                warningSource.Play();
-                isPlayingWarning = true;
-            }
-        }
-        else
-        {
-            targetVolume = 0f;
-            if (isPlayingWarning && warningSource.volume <= 0.01f)
-            {
-                warningSource.Stop();
-                isPlayingWarning = false;
-            }
-        }
-
-        warningSource.volume = Mathf.Lerp(warningSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
-
+      
 
     }
 
     private void runAway()
     {
         PlayScream();
+        isChasingPlayer = false;
         Vector3 oppositeDir = -transform.forward;
         Vector3 targetPos = transform.position + oppositeDir * runDistance;
 
@@ -163,53 +146,26 @@ public class EnemyDemon : EnemyBase
              //   Debug.LogWarning("No valid NavMesh position found for run away.");
             }
         }
-        StartCoroutine(RunThenRoam());
     }
     protected virtual void HandleRunningAway()
     {
-        if (isStunned)
-        {
-            stunTimer += Time.deltaTime;
-            agent.speed = Mathf.Lerp(agent.speed, 0f, Time.deltaTime * 2f);
-
-            if (stunTimer >= stunDuration)
-            {
-                isStunned = false;
-                isRunningAway = false;
-                agent.isStopped = false;
-                hasChosenRunDest = false;
-            }
-            return;
-        }
         if (!hasChosenRunDest)
         {
-            int choice = Random.Range(0, 2);
-            if (choice == 0)
-            {
-                stunt();
-            }
-            else
-            {
-                runAway();
-            }
+            runAway(); 
             hasChosenRunDest = true;
         }
+
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
+
             isRunningAway = false;
             hasChosenRunDest = false;
+            isRecoveringAfterRun = true; 
+            StartCoroutine(RunThenRoam());
         }
     }
 
-    private void stunt()
-    {
-        PlayScream();
-        isStunned = true;
-        stunTimer = 0f;
-        agent.isStopped = true;
-        StartCoroutine(RunThenRoam());
-       // Debug.Log("Enemy stunned!");
-    }
+   
 
     void UpdateAnimation()
     {
@@ -231,6 +187,43 @@ public class EnemyDemon : EnemyBase
             audioSource.PlayOneShot(screamClip, demonVolume);
         }
     }
+
+    void UpdateWarningSound()
+    {
+        if (warningSource == null || warningClip == null) return;
+
+        float targetVolume = 0f;
+
+        if (isChasingPlayer)
+        {
+            float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+
+            if (distance <= maxHearDistance)
+            {
+                targetVolume = Mathf.Clamp01(1 - (distance / maxHearDistance));
+
+                if (!isPlayingWarning)
+                {
+                    warningSource.clip = warningClip;
+                    warningSource.loop = true;
+                    warningSource.Play();
+                    isPlayingWarning = true;
+                }
+            }
+        }
+
+        warningSource.volume = Mathf.Lerp(warningSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
+
+        if ((!isChasingPlayer || targetVolume <= 0.01f) && warningSource.volume <= 0.02f)
+        {
+            if (isPlayingWarning)
+            {
+                warningSource.Stop();
+                isPlayingWarning = false;
+            }
+        }
+    }
+
 
 
 
@@ -263,10 +256,25 @@ public class EnemyDemon : EnemyBase
 
     private IEnumerator RunThenRoam()
     {
-        // Wait until demon reaches the run destination
-        yield return new WaitUntil(() => !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
-        roam();
-        yield return new WaitForSeconds(15); 
+
+        roam(); 
+
+        float roamTime = 10f;
+        float timer = 0f;
+
+        while (timer < roamTime)
+        {
+            timer += Time.deltaTime;
+
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                roam();
+            }
+
+            yield return null;
+        }
+        isRecoveringAfterRun = false;
+
     }
 
 

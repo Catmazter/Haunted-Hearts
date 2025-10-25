@@ -59,8 +59,18 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-       // else Debug.LogWarning("Multiple AudioManager instances!");
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+       
+        // else Debug.LogWarning("Multiple AudioManager instances!");
 
         // Load saved slider values
         sliderMaster.value = PlayerPrefs.GetFloat(masterVolumeParam, sliderMaster.value);
@@ -101,23 +111,29 @@ public class AudioManager : MonoBehaviour
         });
 
         // Add toggle listeners
+        toggleMuteAll.onValueChanged.RemoveAllListeners();
+        toggleMuteAll.isOn = false;
         toggleMuteAll.onValueChanged.AddListener(MuteAllChanged);
-       // toggleMuteVoice.onValueChanged.AddListener(MuteVoiceChanged);
+        // toggleMuteVoice.onValueChanged.AddListener(MuteVoiceChanged);
 
-       
+
         mixer.GetFloat(voiceVolumeParam, out float voiceDb);
         voiceSaved = Mathf.Pow(10, voiceDb / 30f);
+
+
     }
 
     private void Start()
     {
-        if(SceneManager.GetActiveScene().name == "Level 1")
+    
+        if (SceneManager.GetActiveScene().name == "Level 1")
         {
         musicSource.PlayOneShot(
             womenCry,
             womenCryVolume);
         }
         SetNextPlayTime();
+
 
         if (SceneManager.GetActiveScene().name == "Level 3")
         {
@@ -174,6 +190,9 @@ public class AudioManager : MonoBehaviour
 
     private void PlayRandomTransition()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+            return;
+
         if (transitionClips.Length == 0 || musicSource == null) return;
         musicSource.PlayOneShot(
             transitionClips[Random.Range(0, transitionClips.Length)],
@@ -204,9 +223,13 @@ public class AudioManager : MonoBehaviour
     }
     public void PauseAllAudio()
     {
+
         AudioSource[] all = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
         foreach (var src in all)
         {
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+                continue;
+
             if (src.isPlaying)
                 src.Pause();
         }
