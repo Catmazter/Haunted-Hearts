@@ -367,6 +367,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void updatePlayerUI()
     {
+        //gameManager.instance.staminaBar.fillAmount = runStamina / runStaminaOrig;
+        //if (isSprinting)
+        //{
+        //    gameManager.instance.sprintBar.enabled = true;
+        //    gameManager.instance.staminaBar.enabled = true;
+        //}
+        //else if (!isSprinting) 
+        //{
+        //    if (gameManager.instance.staminaBar.fillAmount == 1)
+        //    {
+        //        gameManager.instance.sprintBar.enabled = false;
+        //        gameManager.instance.staminaBar.enabled = false;
+        //    }
+        //}
         if (matchList.Count >= 0)
         {
             gameManager.instance.matchCount.text = matchList.Count.ToString("F0");

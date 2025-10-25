@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
+using Image = UnityEngine.UI.Image;
 
 public class gameManager : MonoBehaviour
 {
@@ -55,6 +56,10 @@ public class gameManager : MonoBehaviour
     //public TMP_Text holdBreath;
     public GameObject holdingBreath;
     //public float timer;
+
+    //[Header("Stamina")]
+    //public Image sprintBar;
+    //public Image staminaBar;
 
     [Header("Hit Effect")]
     public GameObject hit;
