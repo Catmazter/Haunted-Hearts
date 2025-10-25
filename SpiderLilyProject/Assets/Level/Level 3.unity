@@ -1523,6 +1523,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6481082939236498921, guid: 99d744a69351d8e4db0f6a50b8745285, type: 3}
   m_PrefabInstance: {fileID: 760793375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &768915276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1091085441657718058, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+  m_PrefabInstance: {fileID: 1764160095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &805147386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 110594360204514207, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
@@ -2709,11 +2714,11 @@ PrefabInstance:
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseMatch
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 768915276}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: menuLoseBreathe
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1978140832}
     - target: {fileID: 3340028821929196505, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
       propertyPath: cameraController
       value: 
@@ -3193,6 +3198,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d744a69351d8e4db0f6a50b8745285, type: 3}
+--- !u!1 &1978140832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3740389577051324563, guid: 24303ebc80ad2a6458e999c62324c92d, type: 3}
+  m_PrefabInstance: {fileID: 1764160095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2005396141
 PrefabInstance:
   m_ObjectHideFlags: 0
