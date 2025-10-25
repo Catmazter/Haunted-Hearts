@@ -52,7 +52,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float matchRadius;
     [SerializeField] public float matchTimer;
     float matchTimerOrig;
+    float currMatchTimer;
     int matchListPos;
+    int currMatch;
     public bool isMatchLit;
 
     [Header("Audio")]
@@ -157,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Throw Match") && isMatchLit && !gameManager.instance.isPaused)
         {
-            int currMatch = matchListPos;
-            float currMatchTimer = matchTimer;
+            currMatch = matchListPos;
+            currMatchTimer = matchTimer;
             Rigidbody rb = matchList[currMatch].GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
@@ -181,9 +183,10 @@ public class PlayerMovement : MonoBehaviour
             }
             isMatchLit = false;
         }
-        else if (matchList.Count != 0)
+        currMatchTimer -= Time.deltaTime;
+        if (matchList.Count != 0)
         {
-            if (matchList[matchRemoval] == null)
+            if (matchList[matchRemoval].transform.parent == null)
             {
                 matchList.RemoveAt(matchRemoval);
                 if (matchRemoval != 0)
@@ -197,8 +200,14 @@ public class PlayerMovement : MonoBehaviour
                 isMatchThrown = false;
             }
         }
-        if (matchList.Count == 0)
-            StartCoroutine(outOfMatches());
+        else if (matchList.Count == 0)
+        {
+            if (currMatchTimer <= 0)
+            {
+                StartCoroutine(outOfMatches());
+            }
+        }
+        
     }
     void matchInventory()
     {

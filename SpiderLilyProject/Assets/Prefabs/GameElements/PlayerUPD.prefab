@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3530622629802367774}
   - component: {fileID: 648029536467385667}
+  - component: {fileID: 1764907462484484414}
   - component: {fileID: 1850556369440734603}
   - component: {fileID: 1497275524576594400}
   - component: {fileID: 4880964303164464371}
@@ -1079,6 +1080,18 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+--- !u!114 &1764907462484484414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298466475869923593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02862d63a317c47967502a196c1ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectSafeZone
 --- !u!114 &1850556369440734603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,9 +1151,10 @@ MonoBehaviour:
   throwUpwardPower: 5
   matchModel: {fileID: 6322385561864856746, guid: 8a8f9a9e38b76634fafc11fb70dbf8a1, type: 3}
   matchList: []
-  matchMax: 50
+  matchMax: 40
   matchRadius: 10
-  matchTimer: 15
+  matchTimer: 10
+  isMatchLit: 0
   aud: {fileID: 8270935116118550540}
   audSteps:
   - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
