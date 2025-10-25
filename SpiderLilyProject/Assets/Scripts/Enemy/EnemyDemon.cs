@@ -29,6 +29,8 @@ public class EnemyDemon : EnemyBase
 
     private bool isRecoveringAfterRun = false;
     bool hasChosenRunDest = false;
+    private bool isChasingPlayer = false;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,10 +69,12 @@ public class EnemyDemon : EnemyBase
         onMesh = isPlayerOnNavMesh();
         //Debug.Log($"[EnemyDemon] Player on NavMesh: {onMesh} | Agent stopped: {agent.isStopped} | Agent pathPending: {agent.pathPending}");
         UpdateAnimation();
+        UpdateWarningSound();
 
     }
     protected override void roam()
     {
+        isChasingPlayer = false;
         base.roam();
         if (CanSeePlayer())
         {
@@ -105,41 +109,16 @@ public class EnemyDemon : EnemyBase
 
     protected override void chasePlayer()
     {
-
+        isChasingPlayer = true;
         base.chasePlayer();
-        if (warningSource == null || warningClip == null) return;
-
-        float targetVolume = 0f;
-
-        if (agent.remainingDistance <= maxHearDistance)
-        {
-            targetVolume = Mathf.Clamp01(1 - (agent.remainingDistance / maxHearDistance));
-            if (!isPlayingWarning)
-            {
-                warningSource.clip = warningClip;
-                warningSource.loop = true;
-                warningSource.Play();
-                isPlayingWarning = true;
-            }
-        }
-        else
-        {
-            targetVolume = 0f;
-            if (isPlayingWarning && warningSource.volume <= 0.01f)
-            {
-                warningSource.Stop();
-                isPlayingWarning = false;
-            }
-        }
-
-        warningSource.volume = Mathf.Lerp(warningSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
-
+      
 
     }
 
     private void runAway()
     {
         PlayScream();
+        isChasingPlayer = false;
         Vector3 oppositeDir = -transform.forward;
         Vector3 targetPos = transform.position + oppositeDir * runDistance;
 
@@ -167,7 +146,6 @@ public class EnemyDemon : EnemyBase
              //   Debug.LogWarning("No valid NavMesh position found for run away.");
             }
         }
-        StartCoroutine(RunThenRoam());
     }
     protected virtual void HandleRunningAway()
     {
@@ -179,6 +157,7 @@ public class EnemyDemon : EnemyBase
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
+
             isRunningAway = false;
             hasChosenRunDest = false;
             isRecoveringAfterRun = true; 
@@ -208,6 +187,43 @@ public class EnemyDemon : EnemyBase
             audioSource.PlayOneShot(screamClip, demonVolume);
         }
     }
+
+    void UpdateWarningSound()
+    {
+        if (warningSource == null || warningClip == null) return;
+
+        float targetVolume = 0f;
+
+        if (isChasingPlayer)
+        {
+            float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+
+            if (distance <= maxHearDistance)
+            {
+                targetVolume = Mathf.Clamp01(1 - (distance / maxHearDistance));
+
+                if (!isPlayingWarning)
+                {
+                    warningSource.clip = warningClip;
+                    warningSource.loop = true;
+                    warningSource.Play();
+                    isPlayingWarning = true;
+                }
+            }
+        }
+
+        warningSource.volume = Mathf.Lerp(warningSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
+
+        if ((!isChasingPlayer || targetVolume <= 0.01f) && warningSource.volume <= 0.02f)
+        {
+            if (isPlayingWarning)
+            {
+                warningSource.Stop();
+                isPlayingWarning = false;
+            }
+        }
+    }
+
 
 
 
@@ -240,6 +256,7 @@ public class EnemyDemon : EnemyBase
 
     private IEnumerator RunThenRoam()
     {
+
         roam(); 
 
         float roamTime = 10f;
