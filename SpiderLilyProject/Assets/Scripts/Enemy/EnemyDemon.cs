@@ -27,7 +27,7 @@ public class EnemyDemon : EnemyBase
 
 
 
-   
+    private bool isRecoveringAfterRun = false;
     bool hasChosenRunDest = false;
 
 
@@ -46,6 +46,11 @@ public class EnemyDemon : EnemyBase
         if (isRunningAway)
         {
             HandleRunningAway();
+        }
+        else if (isRecoveringAfterRun)
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                roam();
         }
         else
         {
@@ -176,6 +181,8 @@ public class EnemyDemon : EnemyBase
         {
             isRunningAway = false;
             hasChosenRunDest = false;
+            isRecoveringAfterRun = true; 
+            StartCoroutine(RunThenRoam());
         }
     }
 
@@ -233,10 +240,24 @@ public class EnemyDemon : EnemyBase
 
     private IEnumerator RunThenRoam()
     {
-        // Wait until demon reaches the run destination
-        yield return new WaitUntil(() => !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
-        roam();
-        yield return new WaitForSeconds(15); 
+        roam(); 
+
+        float roamTime = 10f;
+        float timer = 0f;
+
+        while (timer < roamTime)
+        {
+            timer += Time.deltaTime;
+
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                roam();
+            }
+
+            yield return null;
+        }
+        isRecoveringAfterRun = false;
+
     }
 
 
