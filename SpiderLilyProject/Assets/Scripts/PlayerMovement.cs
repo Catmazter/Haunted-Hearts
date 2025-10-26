@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Transform matchCamera;
     [SerializeField] public int HP;
     [SerializeField] public float speed;
+    [SerializeField] float damping = 30f;   
+    [Header("Stamina")]
     [SerializeField] float sprintMod;
     //[SerializeField] float jumpHeight;
     //[SerializeField] int jumpMax;
@@ -110,8 +112,14 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         moveDir = (transform.right * h + transform.forward * v).normalized;
-        Vector3 newVel = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
-        rb.linearVelocity = newVel;
+        Vector3 targetVel = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
+
+        Vector3 newVel = rb.linearVelocity;
+        Vector3 horizVel = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 horizTargetVel = new Vector3(targetVel.x, 0, targetVel.z);
+
+        horizVel = Vector3.Lerp(horizVel, horizTargetVel, Time.deltaTime * damping);
+        rb.linearVelocity = new Vector3(horizVel.x, rb.linearVelocity.y, horizVel.z);
         //jump();
         lightMatch();
     }
