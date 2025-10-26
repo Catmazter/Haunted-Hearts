@@ -2697,6 +2697,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1398203872419859647, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: m_Speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -66.9
@@ -2736,6 +2740,10 @@ PrefabInstance:
     - target: {fileID: 4907920603968123707, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
+      propertyPath: chaseSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7599054449790826617, guid: 9631f29ae7994ad4ba7cacced9da564b, type: 3}
       propertyPath: runDistance
@@ -2924,6 +2932,10 @@ PrefabInstance:
     - target: {fileID: 716473731310989190, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241359684106825061, guid: 21a377317ac213d418b88d93b404122a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1632899203166832602, guid: 21a377317ac213d418b88d93b404122a, type: 3}
       propertyPath: m_Extents.x
